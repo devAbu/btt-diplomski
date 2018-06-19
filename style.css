@@ -1,0 +1,303 @@
+.jumbotron {
+    background-image: url('images/jumbotron.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+#bg {
+    background-image: url('images/bg.png');
+    background-size: cover;
+    opacity: 0.7;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+.jumbotron2 {
+    background-image: url('images/sarajevo.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+.jumbotron3 {
+    background-image: url('images/tours.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+.jumbotron7 {
+    background-image: url('images/skijanje.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+.jumbotron8 {
+    background-image: url('images/make.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+.jumbotron9 {
+    background-image: url('images/apartment.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+.jumbotron4 {
+    background-image: url('images/book.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+.jumbotron5 {
+    background-image: url('images/places.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+.jumbotron6 {
+    background-image: url('images/rent.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+#jumbotronFeedback {
+    background-image: url('images/feedback.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+.link:hover {
+    color: rgb(0, 41, 136) !important;
+}
+
+#brandText:hover {
+    color: rgb(0, 41, 136);
+}
+
+#why {
+    background-image: url('images/why.jpg');
+    background-position: center;
+    background-size: cover;
+    height: 182px !important;
+}
+
+.why-2 {
+    background-image: url('images/why2.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.bg {
+    background-image: url('images/aboutUsBG.jpg');
+    background-size: cover;
+    background-position: center;
+    /* max-height: 330px;*/
+}
+
+#abufb:hover {
+    cursor: pointer;
+}
+
+#button {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: rgb(196, 196, 196);
+    background-color: #5F5F5F;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 20px;
+}
+
+#button:hover {
+    opacity: 0.8;
+}
+
+#search-loged {
+    width: 450px;
+    -webkit-transition: width 0.8s ease-in-out;
+    transition: width 0.8s ease-in-out;
+}
+
+#search-loged:focus {
+    width: 100%;
+}
+
+#map:hover {
+    color: rgb(160, 134, 0) !important;
+}
+
+input[type=button] {
+    content: "<button type='button' class='btn btn-outline-warning' id='oko'> <i class='fas fa-eye'></i> </button>";
+}
+
+footer {
+    z-index: 1 !important;
+}
+
+.aboutUs {
+    opacity: 0.8;
+    -webkit-transition: opacity 0.5s ease-out;
+    filter: grayscale(1) sepia(100);
+    -webkit-filter: grayscale(1) sepia(100);
+    -moz-filter: grayscale(1) sepia(100);
+    -webkit-transition: ease-out;
+    -webkit-transition-duration: 0.8s;
+}
+
+.aboutUs:hover {
+    opacity: 1;
+    -webkit-transition: opacity 1s ease-in;
+    filter: grayscale(0) sepia(0);
+    -webkit-filter: grayscale(0) sepia(0);
+    -moz-filter: grayscale(0) sepia(0);
+    -webkit-transition: ease-in;
+    -webkit-transition-duration: 0.8s;
+}
+
+.index {
+    transition: transform 2s;
+}
+
+.index:hover {
+    filter: drop-shadow(15px 15px 10px rgba(0, 0, 0, 0.8));
+    -webkit-filter: drop-shadow(15px 15px 10px rgba(0, 0, 0, 0.8));
+    -moz-filter: drop-shadow(15px 15px 10px rgba(0, 0, 0, 0.8));
+    transform: scale(1.1);
+    z-index: -1 !important;
+}
+
+#prva img:hover {
+    z-index: 1;
+}
+
+#prva:hover+#druga {
+    z-index: -1;
+}
+
+#druga img:hover {
+    z-index: 1;
+}
+
+#druga:hover+#treca {
+    z-index: -1;
+}
+
+.index2 {
+    transition: transform 2s;
+}
+
+.index2:hover {
+    transform: scale(1.2);
+}
+
+.tourPlans {
+    opacity: 0.8;
+    -webkit-transition: opacity ease-out;
+    filter: grayscale(1) sepia(1);
+    -webkit-filter: grayscale(1) sepia(1);
+    -moz-filter: grayscale(1) sepia(1);
+    -webkit-transition: ease-out;
+    -webkit-transition-duration: 0.5s;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+
+.tourPlans:hover {
+    opacity: 1;
+    -webkit-transition: opacity 0.4s ease-in;
+    filter: grayscale(0) sepia(0);
+    -webkit-filter: grayscale(0) sepia(0);
+    -moz-filter: grayscale(0) sepia(0);
+    -webkit-transition: ease-in;
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+    -webkit-transition-duration: 0.5s;
+}
+
+.hotel img {
+    filter: grayscale(1);
+    -webkit-filter: grayscale(1);
+    -moz-filter: grayscale(1);
+}
+
+.hotel:hover img {
+    opacity: 1;
+    animation: flash 1.8s;
+    -webkit-animation: flash 1.8s;
+    filter: grayscale(0);
+    -webkit-filter: grayscale(0);
+    -moz-filter: grayscale(0);
+}
+
+@-webkit-keyframes flash {
+    0% {
+        opacity: .2;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes flash {
+    0% {
+        opacity: .3;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.best {
+    filter: sepia(1);
+    -webkit-filter: sepia(1);
+    -moz-filter: sepia(1);
+    transition: all 0.4s ease-out;
+}
+
+.best:hover {
+    filter: sepia(0);
+    -webkit-filter: sepia(0);
+    -moz-filter: sepia(0);
+    transition: all 0.6s ease-in;
+    transform: scale3d(2);
+}
+
+.more {
+    color: gold !important;
+}
+
+.more:hover {
+    color: goldenrod !important;
+}
+
+.days:hover {
+    cursor: pointer !important;
+}
+
+.days {
+    height: 65px;
+}
