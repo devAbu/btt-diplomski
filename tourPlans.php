@@ -349,7 +349,10 @@
 							$("#alertLog").html('Logged in successfully');
 							$("#alertLog").slideDown(500).delay(1000).slideUp(500);
                             $('#emailLog').val("");
-                            $('#passLog').val("");
+                            $('#passLog').val("");.
+                            var delay = 1500;
+                            setTimeout(function(){
+                                window.location = "index.php"; }, delay);
                         } else if(data.indexOf('pass') > -1){
                             $("#alertLog").addClass('alert-danger');
 							$("#alertLog").html('Password is incorrect');
