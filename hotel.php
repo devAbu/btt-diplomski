@@ -495,14 +495,15 @@ $count = $result->num_rows;
 
 if ($count > 0) {
     if (isset($_SESSION["email"])) {
+        echo '<div class="card-group mt-5">
+                    <div class="row">';
         while ($row = $result->fetch_assoc()) {
 
             $session = $_SESSION["email"];
 
             echo '<input type="text" value=" ' . $session . '  "  name="session" id="session" hidden>
                 <input type="text" value=" ' . $row["ID"] . ' "  name="idnum" id="idnum" hidden>
-                <div class="card-group mt-5">
-                    <div class="row">
+
                         <div class="col-4" class="col">
                             <div class="card hotel">
                                 <img class="card-img-top" src="images/scc.jpg" alt="Card image cap">
@@ -523,10 +524,11 @@ if ($count > 0) {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+
                 ';
         }
+        echo '</div>
+                </div>';
     } else {
         echo "<div class='row'><div class='offset-5 text-center mt-5 mb-5'><a href='#' data-toggle='modal' data-target='#LoginModal'><span class='text-warning' style='font-size: 20px;'>LOGIN</span></a> to see and select hotel to reserve!!!</div></div>";
     }
