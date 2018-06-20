@@ -1,5 +1,5 @@
 ﻿<?php
-    session_start();
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -81,13 +81,13 @@
                 </li>
             </ul>
             <?php
-                if (isset($_SESSION['email'])) {
-                    $session = $_SESSION['email'];
-                    echo "<ul class='navbar-nav ml-auto'><li class='nav-item'><a href='logout'  class='nav-link link'><span class='navLinks'><i class='fas fa-sign-in-alt mr-2'></i>Logout</span></a></li></ul><input type='text'  value='$session' hidden id='session' name='session'>";
-                } else {
-                    echo "<ul class='navbar-nav ml-auto'><li class='nav-item'><a href='#' data-toggle='modal' data-target='#SignModal' class='nav-link link'><span class='navLinks'><i class='fa fa-user-plus mr-2'></i>Register</span></a></li><li class='nav-item'><a href='#' data-toggle='modal' data-target='#LoginModal' class='nav-link link'><span class='navLinks'><i class='fas fa-sign-in-alt mr-2'></i>Login</span></a></li></ul>";
-                }
-            ?>
+if (isset($_SESSION['email'])) {
+    $session = $_SESSION['email'];
+    echo "<ul class='navbar-nav ml-auto'><li class='nav-item'><a href='logout'  class='nav-link link'><span class='navLinks'><i class='fas fa-sign-in-alt mr-2'></i>Logout</span></a></li></ul><input type='text'  value='$session' hidden id='session' name='session'>";
+} else {
+    echo "<ul class='navbar-nav ml-auto'><li class='nav-item'><a href='#' data-toggle='modal' data-target='#SignModal' class='nav-link link'><span class='navLinks'><i class='fa fa-user-plus mr-2'></i>Register</span></a></li><li class='nav-item'><a href='#' data-toggle='modal' data-target='#LoginModal' class='nav-link link'><span class='navLinks'><i class='fas fa-sign-in-alt mr-2'></i>Login</span></a></li></ul>";
+}
+?>
             <!-- <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a href="#" data-toggle="modal" data-target="#SignModal" class="nav-link link">
@@ -485,6 +485,62 @@
     </section>
 
     <section>
+    <?php
+require 'connect.php';
+
+$sql = "SELECT * FROM apartment";
+$result = $dbc->query($sql);
+
+$count = $result->num_rows;
+
+if ($count > 0) {
+    if (isset($_SESSION["email"])) {
+        while ($row = $result->fetch_assoc()) {
+
+            $session = $_SESSION["email"];
+
+            echo '<input type="text" value=" ' . $session . '  "  name="session" id="session" hidden>
+                <input type="text" value=" ' . $row["ID"] . ' "  name="idnum" id="idnum" hidden>
+                <div class="card-group mt-5">
+            <div class="row">
+                <div class="col-4">
+                    <div class="card hotel">
+                        <img class="card-img-top" src="images/daily.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">' . $row["title"] . '</h5>
+                            <p class="card-text">' . $row["description"] . '</p>
+                            <input type="button" class="btn btn-warning" value="Select" />
+                            <span class="ml-5">
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </span>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">' . $row["place"] . '</small>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+                </div>
+                ';
+        }
+    } else {
+        echo "<div class='row'><div class='offset-5 text-center mt-5 mb-5'><a href='#' data-toggle='modal' data-target='#LoginModal'><span class='text-warning' style='font-size: 20px;'>LOGIN</span></a> to see and select apartment for reserve!!!</div></div>";
+    }
+} else {
+    echo '0 results';
+}
+$dbc->close();
+
+?>
+    </section>
+
+    <!-- <section>
         <div class="card-group mt-5">
             <div class="row">
                 <div class="col-4">
@@ -503,99 +559,16 @@
                                 <i class="far fa-star"></i>
                             </span>
 <!--                             <input type="button" class="btn btn-warning" style="float:right;" value="More Details" />
- -->                        </div>
+ ->                        </div>
                         <div class="card-footer">
                             <small class="text-muted">Sarajevo - Skenderija</small>
                         </div>
                     </div>
                 </div>
-                <div class="col-4">
-                    <div class="card hotel">
-                        <img class="card-img-top" src="images/BA.jpg" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">BA Apartments</h5>
-                            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                            <input type="button" class="btn btn-warning" value="Select" />
-                            <span class="ml-5">
-                                <i class="far fa-star "></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                            </span>
-<!--                             <input type="button" class="btn btn-warning" style="float:right;" value="More Details" />
- -->                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">Sarajevo - Cobanija</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div class="card hotel">
-                        <img class="card-img-top" src="images/bistrik.jpg" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">Exclusive Apartments Bistrik</h5>
-                            <p class="card-text"> This card has even longer content than the first to show that equal height action.</p>
-                            <input type="button" class="btn btn-warning" value="Select" />
-                            <span class="ml-5">
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                            </span>
-<!--                             <input type="button" class="btn btn-warning" style="float:right;" value="More Details" />
- -->                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">Sarajevo - Bistrik</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4 mt-3">
-                    <div class="card hotel">
-                        <img class="card-img-top" src="images/massimo.jpg" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">Apartmani Massimo</h5>
-                            <p class="card-text"> This card has even longer content than the first to show that equal height action.</p>
-                            <input type="button" class="btn btn-warning" value="Select" />
-                            <span class="ml-5">
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                            </span>
-<!--                             <input type="button" class="btn btn-warning" style="float:right;" value="More Details" />
- -->                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">Sarajevo - Skenderija</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4 mt-3">
-                    <div class="card hotel">
-                        <img class="card-img-top" src="images/emily.jpg" alt="Card image cap" style="height:289px !important;">
-                        <div class="card-body">
-                            <h5 class="card-title">Apartments Emily</h5>
-                            <p class="card-text"> This card has even longer content than the first to show that equal height action.</p>
-                            <input type="button" class="btn btn-warning" value="Select" />
-                            <span class="ml-5">
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                            </span>
-<!--                             <input type="button" class="btn btn-warning" style="float:right;" value="More Details" />
- -->                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">Sarajevo - Centar</small>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
-    </section>
+    </section> -->
 
     <footer class="bg-secondary" style="margin-top:0px;">
         <div class="row no-gutters">

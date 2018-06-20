@@ -1,5 +1,5 @@
 ﻿<?php
-    session_start();
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -81,13 +81,13 @@
                 </li>
             </ul>
             <?php
-                if (isset($_SESSION['email'])) {
-                    $session = $_SESSION['email'];
-                    echo "<ul class='navbar-nav ml-auto'><li class='nav-item'><a href='logout'  class='nav-link link'><span class='navLinks'><i class='fas fa-sign-in-alt mr-2'></i>Logout</span></a></li></ul><input type='text'  value='$session' hidden id='session' name='session'>";
-                } else {
-                    echo "<ul class='navbar-nav ml-auto'><li class='nav-item'><a href='#' data-toggle='modal' data-target='#SignModal' class='nav-link link'><span class='navLinks'><i class='fa fa-user-plus mr-2'></i>Register</span></a></li><li class='nav-item'><a href='#' data-toggle='modal' data-target='#LoginModal' class='nav-link link'><span class='navLinks'><i class='fas fa-sign-in-alt mr-2'></i>Login</span></a></li></ul>";
-                }
-            ?>
+if (isset($_SESSION['email'])) {
+    $session = $_SESSION['email'];
+    echo "<ul class='navbar-nav ml-auto'><li class='nav-item'><a href='logout'  class='nav-link link'><span class='navLinks'><i class='fas fa-sign-in-alt mr-2'></i>Logout</span></a></li></ul><input type='text'  value='$session' hidden id='session' name='session'>";
+} else {
+    echo "<ul class='navbar-nav ml-auto'><li class='nav-item'><a href='#' data-toggle='modal' data-target='#SignModal' class='nav-link link'><span class='navLinks'><i class='fa fa-user-plus mr-2'></i>Register</span></a></li><li class='nav-item'><a href='#' data-toggle='modal' data-target='#LoginModal' class='nav-link link'><span class='navLinks'><i class='fas fa-sign-in-alt mr-2'></i>Login</span></a></li></ul>";
+}
+?>
             <!-- <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a href="#" data-toggle="modal" data-target="#SignModal" class="nav-link link">
@@ -169,7 +169,7 @@
                 </div>
             </div>
         </div>
-    
+
         <script>
                 $('#alert').slideUp();
                 $('#signButton').click(function () {
@@ -178,12 +178,12 @@
                     var lastSign = $('#lastSign').val();
                     var emailSign = $('#emailSign').val();
                     var passSign = $('#passSign').val();
-        
+
                     function validateEmail($emailSign) {
                         var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
                         return emailReg.test($emailSign);
                     }
-        
+
                     if (firstSign == "") {
                         $("#alert").addClass('alert-danger');
                         $("#alert").html("Your first name is required!!!");
@@ -230,7 +230,7 @@
                 })
             }
         });
-        
+
                 $('#eye').click(function () {
                     /* var elementType = $('#passSign').prev().prop('pass'); */
                     var elementType = $('#passSign').attr('type');
@@ -242,7 +242,7 @@
                     }
                 });
             </script>
-    
+
         <div class="modal fade" id="LoginModal" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
             <div class="modal-dialog modal-md" role="document">
                 <div class="modal-content">
@@ -315,19 +315,19 @@
                 </div>
             </div>
         </div>
-    
-        
+
+
         <script>
                 $('#alertLog').slideUp();
                 $('#logButton').click(function () {
                     var emailLog = $('#emailLog').val();
                     var passLog = $('#passLog').val();
-        
+
                     function validateEmail($emailLog) {
                         var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
                         return emailReg.test($emailLog);
                     }
-        
+
                     if (emailLog == "") {
                         $("#alertLog").addClass('alert-danger');
                         $("#alertLog").html("Email field is required!!!");
@@ -371,7 +371,7 @@
                 })
             }
         });
-        
+
                 $('#eyeLog').click(function () {
                     /* var elementType = $('#passSign').prev().prop('pass'); */
                     var elementType = $('#passLog').attr('type');
@@ -485,31 +485,59 @@
     </section>
 
     <section>
-        <div class="card-group mt-5">
-            <div class="row">
-                <div class="col-4">
-                    <div class="card hotel">
-                        <img class="card-img-top" src="images/malak.jpg" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">Malak Regency Hotel</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This
-                                content is a little bit longer.</p>
-                            <input type="button" class="btn btn-warning" value="Select" />
-                            <span class="ml-5">
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                            </span>
-<!--                             <input type="button" class="btn btn-warning" style="float:right;" value="More Details" />
- -->                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">Sarajevo - Ilidza</small>
+    <?php
+require 'connect.php';
+
+$sql = "SELECT * FROM hotel";
+$result = $dbc->query($sql);
+
+$count = $result->num_rows;
+
+if ($count > 0) {
+    if (isset($_SESSION["email"])) {
+        while ($row = $result->fetch_assoc()) {
+
+            $session = $_SESSION["email"];
+
+            echo '<input type="text" value=" ' . $session . '  "  name="session" id="session" hidden>
+                <input type="text" value=" ' . $row["ID"] . ' "  name="idnum" id="idnum" hidden>
+                <div class="card-group mt-5">
+                    <div class="row">
+                        <div class="col-4" class="col">
+                            <div class="card hotel">
+                                <img class="card-img-top" src="images/scc.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">' . $row["title"] . '</h5>
+                                    <p class="card-text">' . $row["description"] . '</p>
+                                    <input type="button" class="btn btn-warning" value="Select" />
+                                    <span class="ml-5">
+                                        <i class="far fa-star "></i>
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                    </span>
+                                </div>
+                                <div class="card-footer">
+                                    <small class="text-muted">' . $row["place"] . '</small>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-4">
+                ';
+        }
+    } else {
+        echo "<div class='row'><div class='offset-5 text-center mt-5 mb-5'><a href='#' data-toggle='modal' data-target='#LoginModal'><span class='text-warning' style='font-size: 20px;'>LOGIN</span></a> to see and select hotel to reserve!!!</div></div>";
+    }
+} else {
+    echo '0 results';
+}
+$dbc->close();
+
+?>
+    </section>
+                 <!--<div class="col-4">
                     <div class="card hotel">
                         <img class="card-img-top" src="images/scc.jpg" alt="Card image cap">
                         <div class="card-body">
@@ -523,8 +551,8 @@
                                 <i class="far fa-star"></i>
                                 <i class="far fa-star"></i>
                             </span>
-<!--                             <input type="button" class="btn btn-warning" style="float:right;" value="More Details" />
- -->                        </div>
+<!--                            <input type="button" class="btn btn-warning" style="float:right;" value="More Details" />
+ --                     </div>
                         <div class="card-footer">
                             <small class="text-muted">Sarajevo - Marijin Dvor</small>
                         </div>
@@ -545,7 +573,7 @@
                                 <i class="far fa-star"></i>
                             </span>
 <!--                             <input type="button" class="btn btn-warning" style="float:right;" value="More Details" />
- -->                        </div>
+ --                        </div>
                         <div class="card-footer">
                             <small class="text-muted">Sarajevo - Ilidza</small>
                         </div>
@@ -566,7 +594,7 @@
                                 <i class="far fa-star"></i>
                             </span>
 <!--                             <input type="button" class="btn btn-warning" style="float:right;" value="More Details" />
- -->                        </div>
+ --                        </div>
                         <div class="card-footer">
                             <small class="text-muted">Sarajevo - Stari Grad</small>
                         </div>
@@ -587,7 +615,7 @@
                                 <i class="far fa-star"></i>
                             </span>
 <!--                             <input type="button" class="btn btn-warning" style="float:right;" value="More Details" />
- -->                        </div>
+ --                        </div>
                         <div class="card-footer">
                             <small class="text-muted">Sarajevo - Latinska Cuprija</small>
                         </div>
@@ -608,7 +636,7 @@
                                 <i class="far fa-star"></i>
                             </span>
 <!--                             <input type="button" class="btn btn-warning" style="float:right;" value="More Details" />
- -->                        </div>
+ --                        </div>
                         <div class="card-footer">
                             <small class="text-muted">Sarajevo - Nedzarici</small>
                         </div>
@@ -629,7 +657,7 @@
                                 <i class="far fa-star"></i>
                             </span>
 <!--                             <input type="button" class="btn btn-warning" style="float:right;" value="More Details" />
- -->                        </div>
+ --                        </div>
                         <div class="card-footer">
                             <small class="text-muted">Sarajevo - Ilidza</small>
                         </div>
@@ -650,7 +678,7 @@
                                 <i class="far fa-star"></i>
                             </span>
 <!--                             <input type="button" class="btn btn-warning" style="float:right;" value="More Details" />
- -->                        </div>
+ --                        </div>
                         <div class="card-footer">
                             <small class="text-muted">Konjic - Garden City</small>
                         </div>
@@ -671,7 +699,7 @@
                                 <i class="far fa-star"></i>
                             </span>
 <!--                             <input type="button" class="btn btn-warning" style="float:right;" value="More Details" />
- -->                        </div>
+ --                        </div>
                         <div class="card-footer">
                             <small class="text-muted">Konjic</small>
                         </div>
@@ -692,7 +720,7 @@
                                 <i class="far fa-star"></i>
                             </span>
 <!--                             <input type="button" class="btn btn-warning" style="float:right;" value="More Details" />
- -->                        </div>
+ --                        </div>
                         <div class="card-footer">
                             <small class="text-muted">Mostar - Centar</small>
                         </div>
@@ -713,7 +741,7 @@
                                 <i class="far fa-star"></i>
                             </span>
 <!--                             <input type="button" class="btn btn-warning" style="float:right;" value="More Details" />
- -->                        </div>
+ --                        </div>
                         <div class="card-footer">
                             <small class="text-muted">Mostar</small>
                         </div>
@@ -734,7 +762,7 @@
                                 <i class="far fa-star"></i>
                             </span>
 <!--                             <input type="button" class="btn btn-warning" style="float:right;" value="More Details" />
- -->                        </div>
+ --                        </div>
                         <div class="card-footer">
                             <small class="text-muted">Mostar</small>
                         </div>
@@ -755,7 +783,7 @@
                                 <i class="far fa-star"></i>
                             </span>
 <!--                             <input type="button" class="btn btn-warning" style="float:right;" value="More Details" />
- -->                        </div>
+ --                        </div>
                         <div class="card-footer">
                             <small class="text-muted">Jajce</small>
                         </div>
@@ -776,7 +804,7 @@
                                 <i class="far fa-star"></i>
                             </span>
 <!--                             <input type="button" class="btn btn-warning" style="float:right;" value="More Details" />
- -->                        </div>
+ --                        </div>
                         <div class="card-footer">
                             <small class="text-muted">Jajce</small>
                         </div>
@@ -797,7 +825,7 @@
                                 <i class="far fa-star"></i>
                             </span>
 <!--                             <input type="button" class="btn btn-warning" style="float:right;" value="More Details" />
- -->                        </div>
+ --                        </div>
                         <div class="card-footer">
                             <small class="text-muted">Bjelasnica</small>
                         </div>
@@ -818,7 +846,7 @@
                                 <i class="far fa-star"></i>
                             </span>
 <!--                             <input type="button" class="btn btn-warning" style="float:right;" value="More Details" />
- -->                        </div>
+ --                        </div>
                         <div class="card-footer">
                             <small class="text-muted">Bjelasnica</small>
                         </div>
@@ -839,15 +867,15 @@
                                 <i class="far fa-star"></i>
                             </span>
 <!--                             <input type="button" class="btn btn-warning" style="float:right;" value="More Details" />
- -->                        </div>
+ --S                        </div>
                         <div class="card-footer">
                             <small class="text-muted">Jahorina</small>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </div> -->
+
 
     <footer class="bg-secondary" style="margin-top:0px;">
         <div class="row no-gutters">

@@ -1,5 +1,5 @@
 ﻿<?php
-    session_start();
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -82,13 +82,13 @@
                 </li>
             </ul>
             <?php
-                if (isset($_SESSION['email'])) {
-                    $session = $_SESSION['email'];
-                    echo "<ul class='navbar-nav ml-auto'><li class='nav-item'><a href='logout'  class='nav-link link'><span class='navLinks'><i class='fas fa-sign-in-alt mr-2'></i>Logout</span></a></li></ul><input type='text'  value='$session' hidden id='session' name='session'>";
-                } else {
-                    echo "<ul class='navbar-nav ml-auto'><li class='nav-item'><a href='#' data-toggle='modal' data-target='#SignModal' class='nav-link link'><span class='navLinks'><i class='fa fa-user-plus mr-2'></i>Register</span></a></li><li class='nav-item'><a href='#' data-toggle='modal' data-target='#LoginModal' class='nav-link link'><span class='navLinks'><i class='fas fa-sign-in-alt mr-2'></i>Login</span></a></li></ul>";
-                }
-            ?>
+if (isset($_SESSION['email'])) {
+    $session = $_SESSION['email'];
+    echo "<ul class='navbar-nav ml-auto'><li class='nav-item'><a href='logout'  class='nav-link link'><span class='navLinks'><i class='fas fa-sign-in-alt mr-2'></i>Logout</span></a></li></ul><input type='text'  value='$session' hidden id='session' name='session'>";
+} else {
+    echo "<ul class='navbar-nav ml-auto'><li class='nav-item'><a href='#' data-toggle='modal' data-target='#SignModal' class='nav-link link'><span class='navLinks'><i class='fa fa-user-plus mr-2'></i>Register</span></a></li><li class='nav-item'><a href='#' data-toggle='modal' data-target='#LoginModal' class='nav-link link'><span class='navLinks'><i class='fas fa-sign-in-alt mr-2'></i>Login</span></a></li></ul>";
+}
+?>
             <!-- <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a href="#" data-toggle="modal" data-target="#SignModal" class="nav-link link">
@@ -170,7 +170,7 @@
                 </div>
             </div>
         </div>
-    
+
         <script>
                 $('#alert').slideUp();
                 $('#signButton').click(function () {
@@ -179,12 +179,12 @@
                     var lastSign = $('#lastSign').val();
                     var emailSign = $('#emailSign').val();
                     var passSign = $('#passSign').val();
-        
+
                     function validateEmail($emailSign) {
                         var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
                         return emailReg.test($emailSign);
                     }
-        
+
                     if (firstSign == "") {
                         $("#alert").addClass('alert-danger');
                         $("#alert").html("Your first name is required!!!");
@@ -231,7 +231,7 @@
                 })
             }
         });
-        
+
                 $('#eye').click(function () {
                     /* var elementType = $('#passSign').prev().prop('pass'); */
                     var elementType = $('#passSign').attr('type');
@@ -243,7 +243,7 @@
                     }
                 });
             </script>
-    
+
         <div class="modal fade" id="LoginModal" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
             <div class="modal-dialog modal-md" role="document">
                 <div class="modal-content">
@@ -316,32 +316,34 @@
                 </div>
             </div>
         </div>
-    
-        
+
+
         <script>
-                $('#alertLog').slideUp();
-                $('#logButton').click(function () {
-                    var emailLog = $('#emailLog').val();
-                    var passLog = $('#passLog').val();
-        
-                    function validateEmail($emailLog) {
-                        var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-                        return emailReg.test($emailLog);
-                    }
-        
-                    if (emailLog == "") {
-                        $("#alertLog").addClass('alert-danger');
-                        $("#alertLog").html("Email field is required!!!");
-                        $("#alertLog").fadeIn(500).delay(1000).fadeOut(500);
-                    } else if (!validateEmail(emailLog)) {
-                        $("#alertLog").addClass('alert-danger');
-                        $("#alertLog").html('Please enter validated email address.');
-                        $("#alertLog").slideDown(500).delay(1000).slideUp(500);
-                    } else if (passLog == "") {
-                        $("#alertLog").addClass('alert-danger');
-                        $("#alertLog").html("Please enter your password!!!");
-                        $("#alertLog").fadeIn(500).delay(1000).fadeOut(500);
-                    }else {
+        $('#alertLog').slideUp();
+
+        $('#logButton').click(function () {
+            $('#alertLog').removeClass('alert-success').removeClass('alert-danger');
+            var emailLog = $('#emailLog').val();
+            var passLog = $('#passLog').val();
+
+            function validateEmail($emailLog) {
+                var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+                return emailReg.test($emailLog);
+            }
+
+            if (emailLog == "") {
+                $("#alertLog").addClass('alert-danger');
+                $("#alertLog").html("Email field is required!!!");
+                $("#alertLog").fadeIn(500).delay(1000).fadeOut(500);
+            } else if (!validateEmail(emailLog)) {
+                $("#alertLog").addClass('alert-danger');
+                $("#alertLog").html('Please enter validated email address.');
+                $("#alertLog").slideDown(500).delay(1000).slideUp(500);
+            } else if (passLog == "") {
+                $("#alertLog").addClass('alert-danger');
+                $("#alertLog").html("Please enter your password!!!");
+                $("#alertLog").fadeIn(500).delay(1000).fadeOut(500);
+            } else {
                 $.ajax({
                     url: "./indexSentLog.php?task=login&emailLog="+emailLog+"&passLog="+passLog,
                     success: function (data){
@@ -350,7 +352,7 @@
 							$("#alertLog").html('Logged in successfully');
 							$("#alertLog").slideDown(500).delay(1000).slideUp(500);
                             $('#emailLog').val("");
-                            $('#passLog').val("");.
+                            $('#passLog').val("");
                             var delay = 1500;
                             setTimeout(function(){
                                 window.location = "index.php"; }, delay);
@@ -372,18 +374,18 @@
                 })
             }
         });
-        
-                $('#eyeLog').click(function () {
-                    /* var elementType = $('#passSign').prev().prop('pass'); */
-                    var elementType = $('#passLog').attr('type');
-                    console.log(elementType);
-                    if (elementType == "text") {
-                        $('#passLog').attr('type', 'password');
-                    } else if (elementType == "password") {
-                        $('#passLog').attr('type', 'text');
-                    }
-                });
-            </script>
+
+        $('#eyeLog').click(function () {
+            /* var elementType = $('#passSign').prev().prop('pass'); */
+            var elementType = $('#passLog').attr('type');
+            console.log(elementType);
+            if (elementType == "text") {
+                $('#passLog').attr('type', 'password');
+            } else if (elementType == "password") {
+                $('#passLog').attr('type', 'text');
+            }
+        });
+    </script>
 
     <section id="jumbotron" class="jumbotron3 jumbotron-fluid text-white d-flex justify-content-center align-items-center">
         <div class="container text-center">
@@ -494,412 +496,96 @@
     </section>
 
     <section>
-        <div class="card text-center mt-4 ">
-            <div class="card-header text-success h3 text-uppercase ">
-                Zima
+
+<?php
+
+require 'connect.php';
+
+$sql = "SELECT * FROM tourplan";
+$result = $dbc->query($sql);
+
+$count = $result->num_rows;
+
+if ($count > 0) {
+    if (isset($_SESSION["email"])) {
+        while ($row = $result->fetch_assoc()) {
+            $session = $_SESSION["email"];
+            echo '<form action="userTour" method="POST"><div class="card text-center mt-4 ">
+            <div class="card-header text-success h3 text-uppercase ">' .
+                $row["type"] . '
             </div>
+            <input type="text" value=" ' . $session . '  "  name="session" id="session" hidden>
+            <input type="text" value=" ' . $row["ID"] . ' "  name="idnum" id="idnum" hidden>
             <div class="card-body ">
-                <h5 class="card-title text-left ml-5 h1 text-primary ">Skijanje</h5>
+                <h5 class="card-title text-left ml-5 h1 text-primary "> ' . $row["title"] . '</h5>
                 <a href="# " style="text-decoration:none; ">
                     <img src="images/skijanje.jpg " class="tourPlans " alt="skijanje " width="400 " height="250
             " style="float:left; " />
-                </a>
+            </a>
 
-                <a href="# " style="text-decoration:none; ">
-                    <label class="card-text " style="max-width:800px; ">This is a wider card with supporting text below as a natural lead-in to additional content. This content
-                        is a little bit longer.</label>
-                </a>
+            <a href="# " style="text-decoration:none; ">
+                <label class="card-text " style="max-width:800px; ">' . $row["description"] . '</label>
+            </a>
 
-                <ul class="list-group list-group-flush tourPlans2 " style="width:390px; border:none; ">
-                    <li class="list-group-item text-warning mt-4 " style="border:none; ">
-                        <p class="card-text " style="float:left; ">
-                            <i class="fas fa-users "></i>
-                            <span class="ml-2 ">Max People: From 2 to 8</span>
-                        </p>
-                    </li>
-                    <li class="list-group-item text-warning ">
-                        <p class="card-text " style="float:left; ">
-                            <i class="fas fa-calendar-alt "></i>
-                            <span class="ml-3 ">Availability: From November to February</span>
-                        </p>
-                    </li>
-                    <li class="list-group-item text-warning ">
-                        <p class="card-text " style="float:left; ">
-                            <i class="fas fa-euro-sign mr-4 "></i>From 350 to 500</p>
-                    </li>
-                </ul>
+            <ul class="list-group list-group-flush tourPlans2 " style="width:390px; border:none; ">
+                <li class="list-group-item text-warning mt-4 " style="border:none; ">
+                    <p class="card-text " style="float:left; ">
+                        <i class="fas fa-users "></i>
+                        <span class="ml-2 ">Max People: ' . $row["people"] . '</span>
+                    </p>
+                </li>
+                <li class="list-group-item text-warning ">
+                    <p class="card-text " style="float:left; ">
+                        <i class="fas fa-calendar-alt "></i>
+                        <span class="ml-3 ">Availability: ' . $row["available"] . '</span>
+                    </p>
+                </li>
+                <li class="list-group-item text-warning ">
+                    <p class="card-text " style="float:left; ">
+                        <i class="fas fa-euro-sign mr-4 "></i> ' . $row["price"] . '</p>
+                </li>
+            </ul>
 
-                <ul class="list-group list-group-flush mr-5 " style=" border:none;float:right; margin-top:-100px; ">
-                    <!-- <li class="list-group-item text-warning mt-4 " style="border:none; ">
-                        <p class="card-text "></p>
-                        <input type="button " class="btn btn-warning " value="More Detalis " />
-                    </li> -->
-                    <li class="list-group-item text-warning " style=" border:none;">
-                        <p class="card-text ">
-                            <i class="far fa-star "></i>
-                            <i class="far fa-star "></i>
-                            <i class="far fa-star "></i>
-                            <i class="far fa-star "></i>
-                            <i class="far fa-star "></i>
-                        </p>
-                    </li>
-                    <li class="list-group-item ">
-                        <input type="button " class="btn btn-warning " value="Select " style="width:100px; " />
-                    </li>
-                </ul>
+            <ul class="list-group list-group-flush mr-5 " style=" border:none;float:right; margin-top:-100px; ">
+                <!-- <li class="list-group-item text-warning mt-4 " style="border:none; ">
+                    <p class="card-text "></p>
+                    <input type="button " class="btn btn-warning " value="More Detalis " />
+                </li>
+                <li class="list-group-item text-warning " style=" border:none;">
+                    <p class="card-text ">
+                        <i class="far fa-star "></i>
+                        <i class="far fa-star "></i>
+                        <i class="far fa-star "></i>
+                        <i class="far fa-star "></i>
+                        <i class="far fa-star "></i>
+                    </p>
+                </li>-->
+                <li class="list-group-item " style="border:none">
+                    <input type="submit" name="select" id="select" class="btn btn-warning " value="Select " style="width:100px; " />
+                </li>
+            </ul>
             </div>
             <div class="card-footer text-muted ">
                 <small class="text-muted ">
-                    <i class="far fa-clock mr-2 "></i>5 days</small>
+                    <i class="far fa-clock mr-2 "></i> ' . $row["days"] . '</small>
             </div>
-        </div>
-        <div class="card text-center mt-2 ">
-            <div class="card-header text-success h3 text-uppercase ">
-                Jesen - Proljece - Ljeto
-            </div>
-            <div class="card-body ">
-                <h5 class="card-title text-left ml-5 h1 text-primary ">Vodopad</h5>
-                <a href="# " style="text-decoration:none; ">
-                    <img src="images/jajce.jpg " alt="skijanje " class="tourPlans " width="400 " height="250 " style="float:left; " />
-                </a>
-                <a href="# " style="text-decoration:none; ">
-                    <label class="card-text " style="max-width:800px; ">This is a wider card with supporting text below as a natural lead-in to additional content. This content
-                        is a little bit longer.</label>
-                </a>
+            </div></form>
+            ';
 
-                <ul class="list-group list-group-flush " style="width:390px; border:none; ">
-                    <li class="list-group-item text-warning mt-4 " style="border:none; ">
-                        <p class="card-text " style="float:left; ">
-                            <i class="fas fa-users "></i>
-                            <span class="ml-2 ">Max People: From 2 to 8</span>
-                        </p>
-                    </li>
-                    <li class="list-group-item text-warning ">
-                        <p class="card-text " style="float:left; ">
-                            <i class="fas fa-calendar-alt "></i>
-                            <span class="ml-3 ">Availability: From March to August</span>
-                        </p>
-                    </li>
-                    <li class="list-group-item text-warning ">
-                        <p class="card-text " style="float:left; ">
-                            <i class="fas fa-euro-sign mr-4 "></i>From 500 to 850</p>
-                    </li>
-                </ul>
+        }
 
-                <ul class="list-group list-group-flush mr-5 " style=" border:none;float:right;margin-top:-100px; ">
-                    <!-- <li class="list-group-item text-warning mt-4 " style="border:none; ">
-                        <p class="card-text "></p>
-                        <input type="button " class="btn btn-warning " value="More Detalis " />
-                    </li> -->
-                    <li class="list-group-item text-warning " style="border:none;">
-                        <p class="card-text ">
-                            <i class="far fa-star "></i>
-                            <i class="far fa-star "></i>
-                            <i class="far fa-star "></i>
-                            <i class="far fa-star "></i>
-                            <i class="far fa-star "></i>
-                        </p>
-                    </li>
-                    <li class="list-group-item ">
-                        <input type="button " class="btn btn-warning " value="Select " style="width:100px; " />
-                    </li>
-                </ul>
-            </div>
-            <div class="card-footer text-muted ">
-                <small class="text-muted ">
-                    <i class="far fa-clock mr-2 "></i>7 days</small>
-            </div>
-        </div>
-        <div class="card text-center mt-2 ">
-            <div class="card-header text-success h3 text-uppercase ">
-                Jesen - Proljece - Ljeto
-            </div>
-            <div class="card-body ">
-                <h5 class="card-title text-left ml-5 h1 text-primary ">More</h5>
-                <a href="# " style="text-decoration:none; ">
-                    <img src="images/neum.jpg " alt="skijanje " width="400 " class="tourPlans " height="250 " style="float:left; " />
-                </a>
-                <a href="# " style="text-decoration:none; ">
-                    <label class="card-text " style="max-width:800px; ">This is a wider card with supporting text below as a natural lead-in to additional content. This content
-                        is a little bit longer.</label>
-                </a>
+    } else {
+        echo "<div class='row'><div class='offset-5 text-center mt-5 mb-5'><a href='#' data-toggle='modal' data-target='#LoginModal'><span class='text-warning' style='font-size: 20px;'>LOGIN</span></a> to see and select tour plans!!!</div></div>";
+    }
 
-                <ul class="list-group list-group-flush " style="width:390px; border:none; ">
-                    <li class="list-group-item text-warning mt-4 " style="border:none; ">
-                        <p class="card-text " style="float:left; ">
-                            <i class="fas fa-users "></i>
-                            <span class="ml-2 ">Max People: From 2 to 8</span>
-                        </p>
-                    </li>
-                    <li class="list-group-item text-warning ">
-                        <p class="card-text " style="float:left; ">
-                            <i class="fas fa-calendar-alt "></i>
-                            <span class="ml-3 ">Availability: From March to August</span>
-                        </p>
-                    </li>
-                    <li class="list-group-item text-warning ">
-                        <p class="card-text " style="float:left; ">
-                            <i class="fas fa-euro-sign mr-4 "></i>From 899 to 1200</p>
-                    </li>
-                </ul>
+} else {
+    echo " 0 results";
 
-                <ul class="list-group list-group-flush mr-5 " style=" border:none;float:right;margin-top:-100px; ">
-                    <!-- <li class="list-group-item text-warning mt-4 " style="border:none; ">
-                        <p class="card-text "></p>
-                        <input type="button " class="btn btn-warning " value="More Detalis " />
-                    </li> -->
-                    <li class="list-group-item text-warning " style="border:none;">
-                        <p class="card-text ">
-                            <i class="far fa-star "></i>
-                            <i class="far fa-star "></i>
-                            <i class="far fa-star "></i>
-                            <i class="far fa-star "></i>
-                            <i class="far fa-star "></i>
-                        </p>
-                    </li>
-                    <li class="list-group-item ">
-                        <input type="button " class="btn btn-warning " value="Select " style="width:100px; " />
-                    </li>
-                </ul>
-            </div>
-            <div class="card-footer text-muted ">
-                <small class="text-muted ">
-                    <i class="far fa-clock mr-2 "></i>10 days</small>
-            </div>
-        </div>
-        <div class="card text-center mt-2 ">
-            <div class="card-header text-success h3 text-uppercase ">
-                Zima
-            </div>
-            <div class="card-body ">
-                <h5 class="card-title text-left ml-5 h1 text-primary ">Skijanje</h5>
-                <a href="# " style="text-decoration:none; ">
-                    <img src="images/skijanje.jpg " alt="skijanje " width="400 " class="tourPlans " height="250
-            " style="float:left; " />
-                </a>
-                <a href="# " style="text-decoration:none; ">
-                    <label class="card-text " style="max-width:800px; ">This is a wider card with supporting text below as a natural lead-in to additional content. This content
-                        is a little bit longer.</label>
-                </a>
+}
+$dbc->close();
+?>
 
-                <ul class="list-group list-group-flush " style="width:390px; border:none; ">
-                    <li class="list-group-item text-warning mt-4 " style="border:none; ">
-                        <p class="card-text " style="float:left; ">
-                            <i class="fas fa-users "></i>
-                            <span class="ml-2 ">Max People: From 2 to 8</span>
-                        </p>
-                    </li>
-                    <li class="list-group-item text-warning ">
-                        <p class="card-text " style="float:left; ">
-                            <i class="fas fa-calendar-alt "></i>
-                            <span class="ml-3 ">Availability: From November to February</span>
-                        </p>
-                    </li>
-                    <li class="list-group-item text-warning ">
-                        <p class="card-text " style="float:left; ">
-                            <i class="fas fa-euro-sign mr-4 "></i>From 350 to 500</p>
-                    </li>
-                </ul>
-
-                <ul class="list-group list-group-flush mr-5 " style=" border:none;float:right; margin-top:-100px; ">
-                    <!-- <li class="list-group-item text-warning mt-4 " style="border:none; ">
-                        <p class="card-text "></p>
-                        <input type="button " class="btn btn-warning " value="More Detalis " />
-                    </li> -->
-                    <li class="list-group-item text-warning " style="border:none;">
-                        <p class="card-text ">
-                            <i class="far fa-star "></i>
-                            <i class="far fa-star "></i>
-                            <i class="far fa-star "></i>
-                            <i class="far fa-star "></i>
-                            <i class="far fa-star "></i>
-                        </p>
-                    </li>
-                    <li class="list-group-item ">
-                        <input type="button " class="btn btn-warning " value="Select " style="width:100px; " />
-                    </li>
-                </ul>
-            </div>
-            <div class="card-footer text-muted ">
-                <small class="text-muted ">
-                    <i class="far fa-clock mr-2 "></i>5 days</small>
-            </div>
-        </div>
-        <div class="card text-center mt-2 ">
-            <div class="card-header text-success h3 text-uppercase ">
-                Zima
-            </div>
-            <div class="card-body ">
-                <h5 class="card-title text-left ml-5 h1 text-primary ">Skijanje</h5>
-                <a href="# " style="text-decoration:none; ">
-                    <img src="images/skijanje.jpg " alt="skijanje " width="400 " class="tourPlans " height="250
-            " style="float:left; " />
-                </a>
-                <a href="# " style="text-decoration:none; ">
-                    <label class="card-text " style="max-width:800px; ">This is a wider card with supporting text below as a natural lead-in to additional content. This content
-                        is a little bit longer.</label>
-                </a>
-
-                <ul class="list-group list-group-flush " style="width:390px; border:none; ">
-                    <li class="list-group-item text-warning mt-4 " style="border:none; ">
-                        <p class="card-text " style="float:left; ">
-                            <i class="fas fa-users "></i>
-                            <span class="ml-2 ">Max People: From 2 to 8</span>
-                        </p>
-                    </li>
-                    <li class="list-group-item text-warning ">
-                        <p class="card-text " style="float:left; ">
-                            <i class="fas fa-calendar-alt "></i>
-                            <span class="ml-3 ">Availability: From November to February</span>
-                        </p>
-                    </li>
-                    <li class="list-group-item text-warning ">
-                        <p class="card-text " style="float:left; ">
-                            <i class="fas fa-euro-sign mr-4 "></i>From 350 to 500</p>
-                    </li>
-                </ul>
-
-                <ul class="list-group list-group-flush mr-5 " style=" border:none;float:right; margin-top:-100px; ">
-                    <!-- <li class="list-group-item text-warning mt-4 " style="border:none; ">
-                        <p class="card-text "></p>
-                        <input type="button " class="btn btn-warning " value="More Detalis " />
-                    </li> -->
-                    <li class="list-group-item text-warning " style="border:none;">
-                        <p class="card-text ">
-                            <i class="far fa-star "></i>
-                            <i class="far fa-star "></i>
-                            <i class="far fa-star "></i>
-                            <i class="far fa-star "></i>
-                            <i class="far fa-star "></i>
-                        </p>
-                    </li>
-                    <li class="list-group-item ">
-                        <input type="button " class="btn btn-warning " value="Select " style="width:100px; " />
-                    </li>
-                </ul>
-            </div>
-            <div class="card-footer text-muted ">
-                <small class="text-muted ">
-                    <i class="far fa-clock mr-2 "></i>5 days</small>
-            </div>
-        </div>
-        <div class="card text-center mt-2 ">
-            <div class="card-header text-success h3 text-uppercase ">
-                Zima
-            </div>
-            <div class="card-body ">
-                <h5 class="card-title text-left ml-5 h1 text-primary ">Skijanje</h5>
-                <a href="# " style="text-decoration:none; ">
-                    <img src="images/skijanje.jpg " alt="skijanje " width="400 " class="tourPlans " height="250
-            " style="float:left; " />
-                </a>
-                <a href="# " style="text-decoration:none; ">
-                    <label class="card-text " style="max-width:800px; ">This is a wider card with supporting text below as a natural lead-in to additional content. This content
-                        is a little bit longer.</label>
-                </a>
-
-                <ul class="list-group list-group-flush " style="width:390px; border:none; ">
-                    <li class="list-group-item text-warning mt-4 " style="border:none; ">
-                        <p class="card-text " style="float:left; ">
-                            <i class="fas fa-users "></i>
-                            <span class="ml-2 ">Max People: From 2 to 8</span>
-                        </p>
-                    </li>
-                    <li class="list-group-item text-warning ">
-                        <p class="card-text " style="float:left; ">
-                            <i class="fas fa-calendar-alt "></i>
-                            <span class="ml-3 ">Availability: From November to February</span>
-                        </p>
-                    </li>
-                    <li class="list-group-item text-warning ">
-                        <p class="card-text " style="float:left; ">
-                            <i class="fas fa-euro-sign mr-4 "></i>From 350 to 500</p>
-                    </li>
-                </ul>
-
-                <ul class="list-group list-group-flush mr-5 " style=" border:none;float:right; margin-top:-100px; ">
-                    <!-- <li class="list-group-item text-warning mt-4 " style="border:none; ">
-                        <p class="card-text "></p>
-                        <input type="button " class="btn btn-warning " value="More Detalis " />
-                    </li> -->
-                    <li class="list-group-item text-warning " style="border:none;">
-                        <p class="card-text ">
-                            <i class="far fa-star "></i>
-                            <i class="far fa-star "></i>
-                            <i class="far fa-star "></i>
-                            <i class="far fa-star "></i>
-                            <i class="far fa-star "></i>
-                        </p>
-                    </li>
-                    <li class="list-group-item ">
-                        <input type="button " class="btn btn-warning " value="Select " style="width:100px; " />
-                    </li>
-                </ul>
-            </div>
-            <div class="card-footer text-muted ">
-                <small class="text-muted ">
-                    <i class="far fa-clock mr-2 "></i>5 days</small>
-            </div>
-        </div>
-        <div class="card text-center mt-2 ">
-            <div class="card-header text-success h3 text-uppercase ">
-                Zima
-            </div>
-            <div class="card-body ">
-                <h5 class="card-title text-left ml-5 h1 text-primary ">Skijanje</h5>
-                <a href="# " style="text-decoration:none; ">
-                    <img src="images/skijanje.jpg " alt="skijanje " width="400 " class="tourPlans " height="250
-            " style="float:left; " />
-                </a>
-                <a href="# " style="text-decoration:none; ">
-                    <label class="card-text " style="max-width:800px; ">This is a wider card with supporting text below as a natural lead-in to additional content. This content
-                        is a little bit longer.</label>
-                </a>
-
-                <ul class="list-group list-group-flush " style="width:390px; border:none; ">
-                    <li class="list-group-item text-warning mt-4 " style="border:none; ">
-                        <p class="card-text " style="float:left; ">
-                            <i class="fas fa-users "></i>
-                            <span class="ml-2 ">Max People: From 2 to 8</span>
-                        </p>
-                    </li>
-                    <li class="list-group-item text-warning ">
-                        <p class="card-text " style="float:left; ">
-                            <i class="fas fa-calendar-alt "></i>
-                            <span class="ml-3 ">Availability: From November to February</span>
-                        </p>
-                    </li>
-                    <li class="list-group-item text-warning ">
-                        <p class="card-text " style="float:left; ">
-                            <i class="fas fa-euro-sign mr-4 "></i>From 350 to 500</p>
-                    </li>
-                </ul>
-
-                <ul class="list-group list-group-flush mr-5 " style=" border:none;float:right; margin-top:-100px; ">
-                    <!-- <li class="list-group-item text-warning mt-4 " style="border:none; ">
-                        <p class="card-text "></p>
-                        <input type="button " class="btn btn-warning " value="More Detalis " />
-                    </li> -->
-                    <li class="list-group-item text-warning " style="border:none;">
-                        <p class="card-text ">
-                            <i class="far fa-star "></i>
-                            <i class="far fa-star "></i>
-                            <i class="far fa-star "></i>
-                            <i class="far fa-star "></i>
-                            <i class="far fa-star "></i>
-                        </p>
-                    </li>
-                    <li class="list-group-item ">
-                        <input type="button " class="btn btn-warning " value="Select " style="width:100px; " />
-                    </li>
-                </ul>
-            </div>
-            <div class="card-footer text-muted ">
-                <small class="text-muted ">
-                    <i class="far fa-clock mr-2 "></i>5 days</small>
-            </div>
-        </div>
-    </section>
+</section>
 
     <footer class="bg-secondary " style="margin-top:0px; ">
         <div class="row no-gutters ">
