@@ -28,6 +28,8 @@ if ($_REQUEST['task'] == "login") {
                     $response = @mysqli_query($dbc, $query);
                     if ($response) {
                         echo ('sent');
+                        session_start();
+                        $_SESSION["email"] = $row["email"];
                     } else {
                         echo mysqli_error($dbc);
                     }

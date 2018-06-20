@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -172,12 +175,12 @@
                 var lastSign = $('#lastSign').val();
                 var emailSign = $('#emailSign').val();
                 var passSign = $('#passSign').val();
-    
+
                 function validateEmail($emailSign) {
                     var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
                     return emailReg.test($emailSign);
                 }
-    
+
                 if (firstSign == "") {
                     $("#alert").addClass('alert-danger');
                     $("#alert").html("Your first name is required!!!");
@@ -224,7 +227,7 @@
                 })
             }
         });
-    
+
             $('#eye').click(function () {
                 /* var elementType = $('#passSign').prev().prop('pass'); */
                 var elementType = $('#passSign').attr('type');
@@ -310,18 +313,19 @@
         </div>
     </div>
 
-    
+
 	<script>
             $('#alertLog').slideUp();
             $('#logButton').click(function () {
+                $("#alertLog").removeClass('alert-success').removeClass('alert-danger');
                 var emailLog = $('#emailLog').val();
                 var passLog = $('#passLog').val();
-    
+
                 function validateEmail($emailLog) {
                     var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
                     return emailReg.test($emailLog);
                 }
-    
+
                 if (emailLog == "") {
                     $("#alertLog").addClass('alert-danger');
                     $("#alertLog").html("Email field is required!!!");
@@ -362,7 +366,7 @@
                 })
             }
         });
-    
+
             $('#eyeLog').click(function () {
                 /* var elementType = $('#passSign').prev().prop('pass'); */
                 var elementType = $('#passLog').attr('type');
@@ -536,7 +540,7 @@
     <script>
         $( function() {
             var otherPlaces = [
-                "Zenica", 
+                "Zenica",
                 "Travnik",
                 "Kravice"
             ];
@@ -547,7 +551,7 @@
         return split( term ).pop();
         } */
         $( "#other" ).autocomplete({
-            source: otherPlaces 
+            source: otherPlaces
             /* function( request, response ) {
           // delegate back to autocomplete, but extract the last term
             response( $.ui.autocomplete.filter(
@@ -586,42 +590,71 @@
             var igman = $('#igman').is(':checked');
             var jahorina = $('#jahorina').is(':checked');
             var other = $('#other').val();
+            var session = $('#session').val();
+
+            var check = "";
 
             var checked = 0;
 
             if(sarajevo == true) {
                 checked += 1;
+                check += "sarajevo,"
+                console.log(check);
             }
             if(mostar == true) {
                 checked += 1;
+                check += "mostar,"
+                console.log(check);
             }
             if(jajce == true) {
                 checked += 1;
+                check += "jajce,"
+                console.log(check);
             }
             if(konjic == true) {
                 checked += 1;
+                check += "konjic,"
+                console.log(check);
             }
             if(bjelasnica == true) {
                 checked += 1;
+                check += "bjelasnica,"
+                console.log(check);
             }
             if(trebevic == true) {
                 checked += 1;
-            } 
+                check += "trebevic,"
+                console.log(check);
+            }
             if(igman == true) {
                 checked += 1;
+                check += "igman,"
+                console.log(check);
             }
             if(jahorina == true) {
                 checked += 1;
+                check += "jahorina,"
+                console.log(check);
             }
-            if(other == "Zenica" || other == "Kravice" || other == "Travnik"){
+            if(other == "Zenica"){
                 checked += 1;
+                check += "Zenica,"
+                console.log(check);
+            }else if( other == "Kravice") {
+                checked += 1;
+                check += "Kravice,"
+                console.log(check);
+            } else if(other == "Travnik"){
+                checked += 1;
+                check += "Travnik,"
+                console.log(check);
             }
             console.log(other);
             console.log(checked);
             var budget = $('#budget').val();
             var people = $('#people').val();
 
-            
+
             var price = $('#price').val();
 
             var length = $('#length').val();
@@ -631,8 +664,39 @@
             var proljece = $('#proljece').is(':checked');
             var jesen = $('#jesen').is(':checked');
 
+            var period = "";
+
+            if(zima == true) {
+                period += "zima,"
+                console.log(period);
+            }
+            if(ljeto == true) {
+                period += "ljeto,"
+                console.log(period);
+            }
+            if(proljece == true) {
+                period += "proljece,"
+                console.log(period);
+            }
+            if(jesen == true) {
+                period += "jesen,"
+                console.log(period);
+            }
+
             var yes = $('#yes').is(':checked');
             var no = $('#no').is(':checked');
+
+            var checkyes = "";
+
+            if(yes == true){
+                checkyes += "yes"
+                console.log(checkyes);
+            } else if(no == true) {
+                checkyes += "no"
+                console.log(checkyes);
+            }
+
+
 
             if(sarajevo == false && mostar == false && jajce == false && konjic == false && bjelasnica == false && trebevic == false && igman == false && jahorina == false && other == ""){
                 $("#alertReq").addClass('alert-danger');
@@ -664,7 +728,47 @@
                 /* $("#alert").addClass('alert-danger');
                 $("#alert").html("Your budget is smaller than the total price of your tour!!!");
                 $("#alert").fadeIn(500).delay(1000).fadeOut(500); */
-            } //ajax slanje u bazu
+            } else {
+                $.ajax({
+                    url: "./makeRequest?task=request&check="+check+"&people="+people+"&length="+length+"&period="+period+"&checkyes="+checkyes+"&price="+price+"&budget="+budget+"&session="+session,
+                    success: function (data){
+                        if(data.indexOf('sent') > -1){
+                            $("#alertReq").addClass('alert-success');
+							$("#alertReq").html('Request sent!!!');
+							$("#alertReq").slideDown(500).delay(1000).slideUp(500);
+                            $('#other').val("");
+                            $('#length').val("");
+                            $('#budget').val("");
+                            $('#people').val("");
+                            $('#price').val(0);
+                            $('#sarajevo').prop('checked', false);
+                            $('#jajce').prop('checked', false);
+                            $('#mostar').prop('checked', false);
+                            $('#igman').prop('checked', false);
+                            $('#konjic').prop('checked', false);
+                            $('#bjelasnica').prop('checked', false);
+                            $('#trebevic').prop('checked', false);
+                            $('#igman').prop('checked', false);
+                            $('#jahorina').prop('checked', false);
+                            $('#yes').prop('checked', false);
+                            $('#no').prop('checked', false);
+                            $('#zima').prop('checked', false);
+                            $('#proljece').prop('checked', false);
+                            $('#jesen').prop('checked', false);
+                            $('#ljeto').prop('checked', false);
+                        } else {
+                            $("#alertReq").addClass('alert-danger');
+							$("#alertReq").html('Error occured');
+							$("#alertReq").slideDown(500).delay(1000).slideUp(500);
+                        }
+                    },
+                    error: function (data, err){
+                        $("#alertLog").addClass('alert-danger');
+                        $("#alertLog").html('Some problem occured. We are sorry.');
+                        $("#alertLog").slideDown(500).delay(1000).slideUp(500);
+                    }
+                })
+            }//ajax slanje u bazu
         });
         function price() {
 
@@ -744,7 +848,8 @@
 
             if (zima == true) {
                 price -= 75;
-            } else if (ljeto == true) {
+            }
+             if (ljeto == true) {
                 price += 100;
             }
 

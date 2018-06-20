@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿<?php
+    session_start();
+?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -58,14 +61,21 @@
                     <a href="feedback.php" class="nav-link link"><i class="far fa-smile mr-2"></i>Feedback</a>
                 </li>
             </ul>
-            <ul class="navbar-nav ml-auto">
+            <?php
+                if (isset($_SESSION['email'])) {
+                    echo "<ul class='navbar-nav ml-auto'><li class='nav-item'><a href='logout'  class='nav-link link'><span class='navLinks'><i class='fas fa-sign-in-alt mr-2'></i>Logout</span></a></li></ul>";
+                } else {
+                    echo "<ul class='navbar-nav ml-auto'><li class='nav-item'><a href='#' data-toggle='modal' data-target='#SignModal' class='nav-link link'><span class='navLinks'><i class='fa fa-user-plus mr-2'></i>Register</span></a></li><li class='nav-item'><a href='#' data-toggle='modal' data-target='#LoginModal' class='nav-link link'><span class='navLinks'><i class='fas fa-sign-in-alt mr-2'></i>Login</span></a></li></ul>";
+                }
+            ?>
+           <!--  <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a href="#" data-toggle="modal" data-target="#SignModal" class="nav-link link"><span class="navLinks"><i class="fa fa-user-plus mr-2"></i>Register</span></a>
                 </li>
                 <li class="nav-item">
                     <a href="#" data-toggle="modal" data-target="#LoginModal" class="nav-link link"><span class="navLinks"><i class="fas fa-sign-in-alt mr-2"></i>Login</span></a>
                 </li>
-            </ul>
+            </ul> -->
         </div>
     </nav>
 
