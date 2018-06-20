@@ -1,25 +1,12 @@
 <?php
-$hostname = "localhost";
-$username = "abu";
-$pass = "aburefko159753";
-$dataBaseName = "btt";
 
-$connection = mysqli_connect($hostname, $username, $pass);
-$selection = mysqli_select_db($connection, $dataBaseName);
+define('DB_USER', 'abu');
+define('DB_PASSWORD', 'aburefko159753');
+define('DB_HOST', 'localhost');
+define('DB_NAME', 'btt');
 
-$success = true;
+$dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) or die('could not connect' . mysqli_connect_error());
 
-if (!$connection) {
-    die("connection failed " . mysqli_error());
-    $success = false;
-}
-if (!$selection) {
-    die("selection failed " . mysqli_error());
-    $success = false;
-}
-
-if ($success) {
-    echo ("Connect successfully to " . $dataBaseName);
-}
+mysqli_set_charset($dbc, "utf8");
 
 ?>

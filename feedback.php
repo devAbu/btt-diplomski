@@ -63,7 +63,8 @@
             </ul>
             <?php
                 if (isset($_SESSION['email'])) {
-                    echo "<ul class='navbar-nav ml-auto'><li class='nav-item'><a href='logout'  class='nav-link link'><span class='navLinks'><i class='fas fa-sign-in-alt mr-2'></i>Logout</span></a></li></ul>";
+                    $session = $_SESSION['email'];
+                    echo "<ul class='navbar-nav ml-auto'><li class='nav-item'><a href='logout'  class='nav-link link'><span class='navLinks'><i class='fas fa-sign-in-alt mr-2'></i>Logout</span></a></li></ul><input type='text'  value='$session' hidden id='session' name='session'>";
                 } else {
                     echo "<ul class='navbar-nav ml-auto'><li class='nav-item'><a href='#' data-toggle='modal' data-target='#SignModal' class='nav-link link'><span class='navLinks'><i class='fa fa-user-plus mr-2'></i>Register</span></a></li><li class='nav-item'><a href='#' data-toggle='modal' data-target='#LoginModal' class='nav-link link'><span class='navLinks'><i class='fas fa-sign-in-alt mr-2'></i>Login</span></a></li></ul>";
                 }
@@ -385,13 +386,14 @@
         $('#alertFeedback').slideUp();
         $('#feedbackButton').click(function(){
             var feedback = $('#feedback').val();
+            var session = $('#session').val();
             if(feedback == "") {
                 $("#alertFeedback").addClass('alert-danger');
                 $("#alertFeedback").html("Please write your opinion!!!");
                 $("#alertFeedback").fadeIn(500).delay(1000).fadeOut(500);
             }else {
                 $.ajax({
-                    url: "./feedbackSend?task=feedback&feedback="+feedback,
+                    url: "./feedbackSend?task=feedback&feedback="+feedback+"&session="+session,
                     success: function (data) {
                         if(data == 'sent') {
                             $("#alertFeedback").addClass('alert-success');
