@@ -519,7 +519,7 @@ if ($count > 0) {
             <div class="card-body ">
                 <h5 class="card-title text-left ml-5 h1 text-primary "> ' . $row["title"] . '</h5>
                 <a href="# " style="text-decoration:none; ">
-                    <img src="images/skijanje.jpg " class="tourPlans " alt="skijanje " width="400 " height="250
+                    <img src=" images/skijanje.jpg" class="tourPlans " alt="skijanje " width="400 " height="250
             " style="float:left; " />
             </a>
 
@@ -550,7 +550,7 @@ if ($count > 0) {
                 <!-- <li class="list-group-item text-warning mt-4 " style="border:none; ">
                     <p class="card-text "></p>
                     <input type="button " class="btn btn-warning " value="More Detalis " />
-                </li>
+                </li>-->
                 <li class="list-group-item text-warning " style=" border:none;">
                     <p class="card-text ">
                         <i class="far fa-star "></i>
@@ -559,7 +559,7 @@ if ($count > 0) {
                         <i class="far fa-star "></i>
                         <i class="far fa-star "></i>
                     </p>
-                </li>-->
+                </li>
                 <li class="list-group-item " style="border:none">
                     <input type="submit" name="select" id="select" class="btn btn-warning " value="Select " style="width:100px; " />
                 </li>

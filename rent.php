@@ -543,7 +543,7 @@ if ($count > 0) {
                 <!-- <li class="list-group-item text-warning mt-4 " style="border:none; ">
                     <p class="card-text "></p>
                     <input type="button " class="btn btn-warning " value="More Detalis " />
-                </li>
+                </li> -->
                 <li class="list-group-item text-warning " style=" border:none;">
                     <p class="card-text ">
                         <i class="far fa-star "></i>
@@ -552,7 +552,7 @@ if ($count > 0) {
                         <i class="far fa-star "></i>
                         <i class="far fa-star "></i>
                     </p>
-                </li>-->
+                </li>
                 <li class="list-group-item " style="border:none">
                     <input type="submit" name="select" id="select" class="btn btn-warning " value="Select " style="width:100px; " />
                 </li>
@@ -564,7 +564,7 @@ if ($count > 0) {
         }
 
     } else {
-        echo "<div class='row'><div class='offset-5 text-center mt-5 mb-5'><a href='#' data-toggle='modal' data-target='#LoginModal'><span class='text-warning' style='font-size: 20px;'>LOGIN</span></a> to see and select tour plans!!!</div></div>";
+        echo "<div class='row'><div class='offset-5 text-center mt-5 mb-5'><a href='#' data-toggle='modal' data-target='#LoginModal'><span class='text-warning' style='font-size: 20px;'>LOGIN</span></a> to see and select car for rent!!!</div></div>";
     }
 
 } else {
