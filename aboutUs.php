@@ -1,5 +1,5 @@
 ﻿<?php
-    session_start();
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -78,15 +78,24 @@
                     <a href="feedback.php" class="nav-link link">
                         <i class="far fa-smile mr-2"></i>Feedback</a>
                 </li>
+                <?php
+if (isset($_SESSION['email'])) {
+    $session = $_SESSION['email'];
+    echo '<li class="nav-item">
+                    <a href="myCart.php" class="nav-link link">
+                        <i class="fa fa-shopping-cart mr-2"></i>Cart</a>
+                </li>';
+}
+?>
             </ul>
             <?php
-                if (isset($_SESSION['email'])) {
-                    $session = $_SESSION['email'];
-                    echo "<ul class='navbar-nav ml-auto'><li class='nav-item'><a href='logout'  class='nav-link link'><span class='navLinks'><i class='fas fa-sign-in-alt mr-2'></i>Logout</span></a></li></ul><input type='text'  value='$session' hidden id='session' name='session'>";
-                } else {
-                    echo "<ul class='navbar-nav ml-auto'><li class='nav-item'><a href='#' data-toggle='modal' data-target='#SignModal' class='nav-link link'><span class='navLinks'><i class='fa fa-user-plus mr-2'></i>Register</span></a></li><li class='nav-item'><a href='#' data-toggle='modal' data-target='#LoginModal' class='nav-link link'><span class='navLinks'><i class='fas fa-sign-in-alt mr-2'></i>Login</span></a></li></ul>";
-                }
-            ?>
+if (isset($_SESSION['email'])) {
+    $session = $_SESSION['email'];
+    echo "<ul class='navbar-nav ml-auto'><li class='nav-item'><a href='logout'  class='nav-link link'><span class='navLinks'><i class='fas fa-sign-in-alt mr-2'></i>Logout</span></a></li></ul><input type='text'  value='$session' hidden id='session' name='session'>";
+} else {
+    echo "<ul class='navbar-nav ml-auto'><li class='nav-item'><a href='#' data-toggle='modal' data-target='#SignModal' class='nav-link link'><span class='navLinks'><i class='fa fa-user-plus mr-2'></i>Register</span></a></li><li class='nav-item'><a href='#' data-toggle='modal' data-target='#LoginModal' class='nav-link link'><span class='navLinks'><i class='fas fa-sign-in-alt mr-2'></i>Login</span></a></li></ul>";
+}
+?>
             <!-- <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a href="#" data-toggle="modal" data-target="#SignModal" class="nav-link link">
@@ -177,12 +186,12 @@
                 var lastSign = $('#lastSign').val();
                 var emailSign = $('#emailSign').val();
                 var passSign = $('#passSign').val();
-    
+
                 function validateEmail($emailSign) {
                     var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
                     return emailReg.test($emailSign);
                 }
-    
+
                 if (firstSign == "") {
                     $("#alert").addClass('alert-danger');
                     $("#alert").html("Your first name is required!!!");
@@ -229,7 +238,7 @@
                 })
             }
         });
-    
+
             $('#eye').click(function () {
                 /* var elementType = $('#passSign').prev().prop('pass'); */
                 var elementType = $('#passSign').attr('type');
@@ -315,18 +324,18 @@
         </div>
     </div>
 
-    
+
 	<script>
             $('#alertLog').slideUp();
             $('#logButton').click(function () {
                 var emailLog = $('#emailLog').val();
                 var passLog = $('#passLog').val();
-    
+
                 function validateEmail($emailLog) {
                     var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
                     return emailReg.test($emailLog);
                 }
-    
+
                 if (emailLog == "") {
                     $("#alertLog").addClass('alert-danger');
                     $("#alertLog").html("Email field is required!!!");
@@ -370,7 +379,7 @@
                 })
             }
         });
-    
+
             $('#eyeLog').click(function () {
                 /* var elementType = $('#passSign').prev().prop('pass'); */
                 var elementType = $('#passLog').attr('type');

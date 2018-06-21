@@ -80,6 +80,15 @@ session_start();
                     <a href="feedback.php" class="nav-link link">
                         <i class="far fa-smile mr-2"></i>Feedback</a>
                 </li>
+                <?php
+if (isset($_SESSION['email'])) {
+    $session = $_SESSION['email'];
+    echo '<li class="nav-item">
+                    <a href="myCart.php" class="nav-link link">
+                        <i class="fa fa-shopping-cart mr-2"></i>Cart</a>
+                </li>';
+}
+?>
             </ul>
             <?php
 if (isset($_SESSION['email'])) {
@@ -510,7 +519,7 @@ if ($count > 0) {
     if (isset($_SESSION["email"])) {
         while ($row = $result->fetch_assoc()) {
             $session = $_SESSION["email"];
-            echo '<form action="userTour" method="POST"><div class="card text-center mt-4 ">
+            echo '<form action="userTour.php" method="POST"><div class="card text-center mt-4 ">
             <div class="card-header text-success h3 text-uppercase ">' .
                 $row["type"] . '
             </div>

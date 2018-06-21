@@ -79,6 +79,15 @@ session_start();
                     <a href="feedback.php" class="nav-link link">
                         <i class="far fa-smile mr-2"></i>Feedback</a>
                 </li>
+                <?php
+                if (isset($_SESSION['email'])) {
+                    $session = $_SESSION['email'];
+                    echo '<li class="nav-item">
+                    <a href="myCart.php" class="nav-link link">
+                        <i class="fa fa-shopping-cart mr-2"></i>Cart</a>
+                </li>';
+                }
+                ?>
             </ul>
             <?php
 if (isset($_SESSION['email'])) {
