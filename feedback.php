@@ -380,6 +380,9 @@ if (isset($_SESSION['email'])) {
     </section>
 
     <section>
+    <?php 
+        if (isset($_SESSION["email"])) {
+            echo'
         <h2 class="display-4 text-center text-info mb-5 mt-4">Be free to contact us, we are here to please you.</h2>
         <p class="text-center h2 text-primary mb-5">Tell us what you think!</p>
         <div class="col-9 offset-3">
@@ -388,12 +391,17 @@ if (isset($_SESSION['email'])) {
         <div class="col-lg-6 offset-5 ">
             <input type="button" id="feedbackButton" name="feedbackButton" class="btn btn-lg btn-outline-success mt-3 ml-5 mb-2" value="SEND" />
         </div>
-        <div class="alert mt-3" id="alertFeedback"></div>
+        <div class="alert mt-3" id="alertFeedback"></div>';
+    }else {
+        echo "<div class='row'><div class='offset-5 text-center mt-5 mb-5'><a href='#' data-toggle='modal' data-target='#LoginModal'><span class='text-warning' style='font-size: 20px;'>LOGIN</span></a> to be able to leave feedback!!!</div></div>";
+    }
+    ?>
     </section>
 
     <script>
         $('#alertFeedback').slideUp();
         $('#feedbackButton').click(function(){
+            $('#alertFeedback').removeClass('alert-danger').removeClass('alert-success');
             var feedback = $('#feedback').val();
             var session = $('#session').val();
             if(feedback == "") {
@@ -421,6 +429,33 @@ if (isset($_SESSION['email'])) {
 							$("#alertFeedback").slideDown(500).delay(1000).slideUp(500);
                     }
                 });
+               /*  var item = {
+                    name: session,
+                    feedback: feedback
+                };
+
+                $.ajax({
+                    type: 'POST',
+                    url: './feedbackSend.php',
+                    data: item,
+                    success: function (data) {
+                        if(data == 'sent') {
+                            $("#alertFeedback").addClass('alert-success');
+							$("#alertFeedback").html('Thanks for your feedback.');
+							$("#alertFeedback").slideDown(500).delay(1000).slideUp(500);
+                            $('#feedback').val("");
+                        }else {
+                            $("#alertFeedback").addClass('alert-danger');
+							$("#alertFeedback").html('There is some problem. Please try later');
+							$("#alertFeedback").slideDown(500).delay(1000).slideUp(500);
+                        }
+                    },
+                    error: function (data, err) {
+                        $("#alertFeedback").addClass('alert-danger');
+							$("#alertFeedback").html('Some problem occured. We are sorry.');
+							$("#alertFeedback").slideDown(500).delay(1000).slideUp(500);
+                    }
+}) */
             }
         });
     </script>
