@@ -380,7 +380,7 @@ if (isset($_SESSION['email'])) {
     </section>
 
     <section>
-    <?php 
+    <?php
         if (isset($_SESSION["email"])) {
             echo'
         <h2 class="display-4 text-center text-info mb-5 mt-4">Be free to contact us, we are here to please you.</h2>
