@@ -500,7 +500,7 @@ if ($count > 0) {
 } else {
     echo " 0 results";
 }
-//$dbc->close();
+$dbc->close();
 ?>
 </section>
 
@@ -562,30 +562,29 @@ if ($count > 0) {
                 </div>
             </div>
         </div>
-    </section> --
+    </section> -->
 
-<?php
-include 'connect.php';
+    <p id="demo"></p>
+    <p id="demo2"></p>
 
-$sql2 = "SELECT * FROM bestPlaces limit 4";
-$result2 = $dbc->query($sql2);
+    <script>
+        var obj, dbParam, xmlhttp;
+        obj = { "table":"bestplaces", "limit":4 };
+        dbParam = JSON.stringify(obj);
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("demo").innerHTML = this.responseText;
+                console.log(this.responseText);
+                var myObj = JSON.parse(this.responseText);
+                document.getElementById("demo2").innerHTML = myObj[0].ID;
+                console.log(myObj[0].ID);
+            }
+        };
+        xmlhttp.open("GET", "getPlaces.php?x=" + dbParam, true);
+        xmlhttp.send();
 
-$count2 = $result2->num_rows;
-
-if ($count2 > 0) {
-    while ($row2 = $result2->fetch_assoc()) {
-        echo '
-            <img src=" data:image/jpeg;base64,' . base64_encode($row2["img"]) . '" alt="konjic" class="img-fluid best" />
-
-        ';
-    }
-
-} else {
-    echo " 0 results";
-
-}
-$dbc->close();
-?>-->
+    </script>
 
     <div class="row no-gutters">
         <div class="col-5 ml-5 mt-4">
