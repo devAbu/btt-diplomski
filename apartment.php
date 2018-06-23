@@ -515,7 +515,7 @@ if ($count > 0) {
 
                         <div class="col-4" class="col">
                             <div class="card hotel">
-                                <img class="card-img-top" src="images/daily.jpg" alt="Card image cap">
+                                <img class="card-img-top" src=" data:image/jpeg;base64,' . base64_encode($row["img"]) . '" alt="Card image cap">
                                 <div class="card-body">
                                     <h5 class="card-title">' . $row["title"] . '</h5>
                                     <p class="card-text">' . $row["description"] . '</p>

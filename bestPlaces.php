@@ -378,8 +378,37 @@ if (isset($_SESSION['email'])) {
             <a href="https://www.facebook.com" target="_blank" class="btn btn-lg btn-primary mb-1"><i class="fab fa-facebook mr-2" aria-hidden="true"></i>Facebook</a>
         </div>
     </section>
+<section>
+<?php
 
-    <div class="row bg">
+require 'connect.php';
+
+$sql = "SELECT * FROM bestPlaces";
+$result = $dbc->query($sql);
+
+$count = $result->num_rows;
+
+if ($count > 0) {
+    if (isset($_SESSION["email"])) {
+        echo '<div class="row bg">';
+        while ($row = $result->fetch_assoc()) {
+            echo '<div class="col-5  mt-3" style="margin-left: 70px;" >
+            <img src=" data:image/jpeg;base64,' . base64_encode($row["img"]) . '" alt="konjic" class="img-fluid best" />
+            <h2 class="text-warning text-uppercase text-center">' . $row["title"] . '</h2>
+        </div>
+        ';
+        }
+        echo '</div>';
+    }
+} else {
+    echo " 0 results";
+
+}
+$dbc->close();
+?>
+
+</section >
+    <!-- <div class="row bg">
         <div class="col-5 offset-1 mt-3 ">
             <a href="#" data-toggle="modal" data-target="#image1"><img src="images/konjic.jpg" alt="konjic" class="img-fluid best" /></a>
             <h2 class="text-warning text-uppercase text-center">Konjic</h2>
@@ -536,7 +565,7 @@ if (isset($_SESSION['email'])) {
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <footer class="bg-secondary" style="margin-top:0px;">
         <div class="row no-gutters">

@@ -80,14 +80,14 @@ session_start();
                         <i class="far fa-smile mr-2"></i>Feedback</a>
                 </li>
                 <?php
-                if (isset($_SESSION['email'])) {
-                    $session = $_SESSION['email'];
-                    echo '<li class="nav-item">
+if (isset($_SESSION['email'])) {
+    $session = $_SESSION['email'];
+    echo '<li class="nav-item">
                     <a href="myCart.php" class="nav-link link">
                         <i class="fa fa-shopping-cart mr-2"></i>Cart</a>
                 </li>';
-                }
-                ?>
+}
+?>
             </ul>
             <?php
 if (isset($_SESSION['email'])) {
@@ -515,7 +515,8 @@ if ($count > 0) {
 
                         <div class="col-4" class="col">
                             <div class="card hotel">
-                                <img class="card-img-top" src="images/scc.jpg" alt="Card image cap">
+                                <img class="card-img-top" src=" data:image/jpeg;base64,' . base64_encode($row["img"]) . '" alt="Card image cap">
+
                                 <div class="card-body">
                                     <h5 class="card-title">' . $row["title"] . '</h5>
                                     <p class="card-text">' . $row["description"] . '</p>
@@ -534,10 +535,12 @@ if ($count > 0) {
                             </div>
                         </div>
 
+
                 ';
         }
         echo '</div>
                 </div>';
+
     } else {
         echo "<div class='row'><div class='offset-5 text-center mt-5 mb-5'><a href='#' data-toggle='modal' data-target='#LoginModal'><span class='text-warning' style='font-size: 20px;'>LOGIN</span></a> to see and select hotel to reserve!!!</div></div>";
     }

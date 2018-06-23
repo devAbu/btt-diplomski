@@ -521,7 +521,7 @@ if ($count > 0) {
             <div class="card-body ">
                 <h5 class="card-title text-left ml-5 h1 text-primary "> ' . $row["type"] . '</h5>
                 <a href="# " style="text-decoration:none; ">
-                    <img src="images/focus2017.jpg " class="tourPlans " alt="skijanje " width="400 " height="250
+                    <img src=" data:image/jpeg;base64,'. base64_encode( $row["img"]) .'" class="tourPlans " alt="skijanje " width="400 " height="250
             " style="float:left; " />
             </a>
 

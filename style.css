@@ -55,10 +55,6 @@
     min-height: 100vh;
 }
 
-.col {
-    padding: 0 !important;
-    margin: 0 !important;
-}
 
 .jumbotron4 {
     background-image: url('images/book.jpg');

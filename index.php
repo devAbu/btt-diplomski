@@ -79,14 +79,14 @@ session_start();
                         <i class="far fa-smile mr-2"></i>Feedback</a>
                 </li>
                 <?php
-                if (isset($_SESSION['email'])) {
-                    $session = $_SESSION['email'];
-                    echo '<li class="nav-item">
+if (isset($_SESSION['email'])) {
+    $session = $_SESSION['email'];
+    echo '<li class="nav-item">
                     <a href="myCart.php" class="nav-link link">
                         <i class="fa fa-shopping-cart mr-2"></i>Cart</a>
                 </li>';
-                }
-                ?>
+}
+?>
             </ul>
             <?php
 if (isset($_SESSION['email'])) {
@@ -463,7 +463,48 @@ if (isset($_SESSION['email'])) {
         </div>
     </section>
 
-    <section>
+<section>
+
+<?php
+require 'connect.php';
+
+$sql = "SELECT * FROM tourplan limit 3";
+$result = $dbc->query($sql);
+
+$count = $result->num_rows;
+
+if ($count > 0) {
+    if (isset($_SESSION["email"])) {
+        echo '<div class="card-group mt-3">';
+        while ($row = $result->fetch_assoc()) {
+            echo '<div class="card ml-2" style="border-radius:2% !important;" id="prva">
+                <a href="tourPlans.php">
+                    <img class="card-img-top img-fluid index " src=" data:image/jpeg;base64,' . base64_encode($row["img"]) . '" style="border-radius:2% !important; height: 250px;" alt="' . $row["title"] . '">
+                </a>
+                <div class="card-body">
+                    <a href="tourPlans.php" class="text-info">
+                        <p class="card-text">' . $row["description"] . '</p>
+                    </a>
+                    <h5 class="card-title text-primary text-right mr-4 mt-4">' . $row["price"] . '
+                        <i class="fas fa-euro-sign ml-1"></i>
+                    </h5>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">
+                        <i class="far fa-clock mr-3"></i>' . $row["days"] . '</small>
+                </div>
+            </div>';
+        }
+        echo '</div>';
+    }
+} else {
+    echo " 0 results";
+}
+//$dbc->close();
+?>
+</section>
+
+<!--     <section>
         <h2 class="display-3 text-center text-info my-4">The best travel tour offers</h2>
         <div class="card-group mt-3">
             <div class="card ml-2" style="border-radius:2% !important;" id="prva">
@@ -521,8 +562,30 @@ if (isset($_SESSION['email'])) {
                 </div>
             </div>
         </div>
-    </section>
+    </section> --
 
+<?php
+include 'connect.php';
+
+$sql2 = "SELECT * FROM bestPlaces limit 4";
+$result2 = $dbc->query($sql2);
+
+$count2 = $result2->num_rows;
+
+if ($count2 > 0) {
+    while ($row2 = $result2->fetch_assoc()) {
+        echo '
+            <img src=" data:image/jpeg;base64,' . base64_encode($row2["img"]) . '" alt="konjic" class="img-fluid best" />
+
+        ';
+    }
+
+} else {
+    echo " 0 results";
+
+}
+$dbc->close();
+?>-->
 
     <div class="row no-gutters">
         <div class="col-5 ml-5 mt-4">
