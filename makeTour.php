@@ -82,6 +82,7 @@ session_start();
                 </li>
                 <li class="nav-item">
                     <a href="feedback.php" class="nav-link link">
+                    <a href="feedback.php" class="nav-link link">
                         <i class="far fa-smile mr-2"></i>Feedback</a>
                 </li>
                 <?php
@@ -490,6 +491,7 @@ if (isset($_SESSION['email'])) {
         <div class="alertReq" id="alertReq"></div>
         <div id="dialog" title="Warning">
         <p>Your budget is smaller than the total price!!!</p>
+            </div>
     </section>
 
     <footer class="bg-secondary">

@@ -55,9 +55,16 @@
     min-height: 100vh;
 }
 
-
 .jumbotron4 {
     background-image: url('images/book.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+.jumbotronMy {
+    background-image: url('images/myCartBg.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;

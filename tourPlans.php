@@ -505,7 +505,16 @@ if (isset($_SESSION['email'])) {
     </section>
 
     <section>
+<!-- <div id="dialog" title="Success">
+        <p class="text-success">Thanks for your interested in our offer. Check / modify your reservation <a href="myCart.php"> here. </a></p>
+        </div>
 
+<div id="dialog2" title="Warning">
+        <p class="text-warning">Some error exists, please try later.</a></p>
+</div>
+<div id="dialog3" title="Danger">
+        <p class="text-danger">Some problem occured. We are sorry.</a></p>
+        </div> -->
 <?php
 
 require 'connect.php';
@@ -517,18 +526,20 @@ $count = $result->num_rows;
 
 if ($count > 0) {
     if (isset($_SESSION["email"])) {
+        $i = 0;
         while ($row = $result->fetch_assoc()) {
             $session = $_SESSION["email"];
-            echo '<form action="userTour.php" method="POST"><div class="card text-center mt-4 ">
+            echo '<form action = "userTour.php" method = "POST"><div class="card text-center mt-4 ">
             <div class="card-header text-success h3 text-uppercase ">' .
-                $row["type"] . '
+            $row["type"] . '
             </div>
             <input type="text" value=" ' . $session . '  "  name="session" id="session" hidden>
             <input type="text" value=" ' . $row["ID"] . ' "  name="idnum" id="idnum" hidden>
+            <input type="text" value=" ' . $count . ' "  name="count" id="count" hidden>
             <div class="card-body ">
                 <h5 class="card-title text-left ml-5 h1 text-primary "> ' . $row["title"] . '</h5>
                 <a href="# " style="text-decoration:none; ">
-                    <img src=" data:image/jpeg;base64,'. base64_encode( $row["img"]) .'" class="tourPlans " alt="skijanje " width="400 " height="250
+                    <img src=" data:image/jpeg;base64,' . base64_encode($row["img"]) . '" class="tourPlans " alt="skijanje " width="400 " height="250
             " style="float:left; " />
             </a>
 
@@ -568,7 +579,9 @@ if ($count > 0) {
                         <i class="far fa-star "></i>
                         <i class="far fa-star "></i>
                     </p>
-                </li>
+                </li>';
+            echo '
+                <input type="number" value="' . $i . '" id="test" hidden>
                 <li class="list-group-item " style="border:none">
                     <input type="submit" name="select" id="select" class="btn btn-warning " value="Select " style="width:100px; " />
                 </li>
@@ -580,6 +593,7 @@ if ($count > 0) {
             </div>
             </div></form>
             ';
+            $i++;
 
         }
 
@@ -596,6 +610,58 @@ $dbc->close();
 
 </section>
 
+<!-- <script>
+            //$('#alert').slideUp();
+            $('#dialog').hide();
+            $('#dialog2').hide();
+            $('#dialog3').hide();
+            var count = $('#count').val();
+            var test = $('#test').val();
+            console.log(test);
+            console.log(count);
+            var i;
+            for( i = 1; i <= count; i++){
+                console.log(i);
+}
+            $('#select'+i).click(function () {
+                $("#alert").removeClass('alert-success').removeClass('alert-danger');
+                var email = $('#session').val();
+                var tourID = $('#idnum').val();
+
+                console.log(email);
+                console.log(tourID);
+
+                $.ajax({
+                    url: "./userTour.php?task=select&email="+email+"&tourID="+tourID,
+                    success: function (data){
+                        if(data.indexOf('sent') > -1){
+                            /* $("#alert").addClass('alert-success');
+							$("#alert").html('Thanks for your interested in our offer. Check / modify your reservation <a href="myCart.php> here. </a>');
+							$("#alert").slideDown(500).delay(5000).slideUp(500); */
+                            $( "#dialog" ).show();
+                            $( "#dialog" ).dialog();
+                        } else{
+                            /* $("#alert").addClass('alert-danger');
+							$("#alert").html('Some error exists, please try later.$count');
+							$("#alert").slideDown(500).delay(1000).slideUp(500); */
+                            $( "#dialog2" ).show();
+                            $( "#dialog2" ).dialog();
+                        }
+                    },
+                    error: function (data, err){
+                        /* $("#alert").addClass('alert-danger');
+                        $("#alert").html('Some problem occured. We are sorry.');
+                        $("#alert").slideDown(500).delay(1000).slideUp(500); */
+                        $( "#dialog3" ).show();
+                            $( "#dialog3" ).dialog();
+                    }
+                })
+
+        });
+
+
+        </script>
+ -->
     <footer class="bg-secondary " style="margin-top:0px; ">
         <div class="row no-gutters ">
             <div class="col-6 mt-5 ">
