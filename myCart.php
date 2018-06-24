@@ -729,44 +729,43 @@ if (isset($_SESSION["email"])) {
                     <div class="row">
                         <div class="col-4 mb-2">
                             <label>City: </label>
-                            <input type="text" class="form-control"  value="' . $row["city"] . '" readonly>
+                            <input type="text" class="form-control" id="city"  value="' . $row["city"] . '" readonly>
 
                         </div>
                         <div class="col-6 mb-2">
                         <label>Length: </label>
-                            <input type="number" class="form-control"  value="' . $row["length"] . '" readonly>
+                            <input type="number" class="form-control" id="length" value="' . $row["length"] . '" readonly>
                         </div>
                         <div class="col-4 mb-2">
                         <label>budget: </label>
-                            <input type="number" class="form-control"  value="' . $row["budget"] . '" readonly>
+                            <input type="number" class="form-control" id="budget"  value="' . $row["budget"] . '" readonly>
                         </div>
                         <div class="col-6 mb-2">
                         <label>people: </label>
-                            <input type="number"  class="form-control" value="' . $row["people"] . '" readonly>
+                            <input type="number"  class="form-control" id="people" value="' . $row["people"] . '" readonly>
                         </div>
                         <div class="col-4 mb-2">
                         <label>period: </label>
-                            <input type="text" class="form-control"  value="' . $row["period"] . '" readonly>
+                            <input type="text" class="form-control" id="period" value="' . $row["period"] . '" readonly>
                         </div>
                         <div class="col-6 mb-2">
                         <label>interpreter: </label>
-                            <input type="text" class="form-control"  value="' . $row["interpreter"] . '" readonly>
+                            <input type="text" class="form-control" id="interpreter" value="' . $row["interpreter"] . '" readonly>
                         </div>
                         <div class="col-4 mb-2">
                         <label>price: </label>
-                            <input type="number" class="form-control" value="' . $row["price"] . '" readonly>
+                            <input type="number" class="form-control" id="price" value="' . $row["price"] . '" readonly>
                         </div>
-                        <label class="ml-3">Options: </label>
-                        <div class="col-1 mb-2">
-                            <input type="button" class="btn btn-warning" value="Edit">
-                        </div>
-                        <div class="col-2 mb-2">
-                            <input type="submit" class="btn btn-danger" value="Delete">
+                        <label class="ml-3 mt-4">Options: </label>
+                        
+                        <div class="col-2 mt-4">
+                            <input type="submit" id="delete" class="btn btn-danger" value="Delete">
                         </div>
                     </div>
                 </div>
             </div>
             </form>
+            <div class="alert" id="alert"></div>
             ';
         }
     } else {
@@ -778,6 +777,115 @@ if (isset($_SESSION["email"])) {
 ?>
     </section>
 
+   <!-- 
+       <div class="col-1 mb-2">
+                            <input type="button" class="btn btn-warning" id="edit" value="Edit">
+                        </div>
+        <script>
+   
+        $('#edit').click(function () {
+            $('#length').removeAttr('readonly');
+            $('#budget').removeAttr('readonly');
+            $('#people').removeAttr('readonly');
+            var session = $('#session').val();
+            var idnum = $('#idnum').val();
+
+            $('#edit').attr('value', 'Save');
+            $('#delete').attr('disabled', '');
+
+
+
+            $('#edit').click(function () {
+                $('#alert').removeClass('alert-success').removeClass('#alert-danger')
+                $('#length').attr('readonly', '');
+                $('#budget').attr('readonly', '');
+                $('#people').attr('readonly', '');
+
+                $('#edit').attr('value', 'Edit');
+                $('#delete').removeAttr('disabled');
+
+                var length = $('#length').val();
+                var budget = $('#budget').val();
+                var people= $('#people').val();
+                var price = $('#price').val();
+
+                console.log(price);
+
+                if(length != 0) {
+                    if (length < 3) {
+                        price += 35;
+                        console.log(price);
+                    } else if (length < 5) {
+                        price += 50;
+                        console.log(price);
+                    } else if (length < 8) {
+                        price += 75;
+                        console.log(price);
+                    } else {
+                        price += 100;
+                        console.log(price);
+                    }
+                }
+
+                if(people != 0) {
+                    if (people < 5 ) {
+                        price += 200;
+                        console.log(price);
+                    } else if (people < 10) {
+                        price += 250;
+                        console.log(price);
+                    } else {
+                        price += 350;
+                        console . log(price);
+
+                    }
+                }
+
+                document.getElementById("price").value = price;
+                document.getElementById("budget").value = budget;
+
+                if (budget == 0 || budget == ""){
+                    $("#alert").addClass('alert-danger');
+                    $("#alert").html("Enter your budget");
+                    $("#alert").fadeIn(500).delay(1000).fadeOut(500);
+                }else if(people == 0 || people == ""){
+                    $("#alert").addClass('alert-danger');
+                    $("#alert").html("Enter how amny people will be");
+                    $("#alert").fadeIn(500).delay(1000).fadeOut(500);
+                } else if(length == 0 || length == "" ){
+                    $("#alert").addClass('alert-danger');
+                    $("#alert").html("Enter how many days the tour will be");
+                    $("#alert").fadeIn(500).delay(1000).fadeOut(500);
+                } else if(budget < price ){
+                    $("#alert").addClass('alert-danger');
+                    $("#alert").html("Your budget is smaller than the total price");
+                    $("#alert").fadeIn(500).delay(1000).fadeOut(500);
+                } else {
+                    $.ajax ({
+                        url : "./updateRequest.php?task=update&people="+people+"&budget="+budget+"&length="+length+"&price="+price+"&session="+session,
+                        success: function (data){
+                            if(data.indexOf('sent') > -1){
+                                $("#alert").addClass('alert-success');
+                                $("#alert").html("Updated successfully.");
+                                $("#alert").fadeIn(500).delay(1000).fadeOut(500);
+                            } else {
+                                $("#alert").addClass('alert-danger');
+                                $("#alert").html('Error occured');
+                                $("#alert").slideDown(500).delay(1000).slideUp(500);
+                            }
+                        },
+                        error: function (data, err){
+                            $("#alert").addClass('alert-danger');
+                            $("#alert").html('Some problem occured. We are sorry.');
+                            $("#alert").slideDown(500).delay(1000).slideUp(500);
+                        }
+                    })
+                }
+
+            })
+        })
+    </script>
+ -->
 
     </body>
 </html>
