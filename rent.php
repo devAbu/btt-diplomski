@@ -512,16 +512,16 @@ if ($count > 0) {
     if (isset($_SESSION["email"])) {
         while ($row = $result->fetch_assoc()) {
             $session = $_SESSION["email"];
-            echo '<div class="card text-center mt-4 ">
+            echo '<form action = "userCar.php"><div class="card text-center mt-4 ">
             <div class="card-header text-success h3 text-uppercase ">' .
-                $row["title"] . '
+            $row["title"] . '
             </div>
             <input type="text" value=" ' . $session . '  "  name="session" id="session" hidden>
             <input type="text" value=" ' . $row["ID"] . ' "  name="idnum" id="idnum" hidden>
             <div class="card-body ">
                 <h5 class="card-title text-left ml-5 h1 text-primary "> ' . $row["type"] . '</h5>
                 <a href="# " style="text-decoration:none; ">
-                    <img src=" data:image/jpeg;base64,'. base64_encode( $row["img"]) .'" class="tourPlans " alt="skijanje " width="400 " height="250
+                    <img src=" data:image/jpeg;base64,' . base64_encode($row["img"]) . '" class="tourPlans " alt="skijanje " width="400 " height="250
             " style="float:left; " />
             </a>
 
@@ -567,7 +567,7 @@ if ($count > 0) {
                 </li>
             </ul>
             </div>
-            </div>
+            </div></form>
             ';
 
         }

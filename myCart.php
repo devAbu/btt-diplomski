@@ -409,21 +409,21 @@ if (isset($_SESSION['email'])) {
     <section>
         <h2 class="display-4 text-center text-info">Tour Plans</h2>
             <?php
-    require 'connect.php';
+require 'connect.php';
 
-    if (isset($_SESSION["email"])) {
-        $session = $_SESSION["email"];
-        //echo 'session = ' . $session;
-        //echo 'length = ' . strlen($session);
-                $sql = "Select usertour.tourID,usertour.name, tourplan.ID, tourplan.type, tourplan.title, tourplan.description, tourplan.people, tourplan.available, tourplan.price, tourplan.days, tourplan.img from usertour inner join tourplan on tourplan.ID = usertour.tourID having usertour.name like '%" . trim($session) . "%' " ;
-                $result = $dbc->query($sql);
+if (isset($_SESSION["email"])) {
+    $session = $_SESSION["email"];
+    //echo 'session = ' . $session;
+    //echo 'length = ' . strlen($session);
+    $sql = "Select usertour.tourID,usertour.name, tourplan.ID, tourplan.type, tourplan.title, tourplan.description, tourplan.people, tourplan.available, tourplan.price, tourplan.days, tourplan.img from usertour inner join tourplan on tourplan.ID = usertour.tourID having usertour.name like '%" . trim($session) . "%' ";
+    $result = $dbc->query($sql);
 
-                $count = $result->num_rows;
-                if ($count > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        echo '<form action = "deleteTour.php" method = "POST"><div class="card text-center mt-4 ">
+    $count = $result->num_rows;
+    if ($count > 0) {
+        while ($row = $result->fetch_assoc()) {
+            echo '<form action = "deleteTour.php" method = "POST"><div class="card text-center mt-4 ">
             <div class="card-header text-success h3 text-uppercase ">' .
-                            $row["type"] . '
+            $row["type"] . '
             </div>
             <input type="text" value=" ' . $session . '  "  name="session" id="session" hidden>
             <input type="text" value=" ' . $row["ID"] . ' "  name="idnum" id="idnum" hidden>
@@ -472,8 +472,8 @@ if (isset($_SESSION['email'])) {
                         <i class="far fa-star "></i>
                     </p>
                 </li>';
-                        echo '
-                
+            echo '
+
                 <li class="list-group-item " style="border:none">
                     <input type="submit" name="select" id="select" class="btn btn-warning " value="Delete " style="width:100px; " />
                 </li>
@@ -485,19 +485,297 @@ if (isset($_SESSION['email'])) {
             </div>
             </div></form>
             ';
-                    }
-                }else{
-                    echo ' no result';
-                }
+        }
+    } else {
+        echo '<div class=text-center>
+            <h2>No selected tour plans!!! <a href="tourplans.php" style="color: gold;">Click here</a> to see and choose tour plan</h2>
+        </div>';
+    }
 }
 ?>
         <h2 class="display-4 text-center text-info">Car</h2>
+ <?php
 
+if (isset($_SESSION["email"])) {
+    $session = $_SESSION["email"];
+    //echo 'session = ' . $session;
+    //echo 'length = ' . strlen($session);
+    $sql = "Select usercar.carID,usercar.name, cars.ID, cars.title, cars.type, cars.description, cars.people, cars.year, cars.price, cars.img from usercar inner join cars on cars.ID = usercar.carID having usercar.name like '%" . trim($session) . "%' ";
+    $result = $dbc->query($sql);
+
+    $count = $result->num_rows;
+    if ($count > 0) {
+        while ($row = $result->fetch_assoc()) {
+            echo '<form action = "deleteCar.php"><div class="card text-center mt-4 ">
+            <div class="card-header text-success h3 text-uppercase ">' .
+            $row["title"] . '
+            </div>
+            <input type="text" value=" ' . $session . '  "  name="session" id="session" hidden>
+            <input type="text" value=" ' . $row["ID"] . ' "  name="idnum" id="idnum" hidden>
+            <div class="card-body ">
+                <h5 class="card-title text-left ml-5 h1 text-primary "> ' . $row["type"] . '</h5>
+                <a href="# " style="text-decoration:none; ">
+                    <img src=" data:image/jpeg;base64,' . base64_encode($row["img"]) . '" class="tourPlans " alt="skijanje " width="400 " height="250
+            " style="float:left; " />
+            </a>
+
+            <a href="# " style="text-decoration:none; ">
+                <label class="card-text " style="max-width:800px; ">' . $row["description"] . '</label>
+            </a>
+
+            <ul class="list-group list-group-flush tourPlans2 " style="width:390px; border:none; ">
+                <li class="list-group-item text-warning mt-4 " style="border:none; ">
+                    <p class="card-text " style="float:left; ">
+                        <i class="fas fa-users "></i>
+                        <span class="ml-2 ">Max People: ' . $row["people"] . '</span>
+                    </p>
+                </li>
+                <li class="list-group-item text-warning ">
+                    <p class="card-text " style="float:left; ">
+                        <i class="fas fa-calendar-alt "></i>
+                        <span class="ml-3 ">Model Year: ' . $row["year"] . '</span>
+                    </p>
+                </li>
+                <li class="list-group-item text-warning ">
+                    <p class="card-text " style="float:left; ">
+                        <i class="fas fa-euro-sign mr-4 "></i> ' . $row["price"] . '</p>
+                </li>
+            </ul>
+
+            <ul class="list-group list-group-flush mr-5 " style=" border:none;float:right; margin-top:-100px; ">
+                <!-- <li class="list-group-item text-warning mt-4 " style="border:none; ">
+                    <p class="card-text "></p>
+                    <input type="button " class="btn btn-warning " value="More Detalis " />
+                </li> -->
+                <li class="list-group-item text-warning " style=" border:none;">
+                    <p class="card-text ">
+                        <i class="far fa-star "></i>
+                        <i class="far fa-star "></i>
+                        <i class="far fa-star "></i>
+                        <i class="far fa-star "></i>
+                        <i class="far fa-star "></i>
+                    </p>
+                </li>
+                <li class="list-group-item " style="border:none">
+                    <input type="submit" name="select" id="select" class="btn btn-warning " value="Delete " style="width:100px; " />
+                </li>
+            </ul>
+            </div>
+            </div></form>
+            ';
+        }
+    } else {
+        echo '<div class=text-center>
+            <h2>No car selected!!! <a href="rent.php" style="color: gold;">Click here</a> to see and rent a car</h2>
+        </div>';
+    }
+}
+?>
         <h2 class="display-4 text-center text-info">Hotel</h2>
+
+<?php
+
+if (isset($_SESSION["email"])) {
+    $session = $_SESSION["email"];
+    //echo 'session = ' . $session;
+    //echo 'length = ' . strlen($session);
+    $sql = "Select userhotel.hotelID,userhotel.name, hotel.ID, hotel.title, hotel.description, hotel.place, hotel.img from userhotel inner join hotel on hotel.ID = userhotel.hotelID having userhotel.name like '%" . trim($session) . "%' ";
+    $result = $dbc->query($sql);
+
+    $count = $result->num_rows;
+    if ($count > 0) {
+        while ($row = $result->fetch_assoc()) {
+            echo '<form action = "deleteHotel.php" method = "POST"><div class="card text-center mt-4 ">
+
+            <input type="text" value=" ' . $session . '  "  name="session" id="session" hidden>
+            <input type="text" value=" ' . $row["ID"] . ' "  name="idnum" id="idnum" hidden>
+            <input type="text" value=" ' . $count . ' "  name="count" id="count" hidden>
+            <div class="card-body ">
+                <h5 class="card-title text-left ml-5 h1 text-primary "> ' . $row["title"] . '</h5>
+                <a href="# " style="text-decoration:none; ">
+                    <img src=" data:image/jpeg;base64,' . base64_encode($row["img"]) . '" class="tourPlans " alt="skijanje " width="400 " height="250
+            " style="float:left; " />
+            </a>
+
+            <a href="# " style="text-decoration:none; ">
+                <label class="card-text " style="max-width:800px; ">' . $row["description"] . '</label>
+            </a>
+
+
+            <ul class="list-group list-group-flush mr-5 mt-3" style=" border:none;float:right; margin-top:-100px; ">
+                <!-- <li class="list-group-item text-warning mt-4 " style="border:none; ">
+                    <p class="card-text "></p>
+                    <input type="button " class="btn btn-warning " value="More Detalis " />
+                </li>-->
+                <li class="list-group-item text-warning " style=" border:none;">
+                    <p class="card-text ">
+                        <i class="far fa-star "></i>
+                        <i class="far fa-star "></i>
+                        <i class="far fa-star "></i>
+                        <i class="far fa-star "></i>
+                        <i class="far fa-star "></i>
+                    </p>
+                </li>';
+            echo '
+
+                <li class="list-group-item " style="border:none">
+                    <input type="submit" name="select" id="select" class="btn btn-warning " value="Delete " style="width:100px; " />
+                </li>
+            </ul>
+            </div>
+            <div class="card-footer text-muted ">
+                <small class="text-muted ">
+                    <i class="fa  fa-map-marker mr-2"></i> ' . $row["place"] . '</small>
+            </div>
+            </div></form>
+            ';
+        }
+    } else {
+        echo '<div class=text-center>
+            <h2>No hotel selected!!! <a href="hotel.php" style="color: gold;">Click here</a> to see and reserve a hotel</h2>
+        </div>';
+    }
+}
+?>
 
         <h2 class="display-4 text-center text-info">Apartment</h2>
 
+<?php
+
+if (isset($_SESSION["email"])) {
+    $session = $_SESSION["email"];
+    //echo 'session = ' . $session;
+    //echo 'length = ' . strlen($session);
+    $sql = "Select userapartment.apartmentID,userapartment.name, apartment.ID, apartment.title, apartment.description, apartment.place, apartment.img from userapartment inner join apartment on apartment.ID = userapartment.apartmentID having userapartment.name like '%" . trim($session) . "%' ";
+    $result = $dbc->query($sql);
+
+    $count = $result->num_rows;
+    if ($count > 0) {
+        while ($row = $result->fetch_assoc()) {
+            echo '<form action = "deleteApartment.php" method = "POST"><div class="card text-center mt-4 ">
+
+            <input type="text" value=" ' . $session . '  "  name="session" id="session" hidden>
+            <input type="text" value=" ' . $row["ID"] . ' "  name="idnum" id="idnum" hidden>
+            <input type="text" value=" ' . $count . ' "  name="count" id="count" hidden>
+            <div class="card-body ">
+                <h5 class="card-title text-left ml-5 h1 text-primary "> ' . $row["title"] . '</h5>
+                <a href="# " style="text-decoration:none; ">
+                    <img src=" data:image/jpeg;base64,' . base64_encode($row["img"]) . '" class="tourPlans " alt="skijanje " width="400 " height="250
+            " style="float:left; " />
+            </a>
+
+            <a href="# " style="text-decoration:none; ">
+                <label class="card-text " style="max-width:800px; ">' . $row["description"] . '</label>
+            </a>
+
+
+            <ul class="list-group list-group-flush mr-5 mt-3" style=" border:none;float:right; margin-top:-100px; ">
+                <!-- <li class="list-group-item text-warning mt-4 " style="border:none; ">
+                    <p class="card-text "></p>
+                    <input type="button " class="btn btn-warning " value="More Detalis " />
+                </li>-->
+                <li class="list-group-item text-warning " style=" border:none;">
+                    <p class="card-text ">
+                        <i class="far fa-star "></i>
+                        <i class="far fa-star "></i>
+                        <i class="far fa-star "></i>
+                        <i class="far fa-star "></i>
+                        <i class="far fa-star "></i>
+                    </p>
+                </li>';
+            echo '
+
+                <li class="list-group-item " style="border:none">
+                    <input type="submit" name="select" id="select" class="btn btn-warning " value="Delete " style="width:100px; " />
+                </li>
+            </ul>
+            </div>
+            <div class="card-footer text-muted ">
+                <small class="text-muted ">
+                    <i class="fa  fa-map-marker mr-2"></i> ' . $row["place"] . '</small>
+            </div>
+            </div></form>
+            ';
+        }
+    } else {
+        echo '<div class=text-center>
+            <h2>No apartment selected!!! <a href="apartment.php" style="color: gold;">Click here</a> to see and reserve an apartment</h2>
+        </div>';
+    }
+}
+?>
+
         <h2 class="display-4 text-center text-info">Requested tour plans</h2>
+
+        <?php
+
+if (isset($_SESSION["email"])) {
+    $session = $_SESSION["email"];
+    //echo 'session = ' . $session;
+    //echo 'length = ' . strlen($session);
+    $sql = "Select * from tourrequest where name like '%" . trim($session) . "%' ";
+    $result = $dbc->query($sql);
+
+    $count = $result->num_rows;
+    if ($count > 0) {
+        while ($row = $result->fetch_assoc()) {
+            echo '<form action = "deleteRequest.php" method = "POST">
+            <div class="card  mt-4 ">
+
+                <input type="text" value=" ' . $session . '  "  name="session" id="session" hidden>
+                <input type="text" value=" ' . $row["id"] . ' "  name="idnum" id="idnum" hidden>
+                <input type="text" value=" ' . $count . ' "  name="count" id="count" hidden>
+                <div class="card-body ">
+                    <div class="row">
+                        <div class="col-4 mb-2">
+                            <label>City: </label>
+                            <input type="text" class="form-control"  value="' . $row["city"] . '" readonly>
+
+                        </div>
+                        <div class="col-6 mb-2">
+                        <label>Length: </label>
+                            <input type="number" class="form-control"  value="' . $row["length"] . '" readonly>
+                        </div>
+                        <div class="col-4 mb-2">
+                        <label>budget: </label>
+                            <input type="number" class="form-control"  value="' . $row["budget"] . '" readonly>
+                        </div>
+                        <div class="col-6 mb-2">
+                        <label>people: </label>
+                            <input type="number"  class="form-control" value="' . $row["people"] . '" readonly>
+                        </div>
+                        <div class="col-4 mb-2">
+                        <label>period: </label>
+                            <input type="text" class="form-control"  value="' . $row["period"] . '" readonly>
+                        </div>
+                        <div class="col-6 mb-2">
+                        <label>interpreter: </label>
+                            <input type="text" class="form-control"  value="' . $row["interpreter"] . '" readonly>
+                        </div>
+                        <div class="col-4 mb-2">
+                        <label>price: </label>
+                            <input type="number" class="form-control" value="' . $row["price"] . '" readonly>
+                        </div>
+                        <label class="ml-3">Options: </label>
+                        <div class="col-1 mb-2">
+                            <input type="button" class="btn btn-warning" value="Edit">
+                        </div>
+                        <div class="col-2 mb-2">
+                            <input type="submit" class="btn btn-danger" value="Delete">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </form>
+            ';
+        }
+    } else {
+        echo '<div class=text-center>
+            <h2>No requested tour !!! <a href="makeTour.php" style="color: gold;">Click here</a> to request one.</h2>
+        </div>';
+    }
+}
+?>
     </section>
 
 
