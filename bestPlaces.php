@@ -389,17 +389,15 @@ $result = $dbc->query($sql);
 $count = $result->num_rows;
 
 if ($count > 0) {
-    if (isset($_SESSION["email"])) {
-        echo '<div class="row bg">';
-        while ($row = $result->fetch_assoc()) {
-            echo '<div class="col-5  mt-3" style="margin-left: 70px;" >
+    echo '<div class="row bg">';
+    while ($row = $result->fetch_assoc()) {
+        echo '<div class="col-5  mt-3" style="margin-left: 70px;" >
             <img src=" data:image/jpeg;base64,' . base64_encode($row["img"]) . '" alt="konjic" class="img-fluid best" />
             <h2 class="text-warning text-uppercase text-center">' . $row["title"] . '</h2>
         </div>
         ';
-        }
-        echo '</div>';
     }
+    echo '</div>';
 } else {
     echo " 0 results";
 
