@@ -7,5 +7,7 @@ $conn = new mysqli("localhost", "abu", "aburefko159753", "btt");
 $result = $conn->query("SELECT * FROM " . $obj->table . " LIMIT " . $obj->limit);
 $output = array();
 $output = $result->fetch_all(MYSQLI_ASSOC);
+//$output['img'] = base64_encode($output['img']);
 
+//echo json_encode($output['img']);
 echo json_encode($output);

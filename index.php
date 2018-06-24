@@ -564,7 +564,7 @@ $dbc->close();
         </div>
     </section> -->
 
-    <p id="demo"></p>
+    <!-- <p id="demo"></p>
     <p id="demo2"></p>
 
     <script>
@@ -577,14 +577,15 @@ $dbc->close();
                 document.getElementById("demo").innerHTML = this.responseText;
                 console.log(this.responseText);
                 var myObj = JSON.parse(this.responseText);
-                document.getElementById("demo2").innerHTML = myObj[0].ID;
+                myObj.img = atob(myObj.img);
+                document.getElementById("demo2").innerHTML = myObj.img;
                 console.log(myObj[0].ID);
             }
         };
         xmlhttp.open("GET", "getPlaces.php?x=" + dbParam, true);
         xmlhttp.send();
 
-    </script>
+    </script> -->
 
     <div class="row no-gutters">
         <div class="col-5 ml-5 mt-4">
