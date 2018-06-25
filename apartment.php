@@ -409,7 +409,9 @@ if (isset($_SESSION['email'])) {
     <section>
         <div class="row no-gutters">
             <div class="col-5 offset-2">
-                <input id="search-loged" type="text" class="form-control mt-2" placeholder="Search...">
+                 <form action="apartment.php" method="POST" name="form" id="form">
+                    <input id="search-loged" name="search-loged" type="text" class="form-control mt-2" placeholder="Search...">
+                </form>
             </div>
             <div class="col-2">
                 <button id="filters" class="btn btn-success my-2  ml-4" style="width:200px;" data-toggle="collapse" data-target="#collapseExample"
@@ -493,23 +495,63 @@ if (isset($_SESSION['email'])) {
         </div>
     </section>
 
+ <script>
+
+        var obj, dbParam, xmlhttp,x , txt = "";
+        var i = 0;
+        var otherPlaces = []
+        obj = { "table":"apartment" };
+        dbParam = JSON.stringify(obj);
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                //document.getElementById("demo").innerHTML = "All data: " + this.responseText;
+                var myObj = JSON.parse(this.responseText);
+                for (x in myObj) {
+                    txt += myObj[x].title +" ";
+                    i++;
+                    otherPlaces.push(myObj[x].title)
+                }
+                console.log(otherPlaces)
+                console.log(i)
+
+                $("#search-loged").autocomplete({
+                    source: otherPlaces,
+                    select: function(event, ui){
+                        var search = $('#search-loged').val()
+                        console.log(search);
+                        $('#form').submit();
+                    }
+                });
+            }
+        }
+        xmlhttp.open("GET", "apartmentTitle.php?x=" + dbParam, true);
+        xmlhttp.send();
+//var value = $('#demo2').val();
+
+
+        </script>
+
     <section>
     <?php
 require 'connect.php';
+if (!empty($_POST)) {
+    $where = $_REQUEST['search-loged'];
+}
+if (isset($where)) {
+    $sql = "SELECT * FROM apartment where title like '$where'";
+    $result = $dbc->query($sql);
 
-$sql = "SELECT * FROM apartment";
-$result = $dbc->query($sql);
+    $count = $result->num_rows;
 
-$count = $result->num_rows;
+    if ($count > 0) {
+        if (isset($_SESSION["email"])) {
+            /* echo '<div class="card-group mt-5">
+            <div class="row">'; */
+            while ($row = $result->fetch_assoc()) {
 
-if ($count > 0) {
-    if (isset($_SESSION["email"])) {
-        /* echo '<div class="card-group mt-5">
-        <div class="row">'; */
-        while ($row = $result->fetch_assoc()) {
-
-            $session = $_SESSION["email"];
-            echo '<form action = "userApartment.php" method = "POST"><div class="card text-center mt-4 ">
+                $session = $_SESSION["email"];
+                echo '<form action = "userApartment.php" method = "POST"><div class="card text-center mt-4 ">
 
             <input type="text" value=" ' . $session . '  "  name="session" id="session" hidden>
             <input type="text" value=" ' . $row["ID"] . ' "  name="idnum" id="idnum" hidden>
@@ -540,7 +582,7 @@ if ($count > 0) {
                         <i class="far fa-star "></i>
                     </p>
                 </li>';
-            echo '
+                echo '
 
                 <li class="list-group-item " style="border:none">
                     <input type="submit" name="select" id="select" class="btn btn-warning " value="Select " style="width:100px; " />
@@ -553,41 +595,136 @@ if ($count > 0) {
             </div>
             </div></form>
             ';
-            /* echo '<input type="text" value=" ' . $session . '  "  name="session" id="session" hidden>
-            <input type="text" value=" ' . $row["ID"] . ' "  name="idnum" id="idnum" hidden>
+                /* echo '<input type="text" value=" ' . $session . '  "  name="session" id="session" hidden>
+                <input type="text" value=" ' . $row["ID"] . ' "  name="idnum" id="idnum" hidden>
 
-            <div class="col-4" class="col">
-            <div class="card hotel">
-            <img class="card-img-top" src=" data:image/jpeg;base64,' . base64_encode($row["img"]) . '" alt="Card image cap">
-            <div class="card-body">
-            <h5 class="card-title">' . $row["title"] . '</h5>
-            <p class="card-text">' . $row["description"] . '</p>
-            <input type="button" class="btn btn-warning" value="Select" />
-            <span class="ml-5">
-            <i class="far fa-star "></i>
-            <i class="far fa-star"></i>
-            <i class="far fa-star"></i>
-            <i class="far fa-star"></i>
-            <i class="far fa-star"></i>
-            </span>
-            </div>
-            <div class="card-footer">
-            <small class="text-muted">' . $row["place"] . '</small>
-            </div>
-            </div>
-            </div>
+                <div class="col-4" class="col">
+                <div class="card hotel">
+                <img class="card-img-top" src=" data:image/jpeg;base64,' . base64_encode($row["img"]) . '" alt="Card image cap">
+                <div class="card-body">
+                <h5 class="card-title">' . $row["title"] . '</h5>
+                <p class="card-text">' . $row["description"] . '</p>
+                <input type="button" class="btn btn-warning" value="Select" />
+                <span class="ml-5">
+                <i class="far fa-star "></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                </span>
+                </div>
+                <div class="card-footer">
+                <small class="text-muted">' . $row["place"] . '</small>
+                </div>
+                </div>
+                </div>
 
-            ';
-            } */
-            /* echo '</div>
-        </div>'; */
+                ';
+                } */
+                /* echo '</div>
+            </div>'; */
+            }
+
+        } else {
+            echo "<div class='row'><div class='offset-5 text-center mt-5 mb-5'><a href='#' data-toggle='modal' data-target='#LoginModal'><span class='text-warning' style='font-size: 20px;'>LOGIN</span></a> to see and select apartment for reserve!!!</div></div>";
         }
-
     } else {
-        echo "<div class='row'><div class='offset-5 text-center mt-5 mb-5'><a href='#' data-toggle='modal' data-target='#LoginModal'><span class='text-warning' style='font-size: 20px;'>LOGIN</span></a> to see and select apartment for reserve!!!</div></div>";
+        echo '0 results';
     }
 } else {
-    echo '0 results';
+
+    $sql = "SELECT * FROM apartment";
+    $result = $dbc->query($sql);
+
+    $count = $result->num_rows;
+
+    if ($count > 0) {
+        if (isset($_SESSION["email"])) {
+            /* echo '<div class="card-group mt-5">
+            <div class="row">'; */
+            while ($row = $result->fetch_assoc()) {
+
+                $session = $_SESSION["email"];
+                echo '<form action = "userApartment.php" method = "POST"><div class="card text-center mt-4 ">
+
+            <input type="text" value=" ' . $session . '  "  name="session" id="session" hidden>
+            <input type="text" value=" ' . $row["ID"] . ' "  name="idnum" id="idnum" hidden>
+            <input type="text" value=" ' . $count . ' "  name="count" id="count" hidden>
+            <div class="card-body ">
+                <h5 class="card-title text-left ml-5 h1 text-primary "> ' . $row["title"] . '</h5>
+                <a href="# " style="text-decoration:none; ">
+                    <img src=" data:image/jpeg;base64,' . base64_encode($row["img"]) . '" class="tourPlans " alt="skijanje " width="400 " height="250
+            " style="float:left; " />
+            </a>
+
+            <a href="# " style="text-decoration:none; ">
+                <label class="card-text " style="max-width:800px; ">' . $row["description"] . '</label>
+            </a>
+
+
+            <ul class="list-group list-group-flush mr-5 mt-3" style=" border:none;float:right; margin-top:-100px; ">
+                <!-- <li class="list-group-item text-warning mt-4 " style="border:none; ">
+                    <p class="card-text "></p>
+                    <input type="button " class="btn btn-warning " value="More Detalis " />
+                </li>-->
+                <li class="list-group-item text-warning " style=" border:none;">
+                    <p class="card-text ">
+                        <i class="far fa-star "></i>
+                        <i class="far fa-star "></i>
+                        <i class="far fa-star "></i>
+                        <i class="far fa-star "></i>
+                        <i class="far fa-star "></i>
+                    </p>
+                </li>';
+                echo '
+
+                <li class="list-group-item " style="border:none">
+                    <input type="submit" name="select" id="select" class="btn btn-warning " value="Select " style="width:100px; " />
+                </li>
+            </ul>
+            </div>
+            <div class="card-footer text-muted ">
+                <small class="text-muted ">
+                    <i class="fa  fa-map-marker mr-2"></i> ' . $row["place"] . '</small>
+            </div>
+            </div></form>
+            ';
+                /* echo '<input type="text" value=" ' . $session . '  "  name="session" id="session" hidden>
+                <input type="text" value=" ' . $row["ID"] . ' "  name="idnum" id="idnum" hidden>
+
+                <div class="col-4" class="col">
+                <div class="card hotel">
+                <img class="card-img-top" src=" data:image/jpeg;base64,' . base64_encode($row["img"]) . '" alt="Card image cap">
+                <div class="card-body">
+                <h5 class="card-title">' . $row["title"] . '</h5>
+                <p class="card-text">' . $row["description"] . '</p>
+                <input type="button" class="btn btn-warning" value="Select" />
+                <span class="ml-5">
+                <i class="far fa-star "></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                </span>
+                </div>
+                <div class="card-footer">
+                <small class="text-muted">' . $row["place"] . '</small>
+                </div>
+                </div>
+                </div>
+
+                ';
+                } */
+                /* echo '</div>
+            </div>'; */
+            }
+
+        } else {
+            echo "<div class='row'><div class='offset-5 text-center mt-5 mb-5'><a href='#' data-toggle='modal' data-target='#LoginModal'><span class='text-warning' style='font-size: 20px;'>LOGIN</span></a> to see and select apartment for reserve!!!</div></div>";
+        }
+    } else {
+        echo '0 results';
+    }
 }
 $dbc->close();
 

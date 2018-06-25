@@ -412,7 +412,9 @@ if (isset($_SESSION['email'])) {
     <section>
         <div class="row no-gutters">
             <div class="col-5 offset-2">
-                <input id="search-loged" type="text" class="form-control mt-2" placeholder="Search...">
+                <form action="tourplans.php" method="POST" name="form" id="form">
+                    <input id="search-loged" name="search-loged" value="" type="text" class="form-control mt-2" placeholder="Search...">
+                </form>
             </div>
             <div class="col-2">
                 <button id="filters" class="btn btn-success my-2  ml-4" style="width:200px;" data-toggle="collapse" data-target="#collapseExample"
@@ -499,39 +501,79 @@ if (isset($_SESSION['email'])) {
                     <br />
                     <input type="checkbox" class="w3-check mr-1"> Special Offers
                     <br />
+
                 </div>
             </div>
         </div>
     </section>
 
-    <section>
-<!-- <div id="dialog" title="Success">
-        <p class="text-success">Thanks for your interested in our offer. Check / modify your reservation <a href="myCart.php"> here. </a></p>
-        </div>
 
-<div id="dialog2" title="Warning">
-        <p class="text-warning">Some error exists, please try later.</a></p>
-</div>
-<div id="dialog3" title="Danger">
-        <p class="text-danger">Some problem occured. We are sorry.</a></p>
-        </div> -->
+ <script>
+
+        var obj, dbParam, xmlhttp,x , txt = "";
+        var i = 0;
+        var otherPlaces = []
+        obj = { "table":"tourplan" };
+        dbParam = JSON.stringify(obj);
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                //document.getElementById("demo").innerHTML = "All data: " + this.responseText;
+                var myObj = JSON.parse(this.responseText);
+                for (x in myObj) {
+                    txt += myObj[x].title +" ";
+                    i++;
+                    otherPlaces.push(myObj[x].title)
+                    otherPlaces.push(myObj[x].type)
+                }
+                console.log(otherPlaces)
+                console.log(i)
+
+                $("#search-loged").autocomplete({
+                    source: otherPlaces,
+                    select: function(event, ui){
+                        var search = $('#search-loged').val()
+                        console.log(search);
+                        $('#form').submit();
+                    }
+                });
+            }
+        }
+        xmlhttp.open("GET", "tourTitle.php?x=" + dbParam, true);
+        xmlhttp.send();
+//var value = $('#demo2').val();
+
+
+        </script>
+
+    <section>
+
 <?php
 
 require 'connect.php';
 
-$sql = "SELECT * FROM tourplan";
-$result = $dbc->query($sql);
+//$where = $_GET['search-loged'];
+if (!empty($_POST)) {
+    $where = $_REQUEST['search-loged'];
+}
 
-$count = $result->num_rows;
+//echo $where;
 
-if ($count > 0) {
-    if (isset($_SESSION["email"])) {
-        $i = 0;
-        while ($row = $result->fetch_assoc()) {
-            $session = $_SESSION["email"];
-            echo '<form action = "userTour.php" method = "POST"><div class="card text-center mt-4 ">
+if (isset($where)) {
+
+    $sql = "SELECT * FROM tourplan where title like '$where' or type like '$where' ";
+    $result = $dbc->query($sql);
+
+    $count = $result->num_rows;
+
+    if ($count > 0) {
+        if (isset($_SESSION["email"])) {
+            $i = 0;
+            while ($row = $result->fetch_assoc()) {
+                $session = $_SESSION["email"];
+                echo '<form action = "userTour.php" method = "POST"><div class="card text-center mt-4 ">
             <div class="card-header text-success h3 text-uppercase ">' .
-            $row["type"] . '
+                $row["type"] . '
             </div>
             <input type="text" value=" ' . $session . '  "  name="session" id="session" hidden>
             <input type="text" value=" ' . $row["ID"] . ' "  name="idnum" id="idnum" hidden>
@@ -580,7 +622,7 @@ if ($count > 0) {
                         <i class="far fa-star "></i>
                     </p>
                 </li>';
-            echo '
+                echo '
                 <input type="number" value="' . $i . '" id="test" hidden>
                 <li class="list-group-item " style="border:none">
                     <input type="submit" name="select" id="select" class="btn btn-warning " value="Select " style="width:100px; " />
@@ -593,17 +635,106 @@ if ($count > 0) {
             </div>
             </div></form>
             ';
-            $i++;
+                $i++;
 
+            }
+
+        } else {
+            echo "<div class='row'><div class='offset-5 text-center mt-5 mb-5'><a href='#' data-toggle='modal' data-target='#LoginModal'><span class='text-warning' style='font-size: 20px;'>LOGIN</span></a> to see and select tour plans!!!</div></div>";
         }
 
     } else {
-        echo "<div class='row'><div class='offset-5 text-center mt-5 mb-5'><a href='#' data-toggle='modal' data-target='#LoginModal'><span class='text-warning' style='font-size: 20px;'>LOGIN</span></a> to see and select tour plans!!!</div></div>";
+        echo " 0 results";
+
     }
-
 } else {
-    echo " 0 results";
 
+    $sql = "SELECT * FROM tourplan ";
+    $result = $dbc->query($sql);
+
+    $count = $result->num_rows;
+
+    if ($count > 0) {
+        if (isset($_SESSION["email"])) {
+            $i = 0;
+            while ($row = $result->fetch_assoc()) {
+                $session = $_SESSION["email"];
+                echo '<form action = "userTour.php" method = "POST"><div class="card text-center mt-4 ">
+            <div class="card-header text-success h3 text-uppercase ">' .
+                $row["type"] . '
+            </div>
+            <input type="text" value=" ' . $session . '  "  name="session" id="session" hidden>
+            <input type="text" value=" ' . $row["ID"] . ' "  name="idnum" id="idnum" hidden>
+            <input type="text" value=" ' . $count . ' "  name="count" id="count" hidden>
+            <div class="card-body ">
+                <h5 class="card-title text-left ml-5 h1 text-primary "> ' . $row["title"] . '</h5>
+                <a href="# " style="text-decoration:none; ">
+                    <img src=" data:image/jpeg;base64,' . base64_encode($row["img"]) . '" class="tourPlans " alt="skijanje " width="400 " height="250
+            " style="float:left; " />
+            </a>
+
+            <a href="# " style="text-decoration:none; ">
+                <label class="card-text " style="max-width:800px; ">' . $row["description"] . '</label>
+            </a>
+
+            <ul class="list-group list-group-flush tourPlans2 " style="width:390px; border:none; ">
+                <li class="list-group-item text-warning mt-4 " style="border:none; ">
+                    <p class="card-text " style="float:left; ">
+                        <i class="fas fa-users "></i>
+                        <span class="ml-2 ">Max People: ' . $row["people"] . '</span>
+                    </p>
+                </li>
+                <li class="list-group-item text-warning ">
+                    <p class="card-text " style="float:left; ">
+                        <i class="fas fa-calendar-alt "></i>
+                        <span class="ml-3 ">Availability: ' . $row["available"] . '</span>
+                    </p>
+                </li>
+                <li class="list-group-item text-warning ">
+                    <p class="card-text " style="float:left; ">
+                        <i class="fas fa-euro-sign mr-4 "></i> ' . $row["price"] . '</p>
+                </li>
+            </ul>
+
+            <ul class="list-group list-group-flush mr-5 " style=" border:none;float:right; margin-top:-100px; ">
+                <!-- <li class="list-group-item text-warning mt-4 " style="border:none; ">
+                    <p class="card-text "></p>
+                    <input type="button " class="btn btn-warning " value="More Detalis " />
+                </li>-->
+                <li class="list-group-item text-warning " style=" border:none;">
+                    <p class="card-text ">
+                        <i class="far fa-star "></i>
+                        <i class="far fa-star "></i>
+                        <i class="far fa-star "></i>
+                        <i class="far fa-star "></i>
+                        <i class="far fa-star "></i>
+                    </p>
+                </li>';
+                echo '
+                <input type="number" value="' . $i . '" id="test" hidden>
+                <li class="list-group-item " style="border:none">
+                    <input type="submit" name="select" id="select" class="btn btn-warning " value="Select " style="width:100px; " />
+                </li>
+            </ul>
+            </div>
+            <div class="card-footer text-muted ">
+                <small class="text-muted ">
+                    <i class="far fa-clock mr-2 "></i> ' . $row["days"] . '</small>
+            </div>
+            </div></form>
+            ';
+                $i++;
+
+            }
+
+        } else {
+            echo "<div class='row'><div class='offset-5 text-center mt-5 mb-5'><a href='#' data-toggle='modal' data-target='#LoginModal'><span class='text-warning' style='font-size: 20px;'>LOGIN</span></a> to see and select tour plans!!!</div></div>";
+        }
+
+    } else {
+        echo " 0 results";
+
+    }
 }
 $dbc->close();
 ?>
@@ -728,43 +859,6 @@ $dbc->close();
         </div>
     </div>
 
-    <script>
-        $(function () {
-            var otherPlaces = [
-                //iz baze podaci
-                "abu"
-            ];
-            /* function split( val ) {
-                return val.split( /,\s* / );
-            }
-            function extractLast( term ) {
-            return split( term ).pop();
-            } */
-            $("#search-loged").autocomplete({
-                source: otherPlaces
-                /* function( request, response ) {
-        // delegate back to autocomplete, but extract the last term
-        response( $.ui.autocomplete.filter(
-        otherPlaces, extractLast( request.term ) ) );
-        },
-        focus: function() {
-            // prevent value inserted on focus
-            return false;
-        },
-        select: function( event, ui ) {
-            var terms = split( this.value );
-            // remove the current input
-            terms.pop();
-            // add the selected item
-            terms.push( ui.item.value );
-            // add placeholder to get the comma-and-space at the end
-            terms.push( "" );
-            this.value = terms.join( ", " );
-            return false;
-        } */
-            });
-        });
-    </script>
 
 </body>
 
