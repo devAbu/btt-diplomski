@@ -300,7 +300,7 @@ if (isset($_SESSION['email'])) {
                                 </a>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-5 ml-4">
-                                <a href="#" class="badge ml-4 text-primary">
+                                <a href="#forgotPass.php" class="badge ml-4 text-primary">
                                     <span style="font-size:13px;">Forgot password?</span>
                                 </a>
                             </div>

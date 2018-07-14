@@ -1,13 +1,13 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="style.css" type="text/css" rel="stylesheet">
+    <link href="css/style.css" type="text/css" rel="stylesheet">
     <title>BTT</title>
     <link rel="icon" type="image/ico" href="images/icon.ico" />
-    <meta name="author" content="abu">
+    <meta name="author" content="AAo">
     <meta name="keywords" content="btt, bosnian, tourist, travel, agency, arabic, bosna">
     <meta name="description" content="BTT - Bosnian Toursit Travel offers the best tour plans and the best hotels in B&H. ">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
@@ -27,34 +27,24 @@
 <body>
 
     <nav class="navbar bg-warning navbar-light  navbar-expand-md fixed-top" style="opacity:0.7; font-size:18px;">
-        <a href="index.php" class="navbar-brand"><img src="images/icon.png" alt="logo" class="img-fluid mr-3" width="45" height="45" /><span class="h4">BTT</span></a>
+        <a href="index" class="navbar-brand"><img src="images/icon.png" alt="logo" class="img-fluid mr-3" width="45" height="45" /><span class="h4">BTT</span></a>
         <button type="button" class="navbar-toggler navbar-toggler-right" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expended="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav" id="navScrollspy">
                 <li class="nav-item">
-                    <a href="index.php" class="nav-link"><i class="fas fa-home mr-2"></i>Home</a>
+                    <a href="index" class="nav-link"><i class="fas fa-home mr-2"></i>Home</a>
                 </li>
                 <li class="nav-item">
-                    <a href="aboutUs.php" class="nav-link"><i class="fas fa-users mr-2"></i>About Us</a>
+                    <a href="aboutUs" class="nav-link"><i class="fas fa-users mr-2"></i>About Us</a>
                 </li>
                 <li class="nav-item">
-                    <a href="tourPlans.php" class="nav-link"><i class="fas fa-suitcase mr-2"></i>Tour plans</a>
+                    <a href="tourPlans" class="nav-link"><i class="fas fa-suitcase mr-2"></i>Tour plans</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="far fa-calendar-alt mr-2"></i>Reservation</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="hotel.php"><i class="fas fa-bed mr-2"></i>Hotel</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="apartment.php"><i class="far fa-building mr-2"></i>Apartment</a>
-                    </div>
-                </li>
+
                 <li class="nav-item">
-                    <a href="rent.php" class="nav-link"><i class="fas fa-car mr-2"></i>Rent-a-car</a>
-                </li>
-                <li class="nav-item">
-                    <a href="feedback.php" class="nav-link"><i class="far fa-smile mr-2"></i>Feedback</a>
+                    <a href="feedback" class="nav-link"><i class="far fa-smile mr-2"></i>Feedback</a>
                 </li>
             </ul>
         </div>
@@ -65,7 +55,7 @@
                     <div class="card" style="width: 22rem; margin-top:-15px;background:none !important; border:none;">
                         <div class="card-body text-center">
                             <img class="card-img-top mb-3" src="images/icon.png" style="width:90px !important; margin-top:150px !important;" height="80" alt="Card image cap">
-                            <h3 class="card-title text-uppercase text-warning">Login</h3>
+                            <h3 class="card-title text-uppercase text-warning">CHANGE PASSWORD</h3>
                         </div>
                         <ul class="list-group list-group-flush" style="margin-top:-20px;">
                             <li class="list-group-item bg-info" style="background:none !important;">
@@ -103,27 +93,23 @@
                                     </ul>
                                 </div>
                             -->
-                            <div class="col-7">
-                                <a href="register.php" class="badge ml-3 text-warning" style="text-decoration:none;"><span style="font-size:13px;">No account?</span></a>
-                            </div>
-                            <div class="col-5">
-                                <a href="forgotPass.php" class="badge ml-5 text-warning" style="text-decoration:none;"><span style="font-size:13px;">Forgot password?</span></a>
-                            </div>
                         </div>
                         <div class="card-body text-center">
-                            <button class="btn btn-warning text-white" id="logButton" name="logButton">Login<i class="fas fa-sign-in-alt ml-2"></i></button>
+                            <button class="btn btn-warning text-white" id="logButton" name="logButton">CHANGE PASSWORD<i class="fas fa-sign-in-alt ml-2"></i></button>
                         </div>
                     </div>
                     <div class="alert mt-3 ml-3" id="alertLog" style="width:350px;"></div>
                 </div>
                 <div class="text-center text-warning" style="margin-left:-100px;">
-                    <p style="font-size:20px;">&copy; 2018 Abu</p>
+                    <p style="font-size:20px;">&copy; 2018 AAO</p>
                 </div>
             </div>
 
             <script>
                     $('#alertLog').slideUp();
+                    //$('#alertLog').removeClass('alert-success').removeClass('alert-danger');
                     $('#logButton').click(function () {
+                        $("#alertLog").removeClass('alert-success').removeClass('alert-danger');
                         var emailLog = $('#emailLog').val();
                         var passLog = $('#passLog').val();
 
@@ -146,21 +132,14 @@
                             $("#alertLog").fadeIn(500).delay(1000).fadeOut(500);
                         }else {
                 $.ajax({
-                    url: "./indexSentLog.php?task=login&emailLog="+emailLog+"&passLog="+passLog,
+                    url: "./changePass?task=login&emailLog="+emailLog+"&passLog="+passLog,
                     success: function (data){
                         if(data.indexOf('sent') > -1){
                             $("#alertLog").addClass('alert-success');
-							$("#alertLog").html('Logged in successfully');
+							$("#alertLog").html('Password changed');
 							$("#alertLog").slideDown(500).delay(1000).slideUp(500);
                             $('#emailLog').val("");
                             $('#passLog').val("");
-                            var delay = 1500;
-                            setTimeout(function(){
-                                window.location = "index.php"; }, delay);
-                        } else if(data.indexOf('pass') > -1){
-                            $("#alertLog").addClass('alert-danger');
-							$("#alertLog").html('Password is incorrect');
-							$("#alertLog").slideDown(500).delay(1000).slideUp(500);
                         } else {
                             $("#alertLog").addClass('alert-danger');
 							$("#alertLog").html('Email is incorrect');

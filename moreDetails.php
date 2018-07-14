@@ -205,7 +205,7 @@
                             </a>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-5 ml-5">
-                            <a href="#" class="badge ml-3 text-primary">
+                            <a href="forgotPass.php" class="badge ml-3 text-primary">
                                 <span style="font-size:12px !important;">Forgot password?</span>
                             </a>
                         </div>
