@@ -14,18 +14,16 @@ require 'connect.php';
 $emailLog = $_REQUEST['emailLog'];
 $passLog = $_REQUEST['passLog'];
 
-
 if ($_REQUEST['task'] == "login") {
 
     $sql = "SELECT `email`, `password` FROM `registacija` WHERE `email` = '$emailLog'";
     $result = $dbc->query($sql);
 
-
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             if ($row['email'] == $emailLog) {
-                if ($row['password'] == $passLog) {
-                    $query = "INSERT INTO login (`name`,`password`) VALUES ('$emailLog', '$passLog')";
+                if (password_verify($passLog, $row['password'])) {
+                    $query = "INSERT INTO `login` (`name`,`password`) VALUES ('$emailLog', '$row[password]')";
 
                     $response = @mysqli_query($dbc, $query);
                     if ($response) {
@@ -37,7 +35,7 @@ if ($_REQUEST['task'] == "login") {
                     }
 
                     /* session_start();
-                    $_SESSION['email'] == $emailLog; */
+                $_SESSION['email'] == $emailLog; */
                 } else {
                     echo ('pass');
                 }
@@ -49,12 +47,10 @@ if ($_REQUEST['task'] == "login") {
 
     /* $query = "INSERT INTO login (`name`,`password`) VALUES ('$emailLog', '$passLog')";
 
-    $response = @mysqli_query($dbc, $query);
-    if ($response) {
-        echo ('sent');
-    } else {
-        echo mysqli_error($dbc);
-    } */
+$response = @mysqli_query($dbc, $query);
+if ($response) {
+echo ('sent');
+} else {
+echo mysqli_error($dbc);
+} */
 }
-
-?>
