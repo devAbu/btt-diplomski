@@ -136,76 +136,76 @@ if (isset($_SESSION['email'])) {
     </div>
 
     <script>
-        $('#alert').slideUp();
-        $('#signButton').click(function () {
-            $("#alert").removeClass('alert-success').removeClass('alert-danger');
-            var firstSign = $('#firstSign').val();
-            var lastSign = $('#lastSign').val();
-            var emailSign = $('#emailSign').val();
-            var passSign = $('#passSign').val();
+    $('#alert').slideUp();
+$('#signButton').click(function () {
+    $("#alert").removeClass('alert-success').removeClass('alert-danger');
+    var firstSign = $('#firstSign').val();
+    var lastSign = $('#lastSign').val();
+    var emailSign = $('#emailSign').val();
+    var passSign = $('#passSign').val();
 
-            function validateEmail($emailSign) {
-                var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-                return emailReg.test($emailSign);
-            }
+    function validateEmail($emailSign) {
+        var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+        return emailReg.test($emailSign);
+    }
 
-            if (firstSign == "") {
+    if (firstSign == "") {
+        $("#alert").addClass('alert-danger');
+        $("#alert").html("Your first name is required!!!");
+        $("#alert").slideDown(500).delay(1000).slideUp(500);
+    } else if (lastSign == "") {
+        $("#alert").addClass('alert-danger');
+        $("#alert").html("Your last name is required!!!");
+        $("#alert").fadeIn(500).delay(1000).fadeOut(500);
+    } else if (emailSign == "") {
+        $("#alert").addClass('alert-danger');
+        $("#alert").html("Email field is required!!!");
+        $("#alert").fadeIn(500).delay(1000).fadeOut(500);
+    } else if (!validateEmail(emailSign)) {
+        $("#alert").addClass('alert-danger');
+        $("#alert").html('Please enter validated email address.');
+        $("#alert").slideDown(500).delay(1000).slideUp(500);
+    } else if (passSign == "") {
+        $("#alert").addClass('alert-danger');
+        $("#alert").html("Password is required!!!");
+        $("#alert").fadeIn(500).delay(1000).fadeOut(500);
+    } else {
+        $.ajax({
+            url: "./indexSent.php?task=register&firstSign=" + firstSign + "&lastSign=" + lastSign + "&emailSign=" + emailSign + "&passSign=" + passSign,
+            success: function (data) {
+                if (data.indexOf('sent') > -1) {
+                    $("#alert").addClass('alert-success');
+                    $("#alert").html('Your account created successfully. Now you can login with your information');
+                    $("#alert").slideDown(500).delay(2000).slideUp(500);
+                    $('#firstSign').val("");
+                    $('#lastSign').val("");
+                    $('#emailSign').val("");
+                    $('#passSign').val("");
+                } else {
+                    $("#alert").addClass('alert-danger');
+                    $("#alert").html('The email is already exists.');
+                    $("#alert").slideDown(500).delay(1000).slideUp(500);
+                }
+            },
+            error: function (data, err) {
                 $("#alert").addClass('alert-danger');
-                $("#alert").html("Your first name is required!!!");
+                $("#alert").html('Some problem occured. We are sorry.');
                 $("#alert").slideDown(500).delay(1000).slideUp(500);
-            } else if (lastSign == "") {
-                $("#alert").addClass('alert-danger');
-                $("#alert").html("Your last name is required!!!");
-                $("#alert").fadeIn(500).delay(1000).fadeOut(500);
-            } else if (emailSign == "") {
-                $("#alert").addClass('alert-danger');
-                $("#alert").html("Email field is required!!!");
-                $("#alert").fadeIn(500).delay(1000).fadeOut(500);
-            } else if (!validateEmail(emailSign)) {
-                $("#alert").addClass('alert-danger');
-                $("#alert").html('Please enter validated email address.');
-                $("#alert").slideDown(500).delay(1000).slideUp(500);
-            } else if (passSign == "") {
-                $("#alert").addClass('alert-danger');
-                $("#alert").html("Password is required!!!");
-                $("#alert").fadeIn(500).delay(1000).fadeOut(500);
-            }else {
-                $.ajax({
-                    url: "./indexSent.php?task=register&firstSign="+firstSign+"&lastSign="+lastSign+"&emailSign="+emailSign+"&passSign="+passSign,
-                    success: function (data){
-                        if(data.indexOf('sent') > -1){
-                            $("#alert").addClass('alert-success');
-							$("#alert").html('Your account created successfully. Now you can login with your information');
-							$("#alert").slideDown(500).delay(2000).slideUp(500);
-                            $('#firstSign').val("");
-                            $('#lastSign').val("");
-                            $('#emailSign').val("");
-                            $('#passSign').val("");
-                        } else{
-                            $("#alert").addClass('alert-danger');
-							$("#alert").html('The email is already exists.');
-							$("#alert").slideDown(500).delay(1000).slideUp(500);
-                        }
-                    },
-                    error: function (data, err){
-                        $("#alert").addClass('alert-danger');
-                        $("#alert").html('Some problem occured. We are sorry.');
-                        $("#alert").slideDown(500).delay(1000).slideUp(500);
-                    }
-                })
             }
-        });
+        })
+    }
+});
 
-        $('#eye').click(function () {
-            /* var elementType = $('#passSign').prev().prop('pass'); */
-            var elementType = $('#passSign').attr('type');
-            console.log(elementType);
-            if (elementType == "text") {
-                $('#passSign').attr('type', 'password');
-            } else if (elementType == "password") {
-                $('#passSign').attr('type', 'text');
-            }
-        });
+$('#eye').click(function () {
+    /* var elementType = $('#passSign').prev().prop('pass'); */
+    var elementType = $('#passSign').attr('type');
+    console.log(elementType);
+    if (elementType == "text") {
+        $('#passSign').attr('type', 'password');
+    } else if (elementType == "password") {
+        $('#passSign').attr('type', 'text');
+    }
+});
     </script>
 
     <div class="modal fade" id="LoginModal" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
@@ -281,75 +281,77 @@ if (isset($_SESSION['email'])) {
         </div>
     </div>
 
-    <script>
-        $('#alertLog').slideUp();
 
-        $('#logButton').click(function () {
-            $('#alertLog').removeClass('alert-success').removeClass('alert-danger');
-            var emailLog = $('#emailLog').val();
-            var passLog = $('#passLog').val();
+<script>
+    $('#alertLog').slideUp();
 
-            function validateEmail($emailLog) {
-                var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-                return emailReg.test($emailLog);
-            }
+$('#logButton').click(function () {
+    $('#alertLog').removeClass('alert-success').removeClass('alert-danger');
+    var emailLog = $('#emailLog').val();
+    var passLog = $('#passLog').val();
 
-            if (emailLog == "") {
+    function validateEmail($emailLog) {
+        var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+        return emailReg.test($emailLog);
+    }
+
+    if (emailLog == "") {
+        $("#alertLog").addClass('alert-danger');
+        $("#alertLog").html("Email field is required!!!");
+        $("#alertLog").fadeIn(500).delay(1000).fadeOut(500);
+    } else if (!validateEmail(emailLog)) {
+        $("#alertLog").addClass('alert-danger');
+        $("#alertLog").html('Please enter validated email address.');
+        $("#alertLog").slideDown(500).delay(1000).slideUp(500);
+    } else if (passLog == "") {
+        $("#alertLog").addClass('alert-danger');
+        $("#alertLog").html("Please enter your password!!!");
+        $("#alertLog").fadeIn(500).delay(1000).fadeOut(500);
+    } else {
+        $.ajax({
+            url: "./indexSentLog.php?task=login&emailLog=" + emailLog + "&passLog=" + passLog,
+            success: function (data) {
+                if (data.indexOf('sent') > -1) {
+                    $("#alertLog").addClass('alert-success');
+                    $("#alertLog").html('Logged in successfully');
+                    $("#alertLog").slideDown(500).delay(1000).slideUp(500);
+                    $('#emailLog').val("");
+                    $('#passLog').val("");
+                    var delay = 1500;
+                    setTimeout(function () {
+                        window.location = "index.php";
+                    }, delay);
+                } else if (data.indexOf('pass') > -1) {
+                    $("#alertLog").addClass('alert-danger');
+                    $("#alertLog").html('Password is incorrect');
+                    $("#alertLog").slideDown(500).delay(1000).slideUp(500);
+                } else if (data.indexOf('mail') > -1) {
+                    $("#alertLog").addClass('alert-danger');
+                    $("#alertLog").html('Email is incorrect3');
+                    $("#alertLog").slideDown(500).delay(1000).slideUp(500);
+                } else {
+                    $("#alertLog").addClass('alert-danger');
+                    $("#alertLog").html('There is some problem.');
+                    $("#alertLog").slideDown(500).delay(1000).slideUp(500);
+                }
+            },
+            error: function (data, err) {
                 $("#alertLog").addClass('alert-danger');
-                $("#alertLog").html("Email field is required!!!");
-                $("#alertLog").fadeIn(500).delay(1000).fadeOut(500);
-            } else if (!validateEmail(emailLog)) {
-                $("#alertLog").addClass('alert-danger');
-                $("#alertLog").html('Please enter validated email address.');
+                $("#alertLog").html('Some problem occured. We are sorry.');
                 $("#alertLog").slideDown(500).delay(1000).slideUp(500);
-            } else if (passLog == "") {
-                $("#alertLog").addClass('alert-danger');
-                $("#alertLog").html("Please enter your password!!!");
-                $("#alertLog").fadeIn(500).delay(1000).fadeOut(500);
-            } else {
-                $.ajax({
-                    url: "./indexSentLog.php?task=login&emailLog="+emailLog+"&passLog="+passLog,
-                    success: function (data){
-                        if(data.indexOf('sent') > -1){
-                            $("#alertLog").addClass('alert-success');
-							$("#alertLog").html('Logged in successfully');
-							$("#alertLog").slideDown(500).delay(1000).slideUp(500);
-                            $('#emailLog').val("");
-                            $('#passLog').val("");
-                            var delay = 1500;
-                            setTimeout(function(){
-                                window.location = "index.php"; }, delay);
-                        } else if(data.indexOf('pass') > -1){
-                            $("#alertLog").addClass('alert-danger');
-							$("#alertLog").html('Password is incorrect');
-							$("#alertLog").slideDown(500).delay(1000).slideUp(500);
-                        } else if(data.indexOf('mail') > -1){
-                            $("#alertLog").addClass('alert-danger');
-							$("#alertLog").html('Email is incorrect3');
-							$("#alertLog").slideDown(500).delay(1000).slideUp(500);
-                        } else{
-                            $("#alertLog").addClass('alert-danger');
-							$("#alertLog").html('There is some problem.');
-							$("#alertLog").slideDown(500).delay(1000).slideUp(500);
-                        }
-                    },
-                    error: function (data, err){
-                        $("#alertLog").addClass('alert-danger');
-                        $("#alertLog").html('Some problem occured. We are sorry.');
-                        $("#alertLog").slideDown(500).delay(1000).slideUp(500);
-                    }
-                })
             }
-        });
+        })
+    }
+});
 
-        $('#eyeLog').click(function () {
-            /* var elementType = $('#passSign').prev().prop('pass'); */
-            var elementType = $('#passLog').attr('type');
-            console.log(elementType);
-            if (elementType == "text") {
-                $('#passLog').attr('type', 'password');
-            } else if (elementType == "password") {
-                $('#passLog').attr('type', 'text');
-            }
-        });
-    </script>
+$('#eyeLog').click(function () {
+    /* var elementType = $('#passSign').prev().prop('pass'); */
+    var elementType = $('#passLog').attr('type');
+    console.log(elementType);
+    if (elementType == "text") {
+        $('#passLog').attr('type', 'password');
+    } else if (elementType == "password") {
+        $('#passLog').attr('type', 'text');
+    }
+});
+</script>

@@ -38,6 +38,8 @@ session_start();
             $('#footerInclude').load("./template/footer.php");
         })
     </script>
+
+
 </head>
 
 <body>
