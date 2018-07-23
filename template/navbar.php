@@ -327,13 +327,9 @@ $('#logButton').click(function () {
                     $("#alertLog").addClass('alert-danger');
                     $("#alertLog").html('Password is incorrect');
                     $("#alertLog").slideDown(500).delay(1000).slideUp(500);
-                } else if (data.indexOf('mail') > -1) {
-                    $("#alertLog").addClass('alert-danger');
-                    $("#alertLog").html('Email is incorrect3');
-                    $("#alertLog").slideDown(500).delay(1000).slideUp(500);
                 } else {
                     $("#alertLog").addClass('alert-danger');
-                    $("#alertLog").html('There is some problem.');
+                    $("#alertLog").html('Email is incorrect.');
                     $("#alertLog").slideDown(500).delay(1000).slideUp(500);
                 }
             },
