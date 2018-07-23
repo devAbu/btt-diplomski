@@ -5,6 +5,8 @@ require 'connect.php';
 $emailLog = $_REQUEST['emailLog'];
 $passLog = $_REQUEST['passLog'];
 
+$hashedPass = $hash_pass = password_hash($passSign, PASSWORD_DEFAULT);
+
 if ($_REQUEST['task'] == "login") {
 
     $sql = "SELECT email FROM registacija WHERE email = '$emailLog'";
@@ -14,7 +16,7 @@ if ($_REQUEST['task'] == "login") {
         while ($row = $result->fetch_assoc()) {
             if ($row['email'] == $emailLog) {
 
-                $query = "UPDATE registacija set password = '$passLog' where email = '$emailLog'";
+                $query = "UPDATE registacija set password = '$hashedPass' where email = '$emailLog'";
 
                 $response = @mysqli_query($dbc, $query);
                 if ($response) {
