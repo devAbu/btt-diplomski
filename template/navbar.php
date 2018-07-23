@@ -181,6 +181,9 @@ $('#signButton').click(function () {
                     $('#lastSign').val("");
                     $('#emailSign').val("");
                     $('#passSign').val("");
+                    var delay = 1500;
+                    setTimeout(function(){
+                               window.location.reload();  }, delay);
                 } else {
                     $("#alert").addClass('alert-danger');
                     $("#alert").html('The email is already exists.');
@@ -318,9 +321,8 @@ $('#logButton').click(function () {
                     $('#emailLog').val("");
                     $('#passLog').val("");
                     var delay = 1500;
-                    setTimeout(function () {
-                        window.location = "index.php";
-                    }, delay);
+                    setTimeout(function(){
+                              window.location.reload();  }, delay);
                 } else if (data.indexOf('pass') > -1) {
                     $("#alertLog").addClass('alert-danger');
                     $("#alertLog").html('Password is incorrect');
