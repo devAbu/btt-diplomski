@@ -64,8 +64,18 @@ if ($count > 0) {
     echo '<div class="row bg">';
     while ($row = $result->fetch_assoc()) {
         echo '<div class="col-5  mt-3" style="margin-left: 70px;" >
-            <img src=" data:image/jpeg;base64,' . base64_encode($row["img"]) . '" alt="konjic" class="img-fluid best" />
+        <a href="#" data-toggle="modal" data-target="#' . $row['ID'] . '">
+            <img src=" data:image/jpeg;base64,' . base64_encode($row["img"]) . '" alt="'.$row['title'].'" class="img-fluid best" /></a>
             <h2 class="text-warning text-uppercase text-center">' . $row["title"] . '</h2>
+        </div>
+        <div class="modal fade" id="' . $row['ID'] . '" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <img src=" data:image/jpeg;base64,' . base64_encode($row["img"]) . '" alt="'.$row['title'].'" class="img-fluid" style="width:100%; height:100%;" />
+                    </div>
+                </div>
+            </div>
         </div>
         ';
     }
