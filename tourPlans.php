@@ -182,8 +182,9 @@ session_start();
                 $("#search-loged").autocomplete({
                     source: otherPlaces,
                     select: function(event, ui){
-                        var search = $('#search-loged').val()
+                        var search = $('#search-loged').val();
                         console.log(search);
+                        console.log('abu')
                         $('#form').submit();
                     }
                 });

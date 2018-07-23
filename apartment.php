@@ -153,7 +153,7 @@ session_start();
         var obj, dbParam, xmlhttp,x , txt = "";
         var i = 0;
         var otherPlaces = []
-        obj = { "table":"apartment" };
+        obj = { "table":"hotel" };
         dbParam = JSON.stringify(obj);
         xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
@@ -191,7 +191,7 @@ require 'connect.php';
 if (!empty($_POST)) {
     $where = $_REQUEST['search-loged'];
 }
-if (isset($where)) {
+if ($where.length > 0) {
     $sql = "SELECT * FROM apartment where title like '$where'";
     $result = $dbc->query($sql);
 
