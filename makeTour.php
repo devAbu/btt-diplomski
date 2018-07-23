@@ -64,7 +64,9 @@ session_start();
     </section>
 
     <section>
-        <div class="row">
+     <?php
+    if (isset($_SESSION["email"])) {
+        echo '<div class="row">
             <div class="offset-1 col-3">
                 <h4 class="text-success">City:</h4>
 
@@ -80,7 +82,7 @@ session_start();
                 <input class="w3-check mr-1 mt-1" id="jahorina" onclick="price()" name="jahorina" type="checkbox">Jahorina
                 <br />
                 <input type="text" class="form-control mt-2" id="other" onchange="price()" name="other" placeholder="Other..." />
-                <!-- title="For multiple places please use ','" -->
+                <!-- title="For multiple places please use ', '" -->
             </div>
             <div class="col-3 mr-5">
                 <div class="row">
@@ -141,9 +143,17 @@ session_start();
         <div id="dialog" title="Warning">
         <p>Your budget is smaller than the total price!!!</p>
             </div>
+        ';
+    } else {
+        echo "<div class='row'><div class='offset-5 text-center mt-5 mb-5'><a href='#' data-toggle='modal' data-target='#LoginModal'><span class='text-warning' style='font-size: 20px;'>LOGIN</span></a> to be able to make tour request!!!</div></div>";
+    }
+    ?>
     </section>
 
+
     <div id="footerInclude"></div>
+
+    
     <script>
         $( function() {
             var otherPlaces = [
