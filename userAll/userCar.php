@@ -1,10 +1,10 @@
 <?php
-require 'connection/connect.php';
+require '../connection/connect.php';
 
 $email = $_REQUEST['session'];
-$apartmentID = $_REQUEST['idnum'];
+$carID = $_REQUEST['idnum'];
 
-$query = "INSERT INTO userapartment (`name`, `apartmentID`) VALUES ('$email', '$apartmentID')";
+$query = "INSERT INTO usercar (`name`, `carID`) VALUES ('$email', '$carID')";
 
 $response = @mysqli_query($dbc, $query);
 if ($response) {

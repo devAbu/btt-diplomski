@@ -208,7 +208,7 @@ if (isset($where)) {
             while ($row = $result->fetch_assoc()) {
 
                 $session = $_SESSION["email"];
-                echo '<form action = "userHotel.php" method = "POST"><div class="card text-center mt-4 ">
+                echo '<form action = "userAll/userHotel.php" method = "POST"><div class="card text-center mt-4 ">
 
             <input type="text" value=" ' . $session . '  "  name="session" id="session" hidden>
             <input type="text" value=" ' . $row["ID"] . ' "  name="idnum" id="idnum" hidden>
@@ -252,9 +252,7 @@ if (isset($where)) {
             </div></form>
             ';
 
-                
             }
-            
 
         } else {
             echo "<div class='row'><div class='offset-5 text-center mt-5 mb-5'><a href='#' data-toggle='modal' data-target='#LoginModal'><span class='text-warning' style='font-size: 20px;'>LOGIN</span></a> to see and select hotel to reserve!!!</div></div>";
@@ -277,7 +275,7 @@ if (isset($where)) {
             <div class="row"><form action = "userhotel.php" method = "POST">'; */
             while ($row = $result->fetch_assoc()) {
                 $session = $_SESSION["email"];
-                echo '<form action = "userHotel.php" method = "POST"><div class="card text-center mt-4 ">
+                echo '<form action = "userAll/userHotel.php" method = "POST"><div class="card text-center mt-4 ">
 
             <input type="text" value=" ' . $session . '  "  name="session" id="session" hidden>
             <input type="text" value=" ' . $row["ID"] . ' "  name="idnum" id="idnum" hidden>
@@ -322,9 +320,7 @@ if (isset($where)) {
             </div></form>
             ';
 
-                
             }
-            
 
         } else {
             echo "<div class='row'><div class='offset-5 text-center mt-5 mb-5'><a href='#' data-toggle='modal' data-target='#LoginModal'><span class='text-warning' style='font-size: 20px;'>LOGIN</span></a> to see and select hotel to reserve!!!</div></div>";
@@ -337,7 +333,7 @@ $dbc->close();
 
 ?>
     </section>
-                
+
 
    <div id="footerInclude"></div>
 

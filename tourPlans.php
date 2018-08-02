@@ -222,7 +222,7 @@ if (isset($where)) {
             $i = 0;
             while ($row = $result->fetch_assoc()) {
                 $session = $_SESSION["email"];
-                echo '<form action = "userTour.php" method = "POST"><div class="card text-center mt-4 ">
+                echo '<form action = "userAll/userTour.php" method = "POST"><div class="card text-center mt-4 ">
             <div class="card-header text-success h3 text-uppercase ">' .
                 $row["type"] . '
             </div>
@@ -310,7 +310,7 @@ if (isset($where)) {
             $i = 0;
             while ($row = $result->fetch_assoc()) {
                 $session = $_SESSION["email"];
-                echo '<form action = "userTour.php" method = "POST"><div class="card text-center mt-4 ">
+                echo '<form action = "userAll/userTour.php" method = "POST"><div class="card text-center mt-4 ">
             <div class="card-header text-success h3 text-uppercase ">' .
                 $row["type"] . '
             </div>

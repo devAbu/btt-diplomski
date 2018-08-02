@@ -204,7 +204,7 @@ if (isset($where)) {
             while ($row = $result->fetch_assoc()) {
 
                 $session = $_SESSION["email"];
-                echo '<form action = "userApartment.php" method = "POST"><div class="card text-center mt-4 ">
+                echo '<form action = "userAll/userApartment.php" method = "POST"><div class="card text-center mt-4 ">
 
             <input type="text" value=" ' . $session . '  "  name="session" id="session" hidden>
             <input type="text" value=" ' . $row["ID"] . ' "  name="idnum" id="idnum" hidden>
@@ -266,7 +266,7 @@ if (isset($where)) {
             while ($row = $result->fetch_assoc()) {
 
                 $session = $_SESSION["email"];
-                echo '<form action = "userApartment.php" method = "POST"><div class="card text-center mt-4 ">
+                echo '<form action = "userAll/userApartment.php" method = "POST"><div class="card text-center mt-4 ">
 
             <input type="text" value=" ' . $session . '  "  name="session" id="session" hidden>
             <input type="text" value=" ' . $row["ID"] . ' "  name="idnum" id="idnum" hidden>
