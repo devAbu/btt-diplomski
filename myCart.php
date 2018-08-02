@@ -42,7 +42,7 @@ session_start();
     </head>
 
     <body>
-        
+
 <div id="navbarInclude"></div>
 
 <section id="jumbotron" class="jumbotronMy jumbotron-fluid text-white d-flex justify-content-center align-items-center">
@@ -73,7 +73,7 @@ if (isset($_SESSION["email"])) {
     $count = $result->num_rows;
     if ($count > 0) {
         while ($row = $result->fetch_assoc()) {
-            echo '<form action = "deleteTour.php" method = "POST"><div class="card text-center mt-4 ">
+            echo '<form action = "delete/deleteTour.php" method = "POST"><div class="card text-center mt-4 ">
             <div class="card-header text-success h3 text-uppercase ">' .
             $row["type"] . '
             </div>
@@ -158,7 +158,7 @@ if (isset($_SESSION["email"])) {
     $count = $result->num_rows;
     if ($count > 0) {
         while ($row = $result->fetch_assoc()) {
-            echo '<form action = "deleteCar.php"><div class="card text-center mt-4 ">
+            echo '<form action = "delete/deleteCar.php"><div class="card text-center mt-4 ">
             <div class="card-header text-success h3 text-uppercase ">' .
             $row["title"] . '
             </div>
@@ -237,7 +237,7 @@ if (isset($_SESSION["email"])) {
     $count = $result->num_rows;
     if ($count > 0) {
         while ($row = $result->fetch_assoc()) {
-            echo '<form action = "deleteHotel.php" method = "POST"><div class="card text-center mt-4 ">
+            echo '<form action = "delete/deleteHotel.php" method = "POST"><div class="card text-center mt-4 ">
 
             <input type="text" value=" ' . $session . '  "  name="session" id="session" hidden>
             <input type="text" value=" ' . $row["ID"] . ' "  name="idnum" id="idnum" hidden>
@@ -304,7 +304,7 @@ if (isset($_SESSION["email"])) {
     $count = $result->num_rows;
     if ($count > 0) {
         while ($row = $result->fetch_assoc()) {
-            echo '<form action = "deleteApartment.php" method = "POST"><div class="card text-center mt-4 ">
+            echo '<form action = "delete/deleteApartment.php" method = "POST"><div class="card text-center mt-4 ">
 
             <input type="text" value=" ' . $session . '  "  name="session" id="session" hidden>
             <input type="text" value=" ' . $row["ID"] . ' "  name="idnum" id="idnum" hidden>
@@ -371,7 +371,7 @@ if (isset($_SESSION["email"])) {
     $count = $result->num_rows;
     if ($count > 0) {
         while ($row = $result->fetch_assoc()) {
-            echo '<form action = "deleteRequest.php" method = "POST">
+            echo '<form action = "delete/deleteRequest.php" method = "POST">
             <div class="card  mt-4 ">
 
                 <input type="text" value=" ' . $session . '  "  name="session" id="session" hidden>
@@ -409,7 +409,7 @@ if (isset($_SESSION["email"])) {
                             <input type="number" class="form-control" id="price" value="' . $row["price"] . '" readonly>
                         </div>
                         <label class="ml-3 mt-4">Options: </label>
-                        
+
                         <div class="col-2 mt-4">
                             <input type="submit" id="delete" class="btn btn-danger" value="Delete">
                         </div>
@@ -429,12 +429,12 @@ if (isset($_SESSION["email"])) {
 ?>
     </section>
 
-   <!-- 
+   <!--
        <div class="col-1 mb-2">
                             <input type="button" class="btn btn-warning" id="edit" value="Edit">
                         </div>
         <script>
-   
+
         $('#edit').click(function () {
             $('#length').removeAttr('readonly');
             $('#budget').removeAttr('readonly');

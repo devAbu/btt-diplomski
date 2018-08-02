@@ -284,7 +284,6 @@ $('#eye').click(function () {
         </div>
     </div>
 
-
 <script>
     $('#alertLog').slideUp();
 
