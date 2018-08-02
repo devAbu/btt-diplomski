@@ -1,5 +1,5 @@
 .jumbotron {
-    background-image: url('images/jumbotron.jpg');
+    background-image: url('../images/jumbotron.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -7,7 +7,7 @@
 }
 
 #bg {
-    background-image: url('images/bg.png');
+    background-image: url('../images/bg.png');
     background-size: cover;
     opacity: 0.7;
     background-position: center;
@@ -16,7 +16,7 @@
 }
 
 .jumbotron2 {
-    background-image: url('images/sarajevo.jpg');
+    background-image: url('../images/sarajevo.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -24,7 +24,7 @@
 }
 
 .jumbotron3 {
-    background-image: url('images/tours.jpg');
+    background-image: url('../images/tours.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -32,7 +32,7 @@
 }
 
 .jumbotron7 {
-    background-image: url('images/skijanje.jpg');
+    background-image: url('../images/skijanje.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -40,7 +40,7 @@
 }
 
 .jumbotron8 {
-    background-image: url('images/make.jpg');
+    background-image: url('../images/make.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -48,7 +48,7 @@
 }
 
 .jumbotron9 {
-    background-image: url('images/apartment.jpg');
+    background-image: url('../images/apartment.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -56,7 +56,7 @@
 }
 
 .jumbotron4 {
-    background-image: url('images/book.jpg');
+    background-image: url('../images/book.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -64,7 +64,7 @@
 }
 
 .jumbotronMy {
-    background-image: url('images/myCartBg.jpg');
+    background-image: url('../images/myCartBg.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -72,7 +72,7 @@
 }
 
 .jumbotron5 {
-    background-image: url('images/places.jpg');
+    background-image: url('../images/places.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -80,7 +80,7 @@
 }
 
 .jumbotron6 {
-    background-image: url('images/rent.jpg');
+    background-image: url('../images/rent.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -88,7 +88,7 @@
 }
 
 #jumbotronFeedback {
-    background-image: url('images/feedback.jpg');
+    background-image: url('../images/feedback.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -104,20 +104,20 @@
 }
 
 #why {
-    background-image: url('images/why.jpg');
+    background-image: url('../images/why.jpg');
     background-position: center;
     background-size: cover;
     height: 182px !important;
 }
 
 .why-2 {
-    background-image: url('images/why2.jpg');
+    background-image: url('../images/why2.jpg');
     background-size: cover;
     background-position: center;
 }
 
 .bg {
-    background-image: url('images/aboutUsBG.jpg');
+    background-image: url('../images/aboutUsBG.jpg');
     background-size: cover;
     background-position: center;
     /* max-height: 330px;*/
@@ -148,6 +148,9 @@
     width: 450px;
     -webkit-transition: width 0.8s ease-in-out;
     transition: width 0.8s ease-in-out;
+    -moz-transition: width 0.8s ease-in-out;
+    -ms-transition: width 0.8s ease-in-out;
+    -o-transition: width 0.8s ease-in-out;
 }
 
 #search-loged:focus {
@@ -284,6 +287,10 @@ footer {
     -webkit-filter: sepia(1);
     -moz-filter: sepia(1);
     transition: all 0.4s ease-out;
+    -webkit-transition: all 0.4s ease-out;
+    -moz-transition: all 0.4s ease-out;
+    -ms-transition: all 0.4s ease-out;
+    -o-transition: all 0.4s ease-out;
 }
 
 .best:hover {

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="style.css" type="text/css" rel="stylesheet">
+    <link href="css/style.css" type="text/css" rel="stylesheet">
     <title>BTT</title>
     <link rel="icon" type="image/ico" href="images/icon.ico" />
     <meta name="author" content="abu">
@@ -98,11 +98,11 @@
                         </li>
                     </ul>
                 </div>
-                
+
                 <div class="card-body text-center" style="margin-left:100px !important;">
                     <button class="btn btn-warning text-white" id="signButton" name="signButton">Sign up for free<i class="fas fa-user-plus ml-2"></i></button>
                 </div>
-                
+
             </div>
             <div class="alert mt-3 ml-3" id="alert" style="width:400px;"></div>
         </div>
@@ -110,7 +110,7 @@
             <p style="font-size:20px; ">&copy; 2018 Abu</p>
         </div>
     </div>
-    
+
     <script>
             $('#alert').slideUp();
             $('#signButton').click(function () {
@@ -119,12 +119,12 @@
                 var lastSign = $('#lastSign').val();
                 var emailSign = $('#emailSign').val();
                 var passSign = $('#passSign').val();
-    
+
                 function validateEmail($emailSign) {
                     var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
                     return emailReg.test($emailSign);
                 }
-    
+
                 if (firstSign == "") {
                     $("#alert").addClass('alert-danger');
                     $("#alert").html("Your first name is required!!!");

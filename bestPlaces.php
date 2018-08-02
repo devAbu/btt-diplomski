@@ -7,7 +7,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="style.css" type="text/css" rel="stylesheet">
+    <link href="css/style.css" type="text/css" rel="stylesheet">
     <title>BTT</title>
     <link rel="icon" type="image/ico" href="images/icon.ico" />
     <meta name="author" content="abu">
@@ -65,14 +65,14 @@ if ($count > 0) {
     while ($row = $result->fetch_assoc()) {
         echo '<div class="col-5  mt-3" style="margin-left: 70px;" >
         <a href="#" data-toggle="modal" data-target="#' . $row['ID'] . '">
-            <img src=" data:image/jpeg;base64,' . base64_encode($row["img"]) . '" alt="'.$row['title'].'" class="img-fluid best" /></a>
+            <img src=" data:image/jpeg;base64,' . base64_encode($row["img"]) . '" alt="' . $row['title'] . '" class="img-fluid best" /></a>
             <h2 class="text-warning text-uppercase text-center">' . $row["title"] . '</h2>
         </div>
         <div class="modal fade" id="' . $row['ID'] . '" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-body">
-                        <img src=" data:image/jpeg;base64,' . base64_encode($row["img"]) . '" alt="'.$row['title'].'" class="img-fluid" style="width:100%; height:100%;" />
+                        <img src=" data:image/jpeg;base64,' . base64_encode($row["img"]) . '" alt="' . $row['title'] . '" class="img-fluid" style="width:100%; height:100%;" />
                     </div>
                 </div>
             </div>

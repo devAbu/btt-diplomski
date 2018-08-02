@@ -8,7 +8,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="style.css" type="text/css" rel="stylesheet">
+    <link href="css/style.css" type="text/css" rel="stylesheet">
     <title>BTT</title>
     <link rel="icon" type="image/ico" href="images/icon.ico" />
     <meta name="author" content="abu">
@@ -65,8 +65,8 @@ session_start();
 
     <section>
      <?php
-    if (isset($_SESSION["email"])) {
-        echo '<div class="row">
+if (isset($_SESSION["email"])) {
+    echo '<div class="row">
             <div class="offset-1 col-3">
                 <h4 class="text-success">City:</h4>
 
@@ -144,16 +144,16 @@ session_start();
         <p>Your budget is smaller than the total price!!!</p>
             </div>
         ';
-    } else {
-        echo "<div class='row'><div class='offset-5 text-center mt-5 mb-5'><a href='#' data-toggle='modal' data-target='#LoginModal'><span class='text-warning' style='font-size: 20px;'>LOGIN</span></a> to be able to make tour request!!!</div></div>";
-    }
-    ?>
+} else {
+    echo "<div class='row'><div class='offset-5 text-center mt-5 mb-5'><a href='#' data-toggle='modal' data-target='#LoginModal'><span class='text-warning' style='font-size: 20px;'>LOGIN</span></a> to be able to make tour request!!!</div></div>";
+}
+?>
     </section>
 
 
     <div id="footerInclude"></div>
 
-    
+
     <script>
         $( function() {
             var otherPlaces = [
