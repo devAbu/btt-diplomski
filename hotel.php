@@ -178,7 +178,7 @@ session_start();
                 });
             }
         }
-        xmlhttp.open("GET", "hotelTitle.php?x=" + dbParam, true);
+        xmlhttp.open("GET", "title/apartmentAndHotelTitle.php?x=" + dbParam, true);
         xmlhttp.send();
 //var value = $('#demo2').val();
 

@@ -182,7 +182,7 @@ session_start();
                 });
             }
         }
-        xmlhttp.open("GET", "carTitle.php?x=" + dbParam, true);
+        xmlhttp.open("GET", "title/carAndTourTitle.php?x=" + dbParam, true);
         xmlhttp.send();
 //var value = $('#demo2').val();
 
