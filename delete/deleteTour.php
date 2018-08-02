@@ -21,7 +21,7 @@ echo "query:" . $query;
 $result = mysqli_query($dbc, $query);
 if ($result) {
     echo ('Deleted');
-    header("location: tourPlans");
+    header("location: ../tourPlans");
 } else {
     mysqli_error();
 }

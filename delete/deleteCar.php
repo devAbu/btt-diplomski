@@ -21,7 +21,7 @@ echo "query:" . $query;
 $result = mysqli_query($dbc, $query);
 if ($result) {
     echo ('Deleted');
-    header("location: rent.php");
+    header("location: ../rent.php");
 } else {
     mysqli_error();
 }
