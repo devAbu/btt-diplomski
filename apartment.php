@@ -300,14 +300,14 @@ if (isset($where)) {
             <input type="text" value=" ' . $count . ' "  name="count" id="count" hidden>
             <div class="card-body ">
                 <h5 class="card-title text-left ml-5 h1 text-primary "> ' . $row["title"] . '</h5>
-                <a href="# " style="text-decoration:none; ">
+
                     <img src=" data:image/jpeg;base64,' . base64_encode($row["img"]) . '" class="tourPlans " alt="skijanje " width="400 " height="250
             " style="float:left; " />
-            </a>
 
-            <a href="# " style="text-decoration:none; ">
+
+
                 <label class="card-text " style="max-width:800px; ">' . $row["description"] . '</label>
-            </a>
+
 
 
             <ul class="list-group list-group-flush mr-5 mt-3" style=" border:none;float:right; margin-top:-100px; ">

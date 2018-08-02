@@ -231,14 +231,14 @@ if (isset($where)) {
             <input type="text" value=" ' . $count . ' "  name="count" id="count" hidden>
             <div class="card-body ">
                 <h5 class="card-title text-left ml-5 h1 text-primary "> ' . $row["title"] . '</h5>
-                <a href="# " style="text-decoration:none; ">
+
                     <img src=" data:image/jpeg;base64,' . base64_encode($row["img"]) . '" class="tourPlans " alt="skijanje " width="400 " height="250
             " style="float:left; " />
-            </a>
 
-            <a href="# " style="text-decoration:none; ">
+
+
                 <label class="card-text " style="max-width:800px; ">' . $row["description"] . '</label>
-            </a>
+
 
             <ul class="list-group list-group-flush tourPlans2 " style="width:390px; border:none; ">
                 <li class="list-group-item text-warning mt-4 " style="border:none; ">
@@ -319,14 +319,14 @@ if (isset($where)) {
             <input type="text" value=" ' . $count . ' "  name="count" id="count" hidden>
             <div class="card-body ">
                 <h5 class="card-title text-left ml-5 h1 text-primary "> ' . $row["title"] . '</h5>
-                <a href="# " style="text-decoration:none; ">
+
                     <img src=" data:image/jpeg;base64,' . base64_encode($row["img"]) . '" class="tourPlans " alt="skijanje " width="400 " height="250
             " style="float:left; " />
-            </a>
 
-            <a href="# " style="text-decoration:none; ">
+
+
                 <label class="card-text " style="max-width:800px; ">' . $row["description"] . '</label>
-            </a>
+
 
             <ul class="list-group list-group-flush tourPlans2 " style="width:390px; border:none; ">
                 <li class="list-group-item text-warning mt-4 " style="border:none; ">
@@ -392,58 +392,6 @@ $dbc->close();
 
 </section>
 
-<!-- <script>
-            //$('#alert').slideUp();
-            $('#dialog').hide();
-            $('#dialog2').hide();
-            $('#dialog3').hide();
-            var count = $('#count').val();
-            var test = $('#test').val();
-            console.log(test);
-            console.log(count);
-            var i;
-            for( i = 1; i <= count; i++){
-                console.log(i);
-}
-            $('#select'+i).click(function () {
-                $("#alert").removeClass('alert-success').removeClass('alert-danger');
-                var email = $('#session').val();
-                var tourID = $('#idnum').val();
-
-                console.log(email);
-                console.log(tourID);
-
-                $.ajax({
-                    url: "./userTour.php?task=select&email="+email+"&tourID="+tourID,
-                    success: function (data){
-                        if(data.indexOf('sent') > -1){
-                            /* $("#alert").addClass('alert-success');
-							$("#alert").html('Thanks for your interested in our offer. Check / modify your reservation <a href="myCart.php> here. </a>');
-							$("#alert").slideDown(500).delay(5000).slideUp(500); */
-                            $( "#dialog" ).show();
-                            $( "#dialog" ).dialog();
-                        } else{
-                            /* $("#alert").addClass('alert-danger');
-							$("#alert").html('Some error exists, please try later.$count');
-							$("#alert").slideDown(500).delay(1000).slideUp(500); */
-                            $( "#dialog2" ).show();
-                            $( "#dialog2" ).dialog();
-                        }
-                    },
-                    error: function (data, err){
-                        /* $("#alert").addClass('alert-danger');
-                        $("#alert").html('Some problem occured. We are sorry.');
-                        $("#alert").slideDown(500).delay(1000).slideUp(500); */
-                        $( "#dialog3" ).show();
-                            $( "#dialog3" ).dialog();
-                    }
-                })
-
-        });
-
-
-        </script>
- -->
     <div id="footerInclude"></div>
 
 </body>
