@@ -13,7 +13,7 @@ if ($_REQUEST['task'] == "login") {
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             if ($row['email'] == $emailLog) {
-                if (password_verify($passLog, $row['password'])) {
+                if (password_verify('$passLog', '$row["password"]')) {
                     $query = "INSERT INTO `login` (`name`,`password`) VALUES ('$emailLog', '$row[password]')";
 
                     $response = @mysqli_query($dbc, $query);
