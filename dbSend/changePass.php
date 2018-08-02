@@ -1,11 +1,11 @@
 <?php
 
-require 'connection/connect.php';
+require '../connection/connect.php';
 
 $emailLog = $_REQUEST['emailLog'];
 $passLog = $_REQUEST['passLog'];
 
-$hashedPass = $hash_pass = password_hash($passSign, PASSWORD_DEFAULT);
+$hashedPass = $hash_pass = password_hash($passLog, PASSWORD_DEFAULT);
 
 if ($_REQUEST['task'] == "login") {
 
@@ -25,19 +25,9 @@ if ($_REQUEST['task'] == "login") {
                     echo mysqli_error($dbc);
                 }
 
-                /* session_start();
-            $_SESSION['email'] == $emailLog; */
             } else {
                 echo ('mail');
             }
         }
-/* $query = "INSERT INTO login (name,`password`) VALUES ('$emailLog', '$passLog')";
-
-$response = @mysqli_query($dbc, $query);
-if ($response) {
-echo ('sent');
-} else {
-echo mysqli_error($dbc);
-} */
     }
 }
