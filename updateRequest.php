@@ -1,6 +1,6 @@
 <?php
 
-require 'connect.php';
+require 'connection/connect.php';
 
 $session = $_REQUEST['session'];
 $people = $_REQUEST['people'];

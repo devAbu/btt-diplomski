@@ -1,5 +1,5 @@
 <?php
-require 'connect.php';
+require 'connection/connect.php';
 
 $email = $_REQUEST['session'];
 $hotelID = $_REQUEST['idnum'];

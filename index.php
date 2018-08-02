@@ -114,7 +114,7 @@ session_start();
 <section>
 
 <?php
-require 'connect.php';
+require 'connection/connect.php';
 
 $sql = "SELECT * FROM tourplan limit 3";
 $result = $dbc->query($sql);

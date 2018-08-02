@@ -61,7 +61,7 @@ session_start();
     <section>
         <h2 class="display-4 text-center text-info">Tour Plans</h2>
             <?php
-require 'connect.php';
+require 'connection/connect.php';
 
 if (isset($_SESSION["email"])) {
     $session = $_SESSION["email"];

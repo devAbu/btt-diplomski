@@ -53,7 +53,7 @@ session_start();
 <section>
 <?php
 
-require 'connect.php';
+require 'connection/connect.php';
 
 $sql = "SELECT * FROM bestPlaces";
 $result = $dbc->query($sql);

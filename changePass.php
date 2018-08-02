@@ -1,6 +1,6 @@
 <?php
 
-require 'connect.php';
+require 'connection/connect.php';
 
 $emailLog = $_REQUEST['emailLog'];
 $passLog = $_REQUEST['passLog'];

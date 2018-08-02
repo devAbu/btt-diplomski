@@ -193,7 +193,7 @@ session_start();
 
 <?php
 
-require 'connect.php';
+require 'connection/connect.php';
 
 if (!empty($_POST)) {
     $where = $_REQUEST['search-loged'];

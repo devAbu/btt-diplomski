@@ -187,7 +187,7 @@ session_start();
 
     <section>
     <?php
-require 'connect.php';
+require 'connection/connect.php';
 if (!empty($_POST)) {
     $where = $_REQUEST['search-loged'];
 }
