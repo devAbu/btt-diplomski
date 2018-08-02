@@ -9,7 +9,7 @@ $dbc = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) or die('could not
 
 mysqli_set_charset($dbc, "utf8"); */
 
-require 'connection/connect.php';
+require '../connection/connect.php';
 
 $firstSign = $_REQUEST['firstSign'];
 $lastSign = $_REQUEST['lastSign'];
