@@ -132,7 +132,7 @@
                             $("#alertLog").fadeIn(500).delay(1000).fadeOut(500);
                         }else {
                 $.ajax({
-                    url: "dbSend/changePass.php?task=login&emailLog="+emailLog+"&passLog="+passLog,
+                    url: "changePass.php?task=login&emailLog="+emailLog+"&passLog="+passLog,
                     success: function (data){
                         if(data.indexOf('sent') > -1){
                             $("#alertLog").addClass('alert-success');
