@@ -161,34 +161,10 @@ if (isset($_SESSION["email"])) {
                 "Travnik",
                 "Kravice"
             ];
-        /* function split( val ) {
-            return val.split( /,\s* / );
-        }
-        function extractLast( term ) {
-        return split( term ).pop();
-        } */
+
         $( "#other" ).autocomplete({
             source: otherPlaces
-            /* function( request, response ) {
-          // delegate back to autocomplete, but extract the last term
-            response( $.ui.autocomplete.filter(
-            otherPlaces, extractLast( request.term ) ) );
-            },
-            focus: function() {
-                // prevent value inserted on focus
-                return false;
-            },
-            select: function( event, ui ) {
-                var terms = split( this.value );
-                // remove the current input
-                terms.pop();
-                // add the selected item
-                terms.push( ui.item.value );
-                // add placeholder to get the comma-and-space at the end
-                terms.push( "" );
-                this.value = terms.join( ", " );
-                return false;
-            } */
+
         });
     });
   </script>
@@ -342,9 +318,6 @@ if (isset($_SESSION["email"])) {
             } else if (budget < price) {
                 $( "#dialog" ).show();
                 $( "#dialog" ).dialog();
-                /* $("#alert").addClass('alert-danger');
-                $("#alert").html("Your budget is smaller than the total price of your tour!!!");
-                $("#alert").fadeIn(500).delay(1000).fadeOut(500); */
             } else {
                 $.ajax({
                     url: "dbSend/makeRequest?task=request&check="+check+"&people="+people+"&length="+length+"&period="+period+"&checkyes="+checkyes+"&price="+price+"&budget="+budget+"&session="+session,
@@ -385,7 +358,7 @@ if (isset($_SESSION["email"])) {
                         $("#alertLog").slideDown(500).delay(1000).slideUp(500);
                     }
                 })
-            }//ajax slanje u bazu
+            }
         });
         function price() {
 

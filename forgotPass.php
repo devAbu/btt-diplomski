@@ -61,15 +61,6 @@
                             <li class="list-group-item bg-info" style="background:none !important;">
                                 <input type="email" placeholder="you@example.com" class="form-control mb-2" style="width:350px !important;" id="emailLog" name="emailLog" required>
                             </li>
-                            <!--
-                                <li class="list-group-item bg-info" style="border:none; margin-top:-20px; background:none !important;">
-                                    <input type="password" placeholder="*****" class="form-control" style="max-width:400px;" required id="pass">
-
-                                    <button type="button" class="btn btn-outline-warning" id="oko">
-                                        <i class="fas fa-eye"></i>
-                                    </button>
-                                </li>
-                            -->
                         </ul>
                         <table>
                             <tr>

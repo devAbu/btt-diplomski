@@ -71,15 +71,7 @@
                             <li class="list-group-item bg-info" style="background:none !important;">
                                 <input type="email" placeholder="you@example.com" class="form-control mb-2" style="width:350px !important;" id="emailLog" name="emailLog" required>
                             </li>
-                            <!--
-                                <li class="list-group-item bg-info" style="border:none; margin-top:-20px; background:none !important;">
-                                    <input type="password" placeholder="*****" class="form-control" style="max-width:400px;" required id="pass">
 
-                                    <button type="button" class="btn btn-outline-warning" id="oko">
-                                        <i class="fas fa-eye"></i>
-                                    </button>
-                                </li>
-                            -->
                         </ul>
                         <table>
                             <tr>
@@ -92,17 +84,7 @@
                             </tr>
                         </table>
                         <div class="row no-gutters">
-                            <!--
-                                <div class="col-6">
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item bg-info" style="background:none !important;">
-                                            <button type="button" class="btn btn-outline-warning">
-                                                <i class="fas fa-eye"></i>
-                                            </button>
-                                        </li>
-                                    </ul>
-                                </div>
-                            -->
+
                             <div class="col-7">
                                 <a href="register.php" class="badge ml-3 text-warning" style="text-decoration:none;"><span style="font-size:13px;">No account?</span></a>
                             </div>

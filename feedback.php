@@ -100,33 +100,7 @@ if (isset($_SESSION["email"])) {
 							$("#alertFeedback").slideDown(500).delay(1000).slideUp(500);
                     }
                 });
-               /*  var item = {
-                    name: session,
-                    feedback: feedback
-                };
-
-                $.ajax({
-                    type: 'POST',
-                    url: './feedbackSend.php',
-                    data: item,
-                    success: function (data) {
-                        if(data == 'sent') {
-                            $("#alertFeedback").addClass('alert-success');
-							$("#alertFeedback").html('Thanks for your feedback.');
-							$("#alertFeedback").slideDown(500).delay(1000).slideUp(500);
-                            $('#feedback').val("");
-                        }else {
-                            $("#alertFeedback").addClass('alert-danger');
-							$("#alertFeedback").html('There is some problem. Please try later');
-							$("#alertFeedback").slideDown(500).delay(1000).slideUp(500);
-                        }
-                    },
-                    error: function (data, err) {
-                        $("#alertFeedback").addClass('alert-danger');
-							$("#alertFeedback").html('Some problem occured. We are sorry.');
-							$("#alertFeedback").slideDown(500).delay(1000).slideUp(500);
-                    }
-}) */
+             
             }
         });
     </script>

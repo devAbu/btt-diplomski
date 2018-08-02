@@ -77,9 +77,6 @@
                     <li class="list-group-item bg-info" style="border:none; margin-top:-20px; background:none !important;">
                         <input type="email" placeholder="you@example.com" id="emailSign" name="emailSign" class="form-control " style="width:400px;" required="">
                     </li>
-                    <!--<li class="list-group-item bg-info" style="border:none; margin-top:-20px; background:none !important;">
-                        <input type="password" placeholder="*****" class="form-control" style="max-width:400px;" required="">
-                    </li>-->
                 </ul>
                 <table>
                     <tr>

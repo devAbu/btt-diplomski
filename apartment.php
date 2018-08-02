@@ -243,34 +243,7 @@ if (isset($where)) {
             </div>
             </div></form>
             ';
-                /* echo '<input type="text" value=" ' . $session . '  "  name="session" id="session" hidden>
-                <input type="text" value=" ' . $row["ID"] . ' "  name="idnum" id="idnum" hidden>
 
-                <div class="col-4" class="col">
-                <div class="card hotel">
-                <img class="card-img-top" src=" data:image/jpeg;base64,' . base64_encode($row["img"]) . '" alt="Card image cap">
-                <div class="card-body">
-                <h5 class="card-title">' . $row["title"] . '</h5>
-                <p class="card-text">' . $row["description"] . '</p>
-                <input type="button" class="btn btn-warning" value="Select" />
-                <span class="ml-5">
-                <i class="far fa-star "></i>
-                <i class="far fa-star"></i>
-                <i class="far fa-star"></i>
-                <i class="far fa-star"></i>
-                <i class="far fa-star"></i>
-                </span>
-                </div>
-                <div class="card-footer">
-                <small class="text-muted">' . $row["place"] . '</small>
-                </div>
-                </div>
-                </div>
-
-                ';
-                } */
-                /* echo '</div>
-            </div>'; */
             }
 
         } else {
@@ -337,34 +310,7 @@ if (isset($where)) {
             </div>
             </div></form>
             ';
-                /* echo '<input type="text" value=" ' . $session . '  "  name="session" id="session" hidden>
-                <input type="text" value=" ' . $row["ID"] . ' "  name="idnum" id="idnum" hidden>
 
-                <div class="col-4" class="col">
-                <div class="card hotel">
-                <img class="card-img-top" src=" data:image/jpeg;base64,' . base64_encode($row["img"]) . '" alt="Card image cap">
-                <div class="card-body">
-                <h5 class="card-title">' . $row["title"] . '</h5>
-                <p class="card-text">' . $row["description"] . '</p>
-                <input type="button" class="btn btn-warning" value="Select" />
-                <span class="ml-5">
-                <i class="far fa-star "></i>
-                <i class="far fa-star"></i>
-                <i class="far fa-star"></i>
-                <i class="far fa-star"></i>
-                <i class="far fa-star"></i>
-                </span>
-                </div>
-                <div class="card-footer">
-                <small class="text-muted">' . $row["place"] . '</small>
-                </div>
-                </div>
-                </div>
-
-                ';
-                } */
-                /* echo '</div>
-            </div>'; */
             }
 
         } else {
@@ -379,35 +325,7 @@ $dbc->close();
 ?>
     </section>
 
-    <!-- <section>
-        <div class="card-group mt-5">
-            <div class="row">
-                <div class="col-4">
-                    <div class="card hotel">
-                        <img class="card-img-top" src="images/daily.jpg" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">Sarajevo Daily Apartments</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This
-                                content is a little bit longer.</p>
-                            <input type="button" class="btn btn-warning" value="Select" />
-                            <span class="ml-5">
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                            </span>
-<!--                             <input type="button" class="btn btn-warning" style="float:right;" value="More Details" />
- ->                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">Sarajevo - Skenderija</small>
-                        </div>
-                    </div>
-                </div>
 
-            </div>
-        </div>
-    </section> -->
 
 <div id="footerInclude"></div>
 
