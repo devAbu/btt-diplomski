@@ -81,7 +81,7 @@ if (isset($_SESSION["email"])) {
                 $("#alertFeedback").fadeIn(500).delay(1000).fadeOut(500);
             }else {
                 $.ajax({
-                    url: "./feedbackSend?task=feedback&feedback="+feedback+"&session="+session,
+                    url: "dbSend/feedbackSend?task=feedback&feedback="+feedback+"&session="+session,
                     success: function (data) {
                         if(data == 'sent') {
                             $("#alertFeedback").addClass('alert-success');

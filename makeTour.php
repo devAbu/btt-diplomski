@@ -347,7 +347,7 @@ if (isset($_SESSION["email"])) {
                 $("#alert").fadeIn(500).delay(1000).fadeOut(500); */
             } else {
                 $.ajax({
-                    url: "./makeRequest?task=request&check="+check+"&people="+people+"&length="+length+"&period="+period+"&checkyes="+checkyes+"&price="+price+"&budget="+budget+"&session="+session,
+                    url: "dbSend/makeRequest?task=request&check="+check+"&people="+people+"&length="+length+"&period="+period+"&checkyes="+checkyes+"&price="+price+"&budget="+budget+"&session="+session,
                     success: function (data){
                         if(data.indexOf('sent') > -1){
                             $("#alertReq").addClass('alert-success');
