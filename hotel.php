@@ -66,15 +66,15 @@ session_start();
                     <input id="search-loged" name="search-loged" type="text" class="form-control mt-2" placeholder="Search...">
                 </form>
             </div>
-            <div class="col-2">
+            <!--<div class="col-2">
                 <button id="filters" class="btn btn-success my-2  ml-4" style="width:200px;" data-toggle="collapse" data-target="#collapseExample"
                     aria-expanded="false" aria-controls="collapseExample">
                     <i class="fas fa-sliders-h mr-2" data-fa-transform="rotate-90"></i>
                     Filters
                 </button>
-            </div>
+            </div>-->
         </div>
-        <div class="collapse" id="collapseExample">
+        <!--<div class="collapse" id="collapseExample">
             <div class="row">
                 <div class="col-12 text-success offset-1 mt-2 mb-5">
                     <i class="fas fa-rss"></i>
@@ -145,7 +145,7 @@ session_start();
                     <br />
                 </div>
             </div>
-        </div>
+        </div>-->
     </section>
 
     <script src="titles/hotelTitle.js"></script>
@@ -193,7 +193,7 @@ if (isset($where)) {
                 <!-- <li class="list-group-item text-warning mt-4 " style="border:none; ">
                     <p class="card-text "></p>
                     <input type="button " class="btn btn-warning " value="More Detalis " />
-                </li>-->
+                </li>
                 <li class="list-group-item text-warning " style=" border:none;">
                     <p class="card-text ">
                         <i class="far fa-star "></i>
@@ -202,7 +202,7 @@ if (isset($where)) {
                         <i class="far fa-star "></i>
                         <i class="far fa-star "></i>
                     </p>
-                </li>';
+                </li>-->';
                 echo '
 
                 <li class="list-group-item " style="border:none">
@@ -261,7 +261,7 @@ if (isset($where)) {
                 <!-- <li class="list-group-item text-warning mt-4 " style="border:none; ">
                     <p class="card-text "></p>
                     <input type="button " class="btn btn-warning " value="More Detalis " />
-                </li>-->
+                </li>
                 <li class="list-group-item text-warning " style=" border:none;">
                     <p class="card-text ">
                         <i class="far fa-star "></i>
@@ -270,7 +270,7 @@ if (isset($where)) {
                         <i class="far fa-star "></i>
                         <i class="far fa-star "></i>
                     </p>
-                </li>';
+                </li>-->';
                 echo '
 
                 <li class="list-group-item " style="border:none">
