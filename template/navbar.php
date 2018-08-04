@@ -13,7 +13,7 @@ session_start();
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav" id="navScrollspy">
                 <li class="nav-item">
-                    <a href="index.php" class="nav-link link active">
+                    <a href="index.php" class="nav-link link">
                         <i class="fas fa-home mr-2"></i>Home</a>
                 </li>
                 <li class="nav-item">
@@ -110,10 +110,6 @@ if (isset($_SESSION['email'])) {
                             </td>
                         </tr>
                     </table>
-                    <!--
-                    <div class="col-xs-12">
-                        <input type="password" placeholder="*****" class="form-control" style="max-width:400px;" required="">
-                    </div>-->
                     <div class="col-12 mb-3" style="margin-left:-10px !important;">
                         <a href="login.php" class="text-success">Already has account?</a>
                     </div>
@@ -172,15 +168,7 @@ if (isset($_SESSION['email'])) {
                             </td>
                         </tr>
                     </table>
-                    <!--<div class="col-12">
-        <input type="password" placeholder="*****" class="form-control" style="max-width:400px;" required="">
-    </div>-->
                     <div class="row">
-                        <!--<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-5 my-2 ml-3">
-            <button type="button" class="btn btn-outline-primary">
-                <i class="fas fa-eye"></i>
-            </button>
-        </div>-->
                         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-5 mr-4">
                             <a href="register.php" class="badge ml-3 text-warning" style="text-decoration:none;">
                                 <span style="font-size:13px;">No account?</span>
