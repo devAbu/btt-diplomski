@@ -153,7 +153,8 @@ if (isset($_SESSION["email"])) {
 
     <div id="footerInclude"></div>
 
-
+<!--TODO: funkcije prebacit u poseban fajl/folder -->
+<!--TODO: Other places moze bit uneseno od korisnika a ne samo ponudjeni -->
     <script>
         $( function() {
             var otherPlaces = [

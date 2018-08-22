@@ -38,7 +38,7 @@ session_start();
             $('#footerInclude').load("./template/footer.php");
         })
     </script>
-
+<!--TODO: preload da se uradi-->
 
 </head>
 
@@ -152,7 +152,7 @@ $dbc->close();
 ?>
 </section>
 
-
+<!--TODO:podaci iz baze-->
     <div class="row no-gutters">
         <div class="col-5 ml-5 mt-4">
             <h2 class="text-info text-center">Bosnia & Hercegovina</h2>
@@ -208,6 +208,7 @@ $dbc->close();
                 </div>
             </div>
         </div>
+        <!--TODO: podaci iz baze-->
         <div class="col-5 mt-4" style="margin-left:135px !important;">
             <h2 class="text-info text-center">Bosnia & Hercegovina</h2>
             <p class="h4 text-primary mb-3 text-center">The best hotels in Sarajevo</p>
