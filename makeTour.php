@@ -154,7 +154,6 @@ if (isset($_SESSION["email"])) {
     <div id="footerInclude"></div>
 
 <!--TODO: funkcije prebacit u poseban fajl/folder -->
-<!--TODO: Other places moze bit uneseno od korisnika a ne samo ponudjeni -->
     <script>
         $( function() {
             var otherPlaces = [
@@ -244,6 +243,10 @@ if (isset($_SESSION["email"])) {
                 console.log(check);
             }
             console.log(other);
+
+            check += other
+            console.log(check)
+
             console.log(checked);
             var budget = $('#budget').val();
             var people = $('#people').val();
@@ -405,6 +408,8 @@ if (isset($_SESSION["email"])) {
                 price += 300;
             } else if (other == "Travnik") {
                 price += 200;
+            }else if(other != ""){
+              price += 400
             }
 
             var budget = document.getElementById('budget').value;
