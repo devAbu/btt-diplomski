@@ -7,7 +7,7 @@
     <link href="css/style.css" type="text/css" rel="stylesheet">
     <title>BTT</title>
     <link rel="icon" type="image/ico" href="images/icon.ico" />
-    <meta name="author" content="AAo">
+    <meta name="author" content="abu">
     <meta name="keywords" content="btt, bosnian, tourist, travel, agency, arabic, bosna">
     <meta name="description" content="BTT - Bosnian Toursit Travel offers the best tour plans and the best hotels in B&H. ">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
@@ -92,7 +92,7 @@
                     <div class="alert mt-3 ml-3" id="alertLog" style="width:350px;"></div>
                 </div>
                 <div class="text-center text-warning" style="margin-left:-100px;">
-                    <p style="font-size:20px;">&copy; 2018 AAO</p>
+                    <p style="font-size:20px;">&copy; 2018 Abu</p>
                 </div>
             </div>
 
