@@ -9,7 +9,7 @@ $query = "INSERT INTO usercar (`name`, `carID`) VALUES ('$email', '$carID')";
 $response = @mysqli_query($dbc, $query);
 if ($response) {
     echo ('sent');
-    header('location: myCart.php');
+    header('location: ../myCart.php');
 } else {
     echo mysqli_error($dbc);
 }

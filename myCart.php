@@ -114,7 +114,7 @@ if (isset($_SESSION["email"])) {
                 <!-- <li class="list-group-item text-warning mt-4 " style="border:none; ">
                     <p class="card-text "></p>
                     <input type="button " class="btn btn-warning " value="More Detalis " />
-                </li>-->
+                </li
                 <li class="list-group-item text-warning " style=" border:none;">
                     <p class="card-text ">
                         <i class="far fa-star "></i>
@@ -123,7 +123,7 @@ if (isset($_SESSION["email"])) {
                         <i class="far fa-star "></i>
                         <i class="far fa-star "></i>
                     </p>
-                </li>';
+                </li>>-->';
             echo '
 
                 <li class="list-group-item " style="border:none">
@@ -198,7 +198,7 @@ if (isset($_SESSION["email"])) {
                 <!-- <li class="list-group-item text-warning mt-4 " style="border:none; ">
                     <p class="card-text "></p>
                     <input type="button " class="btn btn-warning " value="More Detalis " />
-                </li> -->
+                </li>
                 <li class="list-group-item text-warning " style=" border:none;">
                     <p class="card-text ">
                         <i class="far fa-star "></i>
@@ -207,7 +207,7 @@ if (isset($_SESSION["email"])) {
                         <i class="far fa-star "></i>
                         <i class="far fa-star "></i>
                     </p>
-                </li>
+                </li>>-->
                 <li class="list-group-item " style="border:none">
                     <input type="submit" name="select" id="select" class="btn btn-warning " value="Delete " style="width:100px; " />
                 </li>
@@ -258,7 +258,7 @@ if (isset($_SESSION["email"])) {
                 <!-- <li class="list-group-item text-warning mt-4 " style="border:none; ">
                     <p class="card-text "></p>
                     <input type="button " class="btn btn-warning " value="More Detalis " />
-                </li>-->
+                </li
                 <li class="list-group-item text-warning " style=" border:none;">
                     <p class="card-text ">
                         <i class="far fa-star "></i>
@@ -267,7 +267,7 @@ if (isset($_SESSION["email"])) {
                         <i class="far fa-star "></i>
                         <i class="far fa-star "></i>
                     </p>
-                </li>';
+                </li>>-->';
             echo '
 
                 <li class="list-group-item " style="border:none">
@@ -325,7 +325,7 @@ if (isset($_SESSION["email"])) {
                 <!-- <li class="list-group-item text-warning mt-4 " style="border:none; ">
                     <p class="card-text "></p>
                     <input type="button " class="btn btn-warning " value="More Detalis " />
-                </li>-->
+                </li>
                 <li class="list-group-item text-warning " style=" border:none;">
                     <p class="card-text ">
                         <i class="far fa-star "></i>
@@ -334,7 +334,7 @@ if (isset($_SESSION["email"])) {
                         <i class="far fa-star "></i>
                         <i class="far fa-star "></i>
                     </p>
-                </li>';
+                </li>>-->';
             echo '
 
                 <li class="list-group-item " style="border:none">
