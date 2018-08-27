@@ -1,4 +1,4 @@
-<!--Admin page se mora uradit  -->
+<!--TODO:Admin page se mora uradit  -->
 ﻿<?php
 session_start();
 ?>
