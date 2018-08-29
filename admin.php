@@ -69,6 +69,8 @@
                 </div>
               </div>
             </div>
+            <!-- TODO: procitat broj tura i korisnika i ispisat ih -->
+            <!--TODO: uradit backend tura..dodavanje, brisanje, update...pokusat ajax-->
 
 
             <div class="clearfix"> </div>
@@ -106,6 +108,7 @@
                                 </div>
                               </div>
                           </form>
+                          <!--  TODO:uradit validaciju-->
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
