@@ -140,7 +140,7 @@
             </div>
           </div>
         </div>
-<!--  TODO:uradit validaciju-->
+
         <script>
               $('#alert').fadeOut();
               $('#add').click(function () {
