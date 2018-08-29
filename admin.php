@@ -20,6 +20,22 @@
   <!-- <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all"> -->
   <link href="css/style2.css" rel="stylesheet" type="text/css" media="all" />
   <link href="css/font-awesome.css" rel="stylesheet">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 
 <body>
@@ -95,20 +111,28 @@
                               <div class="offset-md-3">
                                 <div class="row">
                                   <div class="col-12">
-                                    <input type="text" placeholder="Tour name..." class="form-control" style="width: 350px" required id="tourName" name="tourName">
+                                    <input type="text" placeholder="Tour type..." class="form-control" style="width: 350px" required id="tourType" name="tourType">
                                     <br>
-                                    <input type="text" placeholder="Tour city..." class="form-control" style="width: 350px" id="tourCity" name="tourCity"  required>
+                                    <input type="text" placeholder="Tour title..." class="form-control" style="width: 350px" id="tourTitle" name="tourTitle"  required>
                                     <br>
                                     <input type="text" placeholder="Tour description..." class="form-control" style="width: 350px" id="tourDescription" name="tourDescription" required>
                                     <br>
-                                    <input type="text" placeholder="Tour image..." class="form-control" style="width: 350px" id="tourImage" name="tourImage" required>
+                                    <input type="text" placeholder="Max people..." class="form-control" style="width: 350px" id="people" name="people" required>
                                     <br>
-                                    <input type="button" value="Add" class="btn btn-success" >
+                                    <input type="text" placeholder="Tour available..." class="form-control" style="width: 350px" id="tourAvailable" name="tourAvailable" required>
+                                    <br>
+                                    <input type="text" placeholder="Tour price..." class="form-control" style="width: 350px" id="tourPrice" name="tourPrice" required>
+                                    <br>
+                                    <input type="text" placeholder="Tour length in days..." class="form-control" style="width: 350px" id="tourDays" name="tourDays" required>
+                                    <br>
+                                    <input type="text" placeholder="Tour image (link)..." class="form-control" style="width: 350px" id="tourImage" name="tourImage" required>
+                                    <br>
+                                    <input type="button" value="Add" class="btn btn-success mb-2"  id="add">
+                                    <div class="alert " id="alert" style="width: 350px" ></div>
                                   </div>
                                 </div>
                               </div>
                           </form>
-                          <!--  TODO:uradit validaciju-->
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -116,6 +140,80 @@
             </div>
           </div>
         </div>
+<!--  TODO:uradit validaciju-->
+        <script>
+              $('#alert').fadeOut();
+              $('#add').click(function () {
+                console.log('juhu');
+                  $("#alert").removeClass('alert-success').removeClass('alert-danger');
+                  var tourType = $('#tourType').val();
+                  var tourTitle = $('#tourTitle').val();
+                  var tourDescription = $('#tourDescription').val();
+                  var people = $('#people').val();
+                  var tourAvailable = $('#tourAvailable').val();
+                  var tourPrice = $('#tourPrice').val();
+                  var tourDays = $('#tourDays').val();
+                  var tourImage = $('#tourImage').val();
+
+                  if (tourType == "") {
+                      $("#alert").addClass('alert-danger');
+                      $("#alert").html("Tour type is required!!!");
+                      $("#alert").fadeIn(500).delay(1000).fadeOut(500);
+                  } else if (tourTitle == "") {
+                      $("#alert").addClass('alert-danger');
+                      $("#alert").html("Tour title is required!!!");
+                      $("#alert").fadeIn(500).delay(1000).fadeOut(500);
+                  } else if (tourDescription == "") {
+                      $("#alert").addClass('alert-danger');
+                      $("#alert").html("Tour Description is required!!!");
+                      $("#alert").fadeIn(500).delay(1000).fadeOut(500);
+                  } else if (people == "") {
+                      $("#alert").addClass('alert-danger');
+                      $("#alert").html("Number of people is required!!!");
+                      $("#alert").fadeIn(500).delay(1000).fadeOut(500);
+                  } else if (tourAvailable == "") {
+                      $("#alert").addClass('alert-danger');
+                      $("#alert").html("Tour available period is required!!!");
+                      $("#alert").fadeIn(500).delay(1000).fadeOut(500);
+                  }  else if (tourPrice == "") {
+                      $("#alert").addClass('alert-danger');
+                      $("#alert").html("Tour price is required!!!");
+                      $("#alert").fadeIn(500).delay(1000).fadeOut(500);
+                  }   else if (tourDays == "") {
+                      $("#alert").addClass('alert-danger');
+                      $("#alert").html("Tour length is required!!!");
+                      $("#alert").fadeIn(500).delay(1000).fadeOut(500);
+                  }  else if (tourImage == "") {
+                      $("#alert").addClass('alert-danger');
+                      $("#alert").html("Tour image is required!!!");
+                      $("#alert").fadeIn(500).delay(1000).fadeOut(500);
+                  } // else {
+                  //     $.ajax({
+                  //         url: "dbSend/indexSent.php?task=register&firstSign=" + firstSign + "&lastSign=" + lastSign + "&emailSign=" + emailSign + "&passSign=" + passSign,
+                  //         success: function (data) {
+                  //             if (data.indexOf('sent') > -1) {
+                  //                 $("#alert").addClass('alert-success');
+                  //                 $("#alert").html('Your account created successfully. Now you can login with your information');
+                  //                 $("#alert").slideDown(500).delay(2000).slideUp(500);
+                  //                 $('#firstSign').val("");
+                  //                 $('#lastSign').val("");
+                  //                 $('#emailSign').val("");
+                  //                 $('#passSign').val("");
+                  //             } else {
+                  //                 $("#alert").addClass('alert-danger');
+                  //                 $("#alert").html('The email is already exists.');
+                  //                 $("#alert").slideDown(500).delay(1000).slideUp(500);
+                  //             }
+                  //         },
+                  //         error: function (data, err) {
+                  //             $("#alert").addClass('alert-danger');
+                  //             $("#alert").html('Some problem occured. We are sorry.');
+                  //             $("#alert").slideDown(500).delay(1000).slideUp(500);
+                  //         }
+                  //     })
+                  // }
+              });
+        </script>
 
         <div class="copyrights">
           <p>© 2018 ABU </p>
