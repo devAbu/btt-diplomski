@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <html>
-
+<!-- izlistat feedback-ove -->
 <head>
   <title>BTT Admin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -99,7 +99,6 @@
                 </div>
               </div>
             </div>
-            <!-- TODO: procitat broj tura i korisnika i ispisat ih -->
             <!--TODO: uradit backend tura..dodavanje, brisanje, update...pokusat ajax-->
 
 
