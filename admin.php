@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <html>
-<!-- izlistat feedback-ove -->
+<!-- TODO: izlistat feedback-ove, ture, auta, apartmani i hoteli -->
 <head>
   <title>BTT Admin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
