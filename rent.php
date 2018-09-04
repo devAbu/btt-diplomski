@@ -3,7 +3,6 @@ session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<!-- TODO: auta se mogu vidjet al ne selektovat ako user nije logovan -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -234,7 +233,67 @@ if (isset($where)) {
             }
 
         } else {
-            echo "<div class='row'><div class='offset-5 text-center mt-5 mb-5'><a href='#' data-toggle='modal' data-target='#LoginModal'><span class='text-warning' style='font-size: 20px;'>LOGIN</span></a> to see and select car for rent!!!</div></div>";
+          while ($row = $result->fetch_assoc()) {
+              echo '<form action = "userAll/userCar.php"><div class="card text-center mt-4 ">
+          <div class="card-header text-success h3 text-uppercase ">' .
+              $row["title"] . '
+          </div>
+          <input type="text" value=" ' . $row["ID"] . ' "  name="idnum" id="idnum" hidden>
+          <div class="card-body ">
+              <h5 class="card-title text-left ml-5 h1 text-primary "> ' . $row["type"] . '</h5>
+
+                  <img src=" data:image/jpeg;base64,' . base64_encode($row["img"]) . '" class="tourPlans " alt="skijanje " width="400 " height="250
+          " style="float:left; " />
+
+
+
+              <label class="card-text " style="max-width:800px; ">' . $row["description"] . '</label>
+
+
+          <ul class="list-group list-group-flush tourPlans2 " style="width:390px; border:none; ">
+              <li class="list-group-item text-warning mt-4 " style="border:none; ">
+                  <p class="card-text " style="float:left; ">
+                      <i class="fas fa-users "></i>
+                      <span class="ml-2 ">Max People: ' . $row["people"] . '</span>
+                  </p>
+              </li>
+              <li class="list-group-item text-warning ">
+                  <p class="card-text " style="float:left; ">
+                      <i class="fas fa-calendar-alt "></i>
+                      <span class="ml-3 ">Model Year: ' . $row["year"] . '</span>
+                  </p>
+              </li>
+              <li class="list-group-item text-warning ">
+                  <p class="card-text " style="float:left; ">
+                      <i class="fas fa-euro-sign mr-4 "></i> ' . $row["price"] . '</p>
+              </li>
+          </ul>
+
+          <ul class="list-group list-group-flush mr-5 " style=" border:none;float:right; margin-top:-100px; ">
+              <!-- <li class="list-group-item text-warning mt-4 " style="border:none; ">
+                  <p class="card-text "></p>
+                  <input type="button " class="btn btn-warning " value="More Detalis " />
+              </li>
+              <li class="list-group-item text-warning " style=" border:none;">
+                  <p class="card-text ">
+                      <i class="far fa-star "></i>
+                      <i class="far fa-star "></i>
+                      <i class="far fa-star "></i>
+                      <i class="far fa-star "></i>
+                      <i class="far fa-star "></i>
+                  </p>
+              </li>-->
+              <li class="list-group-item " style="border:none">
+              <a href="login.php">
+                  <input type="button" name="select" id="select" class="btn btn-warning " value="Login " style="width:100px; " />
+                  </a>
+              </li>
+          </ul>
+          </div>
+          </div></form>
+          ';
+
+          }
         }
 
     } else {
@@ -313,7 +372,67 @@ if (isset($where)) {
             }
 
         } else {
-            echo "<div class='row'><div class='offset-5 text-center mt-5 mb-5'><a href='#' data-toggle='modal' data-target='#LoginModal'><span class='text-warning' style='font-size: 20px;'>LOGIN</span></a> to see and select car for rent!!!</div></div>";
+          while ($row = $result->fetch_assoc()) {
+              echo '<form action = "userAll/userCar.php"><div class="card text-center mt-4 ">
+          <div class="card-header text-success h3 text-uppercase ">' .
+              $row["title"] . '
+          </div>
+          <input type="text" value=" ' . $row["ID"] . ' "  name="idnum" id="idnum" hidden>
+          <div class="card-body ">
+              <h5 class="card-title text-left ml-5 h1 text-primary "> ' . $row["type"] . '</h5>
+
+                  <img src=" data:image/jpeg;base64,' . base64_encode($row["img"]) . '" class="tourPlans " alt="skijanje " width="400 " height="250
+          " style="float:left; " />
+
+
+
+              <label class="card-text " style="max-width:800px; ">' . $row["description"] . '</label>
+
+
+          <ul class="list-group list-group-flush tourPlans2 " style="width:390px; border:none; ">
+              <li class="list-group-item text-warning mt-4 " style="border:none; ">
+                  <p class="card-text " style="float:left; ">
+                      <i class="fas fa-users "></i>
+                      <span class="ml-2 ">Max People: ' . $row["people"] . '</span>
+                  </p>
+              </li>
+              <li class="list-group-item text-warning ">
+                  <p class="card-text " style="float:left; ">
+                      <i class="fas fa-calendar-alt "></i>
+                      <span class="ml-3 ">Model Year: ' . $row["year"] . '</span>
+                  </p>
+              </li>
+              <li class="list-group-item text-warning ">
+                  <p class="card-text " style="float:left; ">
+                      <i class="fas fa-euro-sign mr-4 "></i> ' . $row["price"] . '</p>
+              </li>
+          </ul>
+
+          <ul class="list-group list-group-flush mr-5 " style=" border:none;float:right; margin-top:-100px; ">
+              <!-- <li class="list-group-item text-warning mt-4 " style="border:none; ">
+                  <p class="card-text "></p>
+                  <input type="button " class="btn btn-warning " value="More Detalis " />
+              </li>
+              <li class="list-group-item text-warning " style=" border:none;">
+                  <p class="card-text ">
+                      <i class="far fa-star "></i>
+                      <i class="far fa-star "></i>
+                      <i class="far fa-star "></i>
+                      <i class="far fa-star "></i>
+                      <i class="far fa-star "></i>
+                  </p>
+              </li>-->
+              <li class="list-group-item " style="border:none">
+              <a href="login.php">
+                  <input type="button" name="select" id="select" class="btn btn-warning " value="Login " style="width:100px; " />
+                  </a>
+              </li>
+          </ul>
+          </div>
+          </div></form>
+          ';
+
+          }
         }
 
     } else {
