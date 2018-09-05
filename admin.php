@@ -98,7 +98,7 @@
                 </div>
               </div>
             </div>
-            <!--TODO: uradit backend tura..dodavanje, brisanje, update...pokusat ajax-->
+            <!--TODO: vidjet da se uradi update ture-->
 
 
             <div class="clearfix"> </div>
@@ -115,7 +115,7 @@
             if ($count > 0) {
                     $i = 0;
                     while ($row = $result->fetch_assoc()) {
-                        echo '<form action = "userAll/userTour.php" method = "POST"><div class="card text-center mt-4 ">
+                        echo '<form action = "deleteTourAdmin.php" method = "POST"><div class="card text-center mt-4 ">
                     <div class="card-header text-success h3 text-uppercase ">' .
                         $row["type"] . '
                     </div>
@@ -155,7 +155,7 @@
                         echo '
                         <input type="number" value="' . $i . '" id="test" hidden>
                         <li class="list-group-item " style="border:none">
-                            <input type="submit" name="select" id="select" class="btn btn-danger " value="Remove " style="width:100px; " />
+                            <input type="submit" name="remove" id="remove" class="btn btn-danger " value="Remove " style="width:100px; " />
                         </li>
                     </ul>
                     </div>

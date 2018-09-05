@@ -69,7 +69,7 @@
                           $count = $result->num_rows;
                           echo '<h3>'.$count.'</h3> ';
                         ?>
-                      <h4>Apartments</h4>
+                      <h4>Feedbacks</h4>
                     </div>
                     <div class="col-md-4 market-update-right">
                       <i class="far fa-smile fa-5x" style="color:white"></i>
