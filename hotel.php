@@ -179,7 +179,7 @@ if (isset($where)) {
             <input type="text" value=" ' . $count . ' "  name="count" id="count" hidden>
             <div class="card-body ">
                 <h5 class="card-title text-left ml-5 h1 text-primary "> ' . $row["title"] . '</h5>
-                    <img src=" data:image/jpeg;base64,' . base64_encode($row["img"]) . '" class="tourPlans " alt="skijanje " width="400 " height="250
+                    <img src=" ' .$row["img"]. '" class="tourPlans " alt="skijanje " width="400 " height="250
             " style="float:left; " />
 
 
@@ -227,7 +227,7 @@ if (isset($where)) {
           <input type="text" value=" ' . $count . ' "  name="count" id="count" hidden>
           <div class="card-body ">
               <h5 class="card-title text-left ml-5 h1 text-primary "> ' . $row["title"] . '</h5>
-                  <img src=" data:image/jpeg;base64,' . base64_encode($row["img"]) . '" class="tourPlans " alt="skijanje " width="400 " height="250
+                  <img src=" ' . $row["img"]. '" class="tourPlans " alt="skijanje " width="400 " height="250
           " style="float:left; " />
 
 
@@ -294,7 +294,7 @@ if (isset($where)) {
             <div class="card-body ">
                 <h5 class="card-title text-left ml-5 h1 text-primary "> ' . $row["title"] . '</h5>
 
-                    <img src=" data:image/jpeg;base64,' . base64_encode($row["img"]) . '" class="tourPlans " alt="skijanje " width="400 " height="250
+                    <img src="' . $row["img"]. '" class="tourPlans " alt="skijanje " width="400 " height="250
             " style="float:left; " />
 
 
@@ -342,7 +342,7 @@ if (isset($where)) {
           <input type="text" value=" ' . $count . ' "  name="count" id="count" hidden>
           <div class="card-body ">
               <h5 class="card-title text-left ml-5 h1 text-primary "> ' . $row["title"] . '</h5>
-                  <img src=" data:image/jpeg;base64,' . base64_encode($row["img"]) . '" class="tourPlans " alt="skijanje " width="400 " height="250
+                  <img src="' .$row["img"]. '" class="tourPlans " alt="skijanje " width="400 " height="250
           " style="float:left; " />
 
 

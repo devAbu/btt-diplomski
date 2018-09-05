@@ -80,6 +80,11 @@
               </div>
             </div>
 
+            <div class="clearfix"> </div>
+            <div style="margin-top: 20px; margin-left:45%">
+              <button class="btn btn-lg btn-success" style="margin-bottom: 20px;" data-toggle="modal" data-target="#formModal">Add new</button>
+            </div>
+
 <?php
             $sql = "SELECT * FROM cars ";
             $result = $dbc->query($sql);
@@ -97,7 +102,7 @@
                   <div class="card-body ">
                       <h5 class="card-title text-left ml-5 h1 text-primary "> ' . $row["type"] . '</h5>
 
-                          <img src=" data:image/jpeg;base64,' . base64_encode($row["img"]) . '" class="tourPlans " alt="skijanje " width="400 " height="250
+                          <img src="' . $row["img"]. '" class="tourPlans " alt="skijanje " width="400 " height="250
                   " style="float:left; " />
 
 
@@ -142,6 +147,121 @@
 
           </div>
         </div>
+
+        <div class="modal fade"  id="formModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Adding new car....</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+              </div>
+              <div class="modal-body">
+                          <form>
+                              <div class="offset-md-3">
+                                <div class="row">
+                                  <div class="col-12">
+                                    <input type="text" placeholder="Car title..." class="form-control" style="width: 350px" required id="carTitle" name="carTitle">
+                                    <br>
+                                    <input type="text" placeholder="Car type..." class="form-control" style="width: 350px" id="carType" name="carType"  required>
+                                    <br>
+                                    <input type="text" placeholder="Car description..." class="form-control" style="width: 350px" id="carDescription" name="carDescription" required>
+                                    <br>
+                                    <input type="text" placeholder="Max people..." class="form-control" style="width: 350px" id="people" name="people" required>
+                                    <br>
+                                    <input type="text" placeholder="Year..." class="form-control" style="width: 350px" id="year" name="year" required>
+                                    <br>
+                                    <input type="text" placeholder="Car price..." class="form-control" style="width: 350px" id="price" name="price" required>
+                                    <br>
+                                    <input type="text" placeholder="Car image (link)..." class="form-control" style="width: 350px" id="carImage" name="carImage" required>
+                                    <br>
+                                    <input type="button" value="Add" class="btn btn-success mb-2"  id="add">
+                                    <div class="alert " id="alert" style="width: 350px" ></div>
+                                  </div>
+                                </div>
+                              </div>
+                          </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <script>
+              $('#alert').fadeOut();
+              $('#add').click(function () {
+                console.log('juhu');
+                  $("#alert").removeClass('alert-success').removeClass('alert-danger');
+                  var carTitle = $('#carTitle').val();
+                  var carType = $('#carType').val();
+                  var carDescription = $('#carDescription').val();
+                  var people = $('#people').val();
+                  var year = $('#year').val();
+                  var price = $('#price').val();
+                  var carImage = $('#carImage').val();
+
+                  if (carTitle == "") {
+                      $("#alert").addClass('alert-danger');
+                      $("#alert").html("Car title is required!!!");
+                      $("#alert").fadeIn(500).delay(1000).fadeOut(500);
+                  } else if (carType == "") {
+                      $("#alert").addClass('alert-danger');
+                      $("#alert").html("Car type is required!!!");
+                      $("#alert").fadeIn(500).delay(1000).fadeOut(500);
+                  } else if (carDescription == "") {
+                      $("#alert").addClass('alert-danger');
+                      $("#alert").html("Car description is required!!!");
+                      $("#alert").fadeIn(500).delay(1000).fadeOut(500);
+                  } else if (people == "") {
+                      $("#alert").addClass('alert-danger');
+                      $("#alert").html("Number of max people is required!!!");
+                      $("#alert").fadeIn(500).delay(1000).fadeOut(500);
+                  } else if (year == "") {
+                      $("#alert").addClass('alert-danger');
+                      $("#alert").html("Car's year is required!!!");
+                      $("#alert").fadeIn(500).delay(1000).fadeOut(500);
+                  }  else if (price == "") {
+                      $("#alert").addClass('alert-danger');
+                      $("#alert").html("Car price is required!!!");
+                      $("#alert").fadeIn(500).delay(1000).fadeOut(500);
+                  }   else if (carImage == "") {
+                      $("#alert").addClass('alert-danger');
+                      $("#alert").html("Car image is required!!!");
+                      $("#alert").fadeIn(500).delay(1000).fadeOut(500);
+                  }  else {
+                       $.ajax({
+                           url: "addCar.php?task=add&carTitle=" + carTitle + "&carType=" + carType + "&carDescription=" + carDescription + "&people=" + people+ "&year=" + year + "&price=" + price+ "&carImage=" + carImage,
+                           success: function (data) {
+                               if (data.indexOf('add') > -1) {
+                                   $("#alert").addClass('alert-success');
+                                   $("#alert").html('Car added successfully');
+                                   $("#alert").slideDown(500).delay(2000).slideUp(500);
+                                   $('#carTitle').val("");
+                                   $('#carType').val("");
+                                   $('#carDescription').val("");
+                                   $('#people').val("");
+                                   $('#year').val("");
+                                   $('#price').val("");
+                                   $('#carImage').val("");
+               } else {
+                                   $("#alert").addClass('alert-danger');
+                                   $("#alert").html('There are some problem.');
+                                   $("#alert").slideDown(500).delay(1000).slideUp(500);
+                               }
+                           },
+                           error: function (data, err) {
+                               $("#alert").addClass('alert-danger');
+                               $("#alert").html('Some problem occured. We are sorry.');
+                               $("#alert").slideDown(500).delay(1000).slideUp(500);
+                           }
+                       })
+                   }
+              });
+        </script>
+
 
 
         <div class="copyrights">

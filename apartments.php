@@ -80,6 +80,11 @@
               </div>
             </div>
 
+            <div class="clearfix"> </div>
+            <div style="margin-top: 20px; margin-left:45%">
+              <button class="btn btn-lg btn-success" style="margin-bottom: 20px;" data-toggle="modal" data-target="#formModal">Add new</button>
+            </div>
+
 
 <?php
             $sql = "SELECT * FROM apartment ";
@@ -96,7 +101,7 @@
                   <input type="text" value=" ' . $count . ' "  name="count" id="count" hidden>
                   <div class="card-body ">
                       <h5 class="card-title text-left ml-5 h1 text-primary "> ' . $row["title"] . '</h5>
-                          <img src=" data:image/jpeg;base64,' . base64_encode($row["img"]) . '" class="tourPlans " alt="skijanje " width="400 " height="250
+                          <img src="' .$row["img"]. '" class="tourPlans " alt="skijanje " width="400 " height="250
                   " style="float:left; " />
                       <label class="card-text " style="max-width:800px; ">' . $row["description"] . '</label>
 
@@ -137,6 +142,97 @@
 
           </div>
         </div>
+
+
+        <div class="modal fade"  id="formModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Adding new apartment....</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+              </div>
+              <div class="modal-body">
+                <form>
+                              <div class="offset-md-3">
+                                <div class="row">
+                                  <div class="col-12">
+                                    <input type="text" placeholder="Apartment title..." class="form-control" style="width: 350px" id="apartmentTitle" name="apartmentTitle"  required>
+                                    <br>
+                                    <input type="text" placeholder="Apartment description..." class="form-control" style="width: 350px" id="apartmentDescription" name="apartmentDescription" required>
+                                    <br>
+                                    <input type="text" placeholder="Apartment place..." class="form-control" style="width: 350px" id="apartmentPlace" name="apartmentPlace" required>
+                                    <br>
+                                    <input type="text" placeholder="Apartment image (link)..." class="form-control" style="width: 350px" id="apartmentImage" name="apartmentImage" required>
+                                    <br>
+                                    <input type="button" value="Add" class="btn btn-success mb-2"  id="add">
+                                    <div class="alert " id="alert" style="width: 350px" ></div>
+                                  </div>
+                                </div>
+                              </div>
+                          </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <script>
+              $('#alert').fadeOut();
+              $('#add').click(function () {
+                console.log('juhu');
+                  $("#alert").removeClass('alert-success').removeClass('alert-danger');
+                  var apartmentTitle = $('#apartmentTitle').val();
+                  var apartmentDescription = $('#apartmentDescription').val();
+                  var apartmentPlace = $('#apartmentPlace').val();
+                  var apartmentImage = $('#apartmentImage').val();
+
+                  if (apartmentTitle == "") {
+                      $("#alert").addClass('alert-danger');
+                      $("#alert").html("Apartment title is required!!!");
+                      $("#alert").fadeIn(500).delay(1000).fadeOut(500);
+                  } else if (apartmentDescription == "") {
+                      $("#alert").addClass('alert-danger');
+                      $("#alert").html("Apartment description is required!!!");
+                      $("#alert").fadeIn(500).delay(1000).fadeOut(500);
+                  } else if (apartmentPlace == "") {
+                      $("#alert").addClass('alert-danger');
+                      $("#alert").html("Apartment place is required!!!");
+                      $("#alert").fadeIn(500).delay(1000).fadeOut(500);
+                  } else if (apartmentImage == "") {
+                      $("#alert").addClass('alert-danger');
+                      $("#alert").html("Apartment image is required!!!");
+                      $("#alert").fadeIn(500).delay(1000).fadeOut(500);
+                  }  else {
+                       $.ajax({
+                           url: "addApartment.php?task=add&apartmentTitle=" + apartmentTitle + "&apartmentDescription=" + apartmentDescription + "&apartmentPlace=" + apartmentPlace + "&apartmentImage=" + apartmentImage,
+                           success: function (data) {
+                               if (data.indexOf('add') > -1) {
+                                   $("#alert").addClass('alert-success');
+                                   $("#alert").html('Apartment added successfully');
+                                   $("#alert").slideDown(500).delay(2000).slideUp(500);
+                                   $('#apartmentTitle').val("");
+                                   $('#apartmentDescription').val("");
+                                   $('#apartmentPlace').val("");
+                                   $('#apartmentImage').val("");
+               } else {
+                                   $("#alert").addClass('alert-danger');
+                                   $("#alert").html('There are some problem.');
+                                   $("#alert").slideDown(500).delay(1000).slideUp(500);
+                               }
+                           },
+                           error: function (data, err) {
+                               $("#alert").addClass('alert-danger');
+                               $("#alert").html('Some problem occured. We are sorry.');
+                               $("#alert").slideDown(500).delay(1000).slideUp(500);
+                           }
+                       })
+                   }
+              });
+        </script>
 
 
         <div class="copyrights">

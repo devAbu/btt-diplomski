@@ -80,6 +80,12 @@
               </div>
             </div>
 
+            <div class="clearfix"> </div>
+            <div style="margin-top: 20px; margin-left:45%">
+              <button class="btn btn-lg btn-success" style="margin-bottom: 20px;" data-toggle="modal" data-target="#formModal">Add new</button>
+            </div>
+
+
 <?php
             $sql = "SELECT * FROM hotel ";
             $result = $dbc->query($sql);
@@ -95,7 +101,7 @@
                   <input type="text" value=" ' . $count . ' "  name="count" id="count" hidden>
                   <div class="card-body ">
                       <h5 class="card-title text-left ml-5 h1 text-primary "> ' . $row["title"] . '</h5>
-                          <img src=" data:image/jpeg;base64,' . base64_encode($row["img"]) . '" class="tourPlans " alt="skijanje " width="400 " height="250
+                          <img src="' .$row["img"] . '" class="tourPlans " alt="skijanje " width="400 " height="250
                   " style="float:left; " />
 
 
@@ -127,6 +133,98 @@
 
           </div>
         </div>
+
+
+        <div class="modal fade"  id="formModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Adding new hotel....</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+              </div>
+              <div class="modal-body">
+                <form>
+                              <div class="offset-md-3">
+                                <div class="row">
+                                  <div class="col-12">
+                                    <input type="text" placeholder="Hotel title..." class="form-control" style="width: 350px" required id="hotelTitle" name="hotelTitle">
+                                    <br>
+                                    <input type="text" placeholder="Hotel description..." class="form-control" style="width: 350px" id="hotelDescription" name="hotelDescription"  required>
+                                    <br>
+                                    <input type="text" placeholder="Hotel place..." class="form-control" style="width: 350px" id="hotelPlace" name="hotelPlace" required>
+                                    <br>
+                                    <input type="text" placeholder="Hotel image (link)..." class="form-control" style="width: 350px" id="hotelImage" name="hotelImage" required>
+                                    <br>
+                                    <input type="button" value="Add" class="btn btn-success mb-2"  id="add">
+                                    <div class="alert " id="alert" style="width: 350px" ></div>
+                                  </div>
+                                </div>
+                              </div>
+                          </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <script>
+              $('#alert').fadeOut();
+              $('#add').click(function () {
+                console.log('juhu');
+                  $("#alert").removeClass('alert-success').removeClass('alert-danger');
+                  var hotelTitle = $('#hotelTitle').val();
+                  var hotelDescription = $('#hotelDescription').val();
+                  var hotelPlace = $('#hotelPlace').val();
+                  var hotelImage = $('#hotelImage').val();
+
+                  if (hotelTitle == "") {
+                      $("#alert").addClass('alert-danger');
+                      $("#alert").html("Hotel title is required!!!");
+                      $("#alert").fadeIn(500).delay(1000).fadeOut(500);
+                  } else if (hotelDescription == "") {
+                      $("#alert").addClass('alert-danger');
+                      $("#alert").html("Hotel description is required!!!");
+                      $("#alert").fadeIn(500).delay(1000).fadeOut(500);
+                  }  else if (hotelPlace == "") {
+                      $("#alert").addClass('alert-danger');
+                      $("#alert").html("Hotel place is required!!!");
+                      $("#alert").fadeIn(500).delay(1000).fadeOut(500);
+                  }   else if (hotelImage == "") {
+                      $("#alert").addClass('alert-danger');
+                      $("#alert").html("Hotel image is required!!!");
+                      $("#alert").fadeIn(500).delay(1000).fadeOut(500);
+                  }  else {
+                       $.ajax({
+                           url: "addHotel.php?task=add&hotelTitle=" + hotelTitle + "&hotelDescription=" + hotelDescription + "&hotelPlace=" + hotelPlace + "&hotelImage=" + hotelImage,
+                           success: function (data) {
+                               if (data.indexOf('add') > -1) {
+                                   $("#alert").addClass('alert-success');
+                                   $("#alert").html('hotel added successfully');
+                                   $("#alert").slideDown(500).delay(2000).slideUp(500);
+                                   $('#hotelTitle').val("");
+                                   $('#hotelDescription').val("");
+                                   $('#hotelPlace').val("");
+                                   $('#hotelImage').val("");
+               } else {
+                                   $("#alert").addClass('alert-danger');
+                                   $("#alert").html('There are some problem.');
+                                   $("#alert").slideDown(500).delay(1000).slideUp(500);
+                               }
+                           },
+                           error: function (data, err) {
+                               $("#alert").addClass('alert-danger');
+                               $("#alert").html('Some problem occured. We are sorry.');
+                               $("#alert").slideDown(500).delay(1000).slideUp(500);
+                           }
+                       })
+                   }
+              });
+        </script>
+
 
         <div class="copyrights">
           <p>© 2018 ABU </p>
