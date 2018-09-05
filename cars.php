@@ -94,7 +94,7 @@
             if ($count > 0) {
                     $i = 0;
                     while ($row = $result->fetch_assoc()) {
-                      echo '<form action = "userAll/userCar.php"><div class="card text-center mt-4 ">
+                      echo '<form action = "deleteCarAdmin.php" method = "POST"><div class="card text-center mt-4 ">
                   <div class="card-header text-success h3 text-uppercase ">' .
                       $row["title"] . '
                   </div>
@@ -132,7 +132,7 @@
                   <ul class="list-group list-group-flush mr-5 " style=" border:none;float:right; margin-top:-100px; ">
 
                       <li class="list-group-item " style="border:none">
-                          <input type="submit" name="select" id="select" class="btn btn-danger " value="Remove " style="width:100px; " />
+                          <input type="submit" name="remove" id="remove" class="btn btn-danger " value="Remove " style="width:100px; " />
                       </li>
                   </ul>
                   </div>

@@ -95,7 +95,7 @@
             if ($count > 0) {
                     $i = 0;
                     while ($row = $result->fetch_assoc()) {
-                      echo '<form action = "userAll/userApartment.php" method = "POST"><div class="card text-center mt-4 ">
+                      echo '<form action = "deleteApartmentAdmin.php" method = "POST"><div class="card text-center mt-4 ">
 
                   <input type="text" value=" ' . $row["ID"] . ' "  name="idnum" id="idnum" hidden>
                   <input type="text" value=" ' . $count . ' "  name="count" id="count" hidden>
