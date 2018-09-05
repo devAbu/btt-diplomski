@@ -129,7 +129,7 @@ if ($count > 0) {
         while ($row = $result->fetch_assoc()) {
             echo '<div class="card ml-2" style="border-radius:2% !important;" id="prva">
                 <a href="tourPlans.php">
-                    <img class="card-img-top img-fluid index " src=" data:image/jpeg;base64,' . base64_encode($row["img"]) . '" style="border-radius:2% !important; height: 250px;" alt="' . $row["title"] . '">
+                    <img class="card-img-top img-fluid index " src="' . $row["img"] . '" style="border-radius:2% !important; height: 250px;" alt="' . $row["title"] . '">
                 </a>
                 <div class="card-body">
                     <a href="tourPlans.php" class="text-info">

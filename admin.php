@@ -124,7 +124,7 @@
                     <div class="card-body ">
                         <h5 class="card-title text-left ml-5 h1 text-primary "> ' . $row["title"] . '</h5>
 
-                            <img src=" data:image/jpeg;base64,' . base64_encode($row["img"]) . '" class="tourPlans " alt="skijanje " width="400 " height="250
+                            <img src=" ' . $row["img"] . '" class="tourPlans " alt="skijanje " width="400 " height="250
                     " style="float:left; " />
 
 
@@ -266,31 +266,35 @@
                       $("#alert").addClass('alert-danger');
                       $("#alert").html("Tour image is required!!!");
                       $("#alert").fadeIn(500).delay(1000).fadeOut(500);
-                  } // else {
-                  //     $.ajax({
-                  //         url: "dbSend/indexSent.php?task=register&firstSign=" + firstSign + "&lastSign=" + lastSign + "&emailSign=" + emailSign + "&passSign=" + passSign,
-                  //         success: function (data) {
-                  //             if (data.indexOf('sent') > -1) {
-                  //                 $("#alert").addClass('alert-success');
-                  //                 $("#alert").html('Your account created successfully. Now you can login with your information');
-                  //                 $("#alert").slideDown(500).delay(2000).slideUp(500);
-                  //                 $('#firstSign').val("");
-                  //                 $('#lastSign').val("");
-                  //                 $('#emailSign').val("");
-                  //                 $('#passSign').val("");
-                  //             } else {
-                  //                 $("#alert").addClass('alert-danger');
-                  //                 $("#alert").html('The email is already exists.');
-                  //                 $("#alert").slideDown(500).delay(1000).slideUp(500);
-                  //             }
-                  //         },
-                  //         error: function (data, err) {
-                  //             $("#alert").addClass('alert-danger');
-                  //             $("#alert").html('Some problem occured. We are sorry.');
-                  //             $("#alert").slideDown(500).delay(1000).slideUp(500);
-                  //         }
-                  //     })
-                  // }
+                  }  else {
+                       $.ajax({
+                           url: "addTour.php?task=add&tourType=" + tourType + "&tourTitle=" + tourTitle + "&tourDescription=" + tourDescription + "&people=" + people+ "&tourAvailable=" + tourAvailable + "&tourPrice=" + tourPrice + "&tourDays=" + tourDays + "&tourImage=" + tourImage,
+                           success: function (data) {
+                               if (data.indexOf('add') > -1) {
+                                   $("#alert").addClass('alert-success');
+                                   $("#alert").html('Tour added successfully');
+                                   $("#alert").slideDown(500).delay(2000).slideUp(500);
+                                   $('#tourType').val("");
+                                   $('#tourTitle').val("");
+                                   $('#tourDescription').val("");
+                                   $('#people').val("");
+                                   $('#tourAvailable').val("");
+                                   $('#tourPrice').val("");
+                                   $('#tourDays').val("");
+                                   $('#tourImage').val("");
+               } else {
+                                   $("#alert").addClass('alert-danger');
+                                   $("#alert").html('There are some problem.');
+                                   $("#alert").slideDown(500).delay(1000).slideUp(500);
+                               }
+                           },
+                           error: function (data, err) {
+                               $("#alert").addClass('alert-danger');
+                               $("#alert").html('Some problem occured. We are sorry.');
+                               $("#alert").slideDown(500).delay(1000).slideUp(500);
+                           }
+                       })
+                   }
               });
         </script>
 
