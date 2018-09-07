@@ -99,7 +99,6 @@
                 </div>
               </div>
             </div>
-            <!--TODO: vidjet da se uradi update ture-->
 
 
             <div class="clearfix"> </div>
