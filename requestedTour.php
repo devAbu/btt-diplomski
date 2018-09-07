@@ -1,4 +1,4 @@
-<!-- TODO: admin moze confirmat turu...ako je confirma sacuva se u bazi i kod admina sa opcijom / button da je publishuje (prvo se otvori modal / popup da se popune odredjene inf za turu) -->
+<!-- TODO: confirmana tura da se publishuje -->
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -97,7 +97,10 @@
                                 <input type="text" value=" ' . $row["id"] . ' "  name="idnum" id="idnum" hidden>
                                 <input type="text" value=" ' . $count . ' "  name="count" id="count" hidden>
                                 <div class="card-body ">
-                                  <h6 class="card-title text-left ml-5 text-primary "> ' . $row["name"] . '</h5>
+                                  <h6 class="card-title text-left ml-5 text-primary ">
+                                  '.$row["name"].'</h6>
+
+
 
 
                                     <label class="card-text text-success" style="max-width:800px; "> City: ' . $row["city"] . '</label>
@@ -126,9 +129,52 @@
                                     echo '
                                     <input type="number" value="' . $i . '" id="test" hidden>
                                     <li class="list-group-item " style="border:none">
-                                        <input type="submit" name="confirm" id="confirm" class="btn btn-success " value="Confirm " style="width:100px; " />
+                                        <input type="button" name="confirm" id="confirm" class="btn btn-success " value="Confirm " style="width:100px; " data-toggle="collapse" data-target="#collapseExample'.$i.'" aria-expanded="false" aria-controls="collapseExample" />
                                     </li>
                                 </ul>
+                                </div>
+                                <div class="collapse" id="collapseExample'.$i.'">
+                                  <div class="card card-body">
+                                  <form>
+                                        <div class="offset-md-2">
+                                          <div class="row">
+                                            <div class="col-6">
+                                              <input type="text" placeholder="Tour type..." class="form-control" style="width: 350px" required id="tourType" name="tourType">
+                                            </div>
+                                            <div class="col-6">
+                                              <input type="text" placeholder="Tour title..." class="form-control" style="width: 350px" id="tourTitle" name="tourTitle"  required>
+                                            </div>
+                                            <div class="col-6 mt-3">
+                                              <input type="text" placeholder="Tour description..." class="form-control" style="width: 350px" id="tourDescription" name="tourDescription" required>
+                                              </div>
+                                              <div class="col-6 mt-3">
+                                              <input type="text" placeholder="Max people..." class="form-control" style="width: 350px" id="people" name="people" required>
+                                              </div>
+                                              <div class="col-6 mt-3">
+                                              <input type="text" placeholder="Tour available..." class="form-control" style="width: 350px" id="tourAvailable" name="tourAvailable" required>
+                                              </div>
+                                              <div class="col-6 mt-3">
+                                              <input type="text" placeholder="Tour price..." class="form-control" style="width: 350px" id="tourPrice" name="tourPrice" required>
+                                              </div>
+                                              <div class="col-6 mt-3">
+                                              <input type="text" placeholder="Tour length in days..." class="form-control" style="width: 350px" id="tourDays" name="tourDays" required>
+                                              </div>
+                                              <div class="col-6 mt-3">
+                                              <input type="text" placeholder="Tour image (link)..." class="form-control" style="width: 350px" id="tourImage" name="tourImage" required>
+                                              </div>
+                                              <div class="offset-3 mt-3">
+                                              <input type="button" value="Save" class="btn btn-success mb-2"  id="add">
+                                              </div>
+                                              <div class="offset-1 mt-3 col-6">
+                                                <div class="alert " id="alert" ></div>
+
+                                              </div>
+
+                                            </div>
+                                          </div>
+                                        </div>
+                                    </form>
+                                  </div>
                                 </div>
                                 <div class="card-footer text-muted ">
                                     <small class="text-muted ">
@@ -143,8 +189,176 @@
                             }
                             ?>
 
+                            <script>
+                                  $('#alert').fadeOut();
+                                  $('#add').click(function () {
+                                    console.log('juhu');
+                                      $("#alert").removeClass('alert-success').removeClass('alert-danger');
+                                      var tourType = $('#tourType').val();
+                                      var tourTitle = $('#tourTitle').val();
+                                      var tourDescription = $('#tourDescription').val();
+                                      var people = $('#people').val();
+                                      var tourAvailable = $('#tourAvailable').val();
+                                      var tourPrice = $('#tourPrice').val();
+                                      var tourDays = $('#tourDays').val();
+                                      var tourImage = $('#tourImage').val();
+
+                                      if (tourType == "") {
+                                          $("#alert").addClass('alert-danger');
+                                          $("#alert").html("Tour type is required!!!");
+                                          $("#alert").fadeIn(500).delay(1000).fadeOut(500);
+                                      } else if (tourTitle == "") {
+                                          $("#alert").addClass('alert-danger');
+                                          $("#alert").html("Tour title is required!!!");
+                                          $("#alert").fadeIn(500).delay(1000).fadeOut(500);
+                                      } else if (tourDescription == "") {
+                                          $("#alert").addClass('alert-danger');
+                                          $("#alert").html("Tour Description is required!!!");
+                                          $("#alert").fadeIn(500).delay(1000).fadeOut(500);
+                                      } else if (people == "") {
+                                          $("#alert").addClass('alert-danger');
+                                          $("#alert").html("Number of people is required!!!");
+                                          $("#alert").fadeIn(500).delay(1000).fadeOut(500);
+                                      } else if (tourAvailable == "") {
+                                          $("#alert").addClass('alert-danger');
+                                          $("#alert").html("Tour available period is required!!!");
+                                          $("#alert").fadeIn(500).delay(1000).fadeOut(500);
+                                      }  else if (tourPrice == "") {
+                                          $("#alert").addClass('alert-danger');
+                                          $("#alert").html("Tour price is required!!!");
+                                          $("#alert").fadeIn(500).delay(1000).fadeOut(500);
+                                      }   else if (tourDays == "") {
+                                          $("#alert").addClass('alert-danger');
+                                          $("#alert").html("Tour length is required!!!");
+                                          $("#alert").fadeIn(500).delay(1000).fadeOut(500);
+                                      }  else if (tourImage == "") {
+                                          $("#alert").addClass('alert-danger');
+                                          $("#alert").html("Tour image is required!!!");
+                                          $("#alert").fadeIn(500).delay(1000).fadeOut(500);
+                                      }  else {
+                                           $.ajax({
+                                               url: "confirmTour.php?task=add&tourType=" + tourType + "&tourTitle=" + tourTitle + "&tourDescription=" + tourDescription + "&people=" + people+ "&tourAvailable=" + tourAvailable + "&tourPrice=" + tourPrice + "&tourDays=" + tourDays + "&tourImage=" + tourImage,
+                                               success: function (data) {
+                                                   if (data.indexOf('add') > -1) {
+                                                       $("#alert").addClass('alert-success');
+                                                       $("#alert").html('Tour added successfully');
+                                                       $("#alert").slideDown(500).delay(2000).slideUp(500);
+                                                       $('#tourType').val("");
+                                                       $('#tourTitle').val("");
+                                                       $('#tourDescription').val("");
+                                                       $('#people').val("");
+                                                       $('#tourAvailable').val("");
+                                                       $('#tourPrice').val("");
+                                                       $('#tourDays').val("");
+                                                       $('#tourImage').val("");
+                                   } else {
+                                                       $("#alert").addClass('alert-danger');
+                                                       $("#alert").html('There are some problem.');
+                                                       $("#alert").slideDown(500).delay(1000).slideUp(500);
+                                                   }
+                                               },
+                                               error: function (data, err) {
+                                                   $("#alert").addClass('alert-danger');
+                                                   $("#alert").html('Some problem occured. We are sorry.');
+                                                   $("#alert").slideDown(500).delay(1000).slideUp(500);
+                                               }
+                                           })
+                                       }
+                                  });
+                            </script>
+
+                            <div class="row mt-4">
+
+                              <div class="col-12 market-update-gd">
+                                <div class="market-update-block clr-block-1">
+                                  <div class="row">
+                                    <div class="col-md-8 market-update-left">
+                                      <?php
+                                          $sql = "SELECT * FROM confrimedTour ";
+                                          $result = $dbc->query($sql);
+
+                                          $count = $result->num_rows;
+                                          echo '<h3>'.$count.'</h3> ';
+                                        ?>
+                                      <h4>Tours that can be published</h4>
+                                    </div>
+                                    <div class="col-md-4 market-update-right">
+                                      <i class="fas fa-diagnoses fa-5x" style="color:white"></i>
+                                    </div>
+                                  </div>
+                                  <div class="clearfix"> </div>
+                                </div>
+                              </div>
+                            </div>
+                            <?php
+                                        $sql = "SELECT * FROM confrimedtour ";
+                                        $result = $dbc->query($sql);
+
+                                        $count = $result->num_rows;
+
+                                        if ($count > 0) {
+                                                $i = 0;
+                                                while ($row = $result->fetch_assoc()) {
+                                                    echo '<form action = "deleteTourAdmin.php" method = "POST"><div class="card text-center mt-4 ">
+                                                <div class="card-header text-success h3 text-uppercase ">' .
+                                                    $row["type"] . '
+                                                </div>
+                                                <input type="text" value=" ' . $row["ID"] . ' "  name="idnum" id="idnum" hidden>
+                                                <input type="text" value=" ' . $count . ' "  name="count" id="count" hidden>
+                                                <div class="card-body ">
+                                                    <h5 class="card-title text-left ml-5 h1 text-primary "> ' . $row["title"] . '</h5>
+
+                                                        <img src=" ' . $row["img"] . '" class="tourPlans " alt="skijanje " width="400 " height="250
+                                                " style="float:left; " />
+
+
+
+                                                    <label class="card-text " style="max-width:800px; ">' . $row["description"] . '</label>
+
+
+                                                <ul class="list-group list-group-flush tourPlans2 " style="width:390px; border:none; ">
+                                                    <li class="list-group-item text-warning mt-4 " style="border:none; ">
+                                                        <p class="card-text " style="float:left; ">
+                                                            <i class="fas fa-users "></i>
+                                                            <span class="ml-2 ">Max People: ' . $row["people"] . '</span>
+                                                        </p>
+                                                    </li>
+                                                    <li class="list-group-item text-warning ">
+                                                        <p class="card-text " style="float:left; ">
+                                                            <i class="fas fa-calendar-alt "></i>
+                                                            <span class="ml-3 ">Availability: ' . $row["available"] . '</span>
+                                                        </p>
+                                                    </li>
+                                                    <li class="list-group-item text-warning ">
+                                                        <p class="card-text " style="float:left; ">
+                                                            <i class="fas fa-euro-sign mr-4 "></i> ' . $row["price"] . '</p>
+                                                    </li>
+                                                </ul>
+
+                                                <ul class="list-group list-group-flush mr-5 " style=" border:none;float:right; margin-top:-100px; ">';
+                                                    echo '
+                                                    <input type="number" value="' . $i . '" id="test" hidden>
+                                                    <li class="list-group-item " style="border:none">
+                                                        <input type="button" name="publish" id="publish" class="btn btn-success " value="Publish " style="width:100px; " />
+                                                    </li>
+                                                </ul>
+                                                </div>
+                                                <div class="card-footer text-muted ">
+                                                    <small class="text-muted ">
+                                                        <i class="far fa-clock mr-2 "></i> ' . $row["days"] . '</small>
+                                                </div>
+                                                </div></form>
+                                                ';
+                                                    $i++;
+
+                                                }
+
+                                            }
+                                            ?>
                       </div>
                     </div>
+
+
 
         <div class="copyrights">
           <p>© 2018 ABU </p>
