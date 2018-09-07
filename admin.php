@@ -1,3 +1,5 @@
+<!-- TODO: requested ture da se prikazu - dodat item u navbaru -->
+<!-- TODO: admin moze confirmat ili odbit turu...ako je confirma sacuva se u bazi i kod admina sa opcijom / button da je publishuje -->
 <!DOCTYPE HTML>
 <html>
 <head>
