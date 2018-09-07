@@ -1,5 +1,3 @@
-<!-- TODO: requested ture da se prikazu - dodat item u navbaru -->
-<!-- TODO: admin moze confirmat ili odbit turu...ako je confirma sacuva se u bazi i kod admina sa opcijom / button da je publishuje -->
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -21,7 +19,8 @@
   <link href="css/style2.css" rel="stylesheet" type="text/css" media="all" />
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -156,6 +155,9 @@
                     <ul class="list-group list-group-flush mr-5 " style=" border:none;float:right; margin-top:-100px; ">';
                         echo '
                         <input type="number" value="' . $i . '" id="test" hidden>
+                        <li class="list-group-item " style="border:none">
+                            <input type="button" name="update" id="update" class="btn btn-warning " value="Update " style="width:100px; " />
+                        </li>
                         <li class="list-group-item " style="border:none">
                             <input type="submit" name="remove" id="remove" class="btn btn-danger " value="Remove " style="width:100px; " />
                         </li>
@@ -311,11 +313,12 @@
     <div class="sidebar-menu">
       <div class="menu">
         <ul id="menu">
-          <li id="menu-home" ><a href="admin.php"><i class="fas fa-suitcase mr-2 fa -lg" style="color:gold;"></i><span style="color:gold;">Tours</span></a></li>
+          <li id="menu-home" ><a href="admin.php"><i class="fas fa-suitcase mr-2 fa-lg" style="color:gold;"></i><span style="color:gold;">Tours</span></a></li>
           <li id="menu-home"><a href="cars.php"><i class="fas fa-car fa-lg mr-2"></i><span>Cars</span></a></li>
-          <li id="menu-home"><a href="hotels.php"><i class="fas fa-bed mr-2 fa-lg "></i><span>Hotel</span></a></li>
+          <li id="menu-home"><a href="hotels.php"><i class="fas fa-hotel mr-2 fa-lg "></i><span>Hotel</span></a></li>
           <li id="menu-home"><a href="apartments.php"><i class="far fa-building fa-lg mr-2"></i><span>Apartments</span></a></li>
           <li id="menu-home"><a href="feedbacks.php"><i class="far fa-smile fa-lg mr-2"></i><span>Feedbacks</span></a></li>
+          <li id="menu-home"><a href="requestedTour.php"><i class="fas fa-diagnoses mr-2"></i><span>Requested tour</span></a></li>
           <li id="menu-home"><a href="logout.php"><i class="fas fa-sign-out-alt fa-lg mr-2"></i><span>Logout</span></a></li>
         </ul>
       </div>

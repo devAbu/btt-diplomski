@@ -19,8 +19,7 @@
   <link href="css/style2.css" rel="stylesheet" type="text/css" media="all" />
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
       crossorigin="anonymous"></script>
@@ -273,11 +272,12 @@
     <div class="sidebar-menu">
       <div class="menu">
         <ul id="menu">
-          <li id="menu-home" ><a href="admin.php"><i class="fas fa-suitcase mr-2 fa -lg" ></i><span >Tours</span></a></li>
+          <li id="menu-home" ><a href="admin.php"><i class="fas fa-suitcase mr-2 fa-lg" ></i><span>Tours</span></a></li>
           <li id="menu-home"><a href="cars.php"><i class="fas fa-car fa-lg mr-2" style="color:gold;"></i><span style="color:gold;">Cars</span></a></li>
-          <li id="menu-home"><a href="hotels.php"><i class="fas fa-bed mr-2 fa-lg "></i><span>Hotel</span></a></li>
+          <li id="menu-home"><a href="hotels.php"><i class="fas fa-hotel mr-2 fa-lg "></i><span>Hotel</span></a></li>
           <li id="menu-home"><a href="apartments.php"><i class="far fa-building fa-lg mr-2"></i><span>Apartments</span></a></li>
           <li id="menu-home"><a href="feedbacks.php"><i class="far fa-smile fa-lg mr-2"></i><span>Feedbacks</span></a></li>
+          <li id="menu-home"><a href="requestedTour.php"><i class="fas fa-diagnoses mr-2"></i><span>Requested tour</span></a></li>
           <li id="menu-home"><a href="logout.php"><i class="fas fa-sign-out-alt fa-lg mr-2"></i><span>Logout</span></a></li>
         </ul>
       </div>
