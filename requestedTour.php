@@ -1,4 +1,3 @@
-<!-- TODO: confirmana tura da se publishuje -->
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -283,7 +282,7 @@
                                       <h4>Tours that can be published</h4>
                                     </div>
                                     <div class="col-md-4 market-update-right">
-                                      <i class="fas fa-diagnoses fa-5x" style="color:white"></i>
+                                      <i class="far fa-share-square fa-5x" style="color:white"></i>
                                     </div>
                                   </div>
                                   <div class="clearfix"> </div>
@@ -299,7 +298,7 @@
                                         if ($count > 0) {
                                                 $i = 0;
                                                 while ($row = $result->fetch_assoc()) {
-                                                    echo '<form action = "deleteTourAdmin.php" method = "POST"><div class="card text-center mt-4 ">
+                                                    echo '<form action = "shareTour.php" method = "POST"><div class="card text-center mt-4 ">
                                                 <div class="card-header text-success h3 text-uppercase ">' .
                                                     $row["type"] . '
                                                 </div>
@@ -338,8 +337,16 @@
                                                 <ul class="list-group list-group-flush mr-5 " style=" border:none;float:right; margin-top:-100px; ">';
                                                     echo '
                                                     <input type="number" value="' . $i . '" id="test" hidden>
+                                                    <input type="text" value=" ' . $row["type"] . ' "  name="tourType" id="tourType" hidden>
+                                                    <input type="text" value=" ' . $row["title"] . ' "  name="tourTitle" id="tourTitle" hidden>
+                                                    <input type="text" value=" ' . $row["description"] . ' "  name="tourDescription" id="tourDescription" hidden>
+                                                    <input type="text" value=" ' . $row["people"] . ' "  name="people" id="people" hidden>
+                                                    <input type="text" value=" ' . $row["available"] . ' "  name="tourAvailable" id="tourAvailable" hidden>
+                                                    <input type="text" value=" ' . $row["price"] . ' "  name="tourPrice" id="tourPrice" hidden>
+                                                    <input type="text" value=" ' . $row["days"] . ' "  name="tourDays" id="tourDays" hidden>
+                                                    <input type="text" value=" ' . $row["img"] . ' "  name="tourImage" id="tourImage" hidden>
                                                     <li class="list-group-item " style="border:none">
-                                                        <input type="button" name="publish" id="publish" class="btn btn-success " value="Publish " style="width:100px; " />
+                                                        <input type="submit" name="publish" id="publish" class="btn btn-success " value="Publish " style="width:100px; " />
                                                     </li>
                                                 </ul>
                                                 </div>
