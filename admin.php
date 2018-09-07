@@ -156,7 +156,7 @@
                         echo '
                         <input type="number" value="' . $i . '" id="test" hidden>
                         <li class="list-group-item " style="border:none">
-                            <input type="button" name="update" id="update" class="btn btn-warning " value="Update " style="width:100px; " />
+                            <input type="button" name="edit" id="edit" class="btn btn-warning " value="Edit " style="width:100px; " data-toggle="collapse" data-target="#collapseExample'.$i.'" aria-expanded="false" aria-controls="collapseExample" />
                         </li>
                         <li class="list-group-item " style="border:none">
                             <input type="submit" name="remove" id="remove" class="btn btn-danger " value="Remove " style="width:100px; " />
@@ -167,7 +167,48 @@
                         <small class="text-muted ">
                             <i class="far fa-clock mr-2 "></i> ' . $row["days"] . '</small>
                     </div>
-                    </div></form>
+                    </div>
+                    </form>
+
+                    <div class="collapse" id="collapseExample'.$i.'">
+                      <div class="card card-body">
+                          <div class="row">
+                            <div class="col-12">
+                            <form action="updateTour.php" method="post">
+                            <input type="text" value=" ' . $row["ID"] . ' "  name="idnum2" id="idnum2" hidden>
+                                <div class="col-6">
+                                  <input type="text" value=" ' . $row["type"] . ' "  name="tourType2" id="tourType2"  class="form-control">
+                                </div>
+                                <div class="col-6 mt-3">
+                                  <input type="text" value=" ' . $row["title"] . ' "  name="tourTitle2" id="tourTitle2" class="form-control">
+                                </div>
+                                <div class="col-6 mt-3">
+                                  <input type="text" value=" ' . $row["description"] . ' "  name="tourDescription2" id="tourDescription2" class="form-control">
+                                </div>
+                                  <div class="col-6 mt-3">
+                                  <input type="text" value=" ' . $row["people"] . ' "  name="people2" id="people2" class="form-control">
+                                </div>
+                                  <div class="col-6 mt-3">
+                                  <input type="text" value=" ' . $row["available"] . ' "  name="tourAvailable2" id="tourAvailable2" class="form-control">
+                                </div>
+                                  <div class="col-6 mt-3">
+                                  <input type="text" value=" ' . $row["price"] . ' "  name="tourPrice2" id="tourPrice2" class="form-control">
+                                </div>
+                                <div class="col-6 mt-3">
+                                  <input type="text" value=" ' . $row["days"] . ' "  name="tourDays2" id="tourDays2" class="form-control">
+                                </div>
+                                  <div class="col-6 mt-3">
+                                    <input type="text" value=" ' . $row["img"] . ' "  name="tourImage2" id="tourImage2" class="form-control" >
+                                  </div>
+                                  <div class="offset-3 mt-3">
+                                    <input type="submit" value="Update" class="btn btn-success mb-2"  id="change">
+                                  </div>
+                                </form>
+                                </div>
+
+                          </div>
+                      </div>
+                    </div>
                     ';
                         $i++;
 
