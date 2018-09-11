@@ -64,11 +64,9 @@ session_start();
             </div>
             <div class="col-6 ml-5 mt-5">
                 <p style="font-size:22px; color: rgb(255, 255, 0);">
-                    Lorem ipsum dolor sit amet,sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, At vero eos et
-                    accusam et justo duo dolores et ea rebum. Lorem ipsum dolor sit amet, no sea takimata sanctus est Lorem
-                    ipsum dolor sit amet. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                    no sea takimata sanctus est Lorem ipsum dolor sit amet. no sea takimata sanctus est Lorem ipsum dolor
-                    sit amet. sed diam voluptua.
+                  Bosnia Travels agency is run by young and creative team who can respond all your needs. In cooperation with our partners (hotels, restaurants, real estate agencies, rent-a-car companies, professional tourist guides) we guarantee you to get the best services!
+
+Either you are looking for VIP services or low budget trip; we will make the best offer according to your demands. Our goal is to deliver you the best of the quality services!
                 </p>
             </div>
             <div class="col-4 ml-5">

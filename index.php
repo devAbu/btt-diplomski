@@ -1,4 +1,3 @@
-<!-- TODO: pravi tekst a ne lorem ispum (i iz baze) -->
 <?php
 session_start();
 ?>
