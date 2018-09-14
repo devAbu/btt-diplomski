@@ -33,12 +33,19 @@
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+  <style>
+    .labelStyle{
+      color: greenyellow;
+    }
+  </style>
+
 </head>
 
 <body>
 
   <?php
-    require '/connection/connect.php';
+require '/connection/connect.php';
 ?>
 
   <div class="page-container">
@@ -63,12 +70,12 @@
                   <div class="row">
                     <div class="col-md-8 market-update-left">
                       <?php
-                          $sql = "SELECT * FROM registacija ";
-                          $result = $dbc->query($sql);
+$sql = "SELECT * FROM registacija ";
+$result = $dbc->query($sql);
 
-                          $count = $result->num_rows;
-                          echo '<h3>'.$count.'</h3> ';
-                        ?>
+$count = $result->num_rows;
+echo '<h3>' . $count . '</h3> ';
+?>
                       <h4>Registered Users</h4>
                     </div>
                     <div class="col-md-4 market-update-right">
@@ -83,12 +90,12 @@
                   <div class="row">
                     <div class="col-md-8 market-update-left">
                       <?php
-                          $sql = "SELECT * FROM tourplan ";
-                          $result = $dbc->query($sql);
+$sql = "SELECT * FROM tourplan ";
+$result = $dbc->query($sql);
 
-                          $count = $result->num_rows;
-                          echo '<h3>'.$count.'</h3> ';
-                        ?>
+$count = $result->num_rows;
+echo '<h3>' . $count . '</h3> ';
+?>
                       <h4>Tours</h4>
                     </div>
                     <div class="col-md-4 market-update-right">
@@ -107,17 +114,17 @@
             </div>
 
 <?php
-            $sql = "SELECT * FROM tourplan ";
-            $result = $dbc->query($sql);
+$sql = "SELECT * FROM tourplan ";
+$result = $dbc->query($sql);
 
-            $count = $result->num_rows;
+$count = $result->num_rows;
 
-            if ($count > 0) {
-                    $i = 0;
-                    while ($row = $result->fetch_assoc()) {
-                        echo '<form action = "deleteTourAdmin.php" method = "POST"><div class="card text-center mt-4 ">
+if ($count > 0) {
+    $i = 0;
+    while ($row = $result->fetch_assoc()) {
+        echo '<form action = "deleteTourAdmin.php" method = "POST"><div class="card text-center mt-4 ">
                     <div class="card-header text-success h3 text-uppercase ">' .
-                        $row["type"] . '
+            $row["type"] . '
                     </div>
                     <input type="text" value=" ' . $row["ID"] . ' "  name="idnum" id="idnum" hidden>
                     <input type="text" value=" ' . $count . ' "  name="count" id="count" hidden>
@@ -152,10 +159,10 @@
                     </ul>
 
                     <ul class="list-group list-group-flush mr-5 " style=" border:none;float:right; margin-top:-100px; ">';
-                        echo '
+        echo '
                         <input type="number" value="' . $i . '" id="test" hidden>
                         <li class="list-group-item " style="border:none">
-                            <input type="button" name="edit" id="edit" class="btn btn-warning " value="Edit " style="width:100px; " data-toggle="collapse" data-target="#collapseExample'.$i.'" aria-expanded="false" aria-controls="collapseExample" />
+                            <input type="button" name="edit" id="edit" class="btn btn-warning " value="Edit " style="width:100px; " data-toggle="collapse" data-target="#collapseExample' . $i . '" aria-expanded="false" aria-controls="collapseExample" />
                         </li>
                         <li class="list-group-item " style="border:none">
                             <input type="submit" name="remove" id="remove" class="btn btn-danger " value="Remove " style="width:100px; " />
@@ -169,34 +176,42 @@
                     </div>
                     </form>
 
-                    <div class="collapse" id="collapseExample'.$i.'">
+                    <div class="collapse" id="collapseExample' . $i . '">
                       <div class="card card-body">
                           <div class="row">
                             <div class="col-12">
                             <form action="updateTour.php" method="post">
                             <input type="text" value=" ' . $row["ID"] . ' "  name="idnum2" id="idnum2" hidden>
                                 <div class="col-6">
+                                  <label for="tourType2" class="labelStyle">Tour type: </label>
                                   <input type="text" value=" ' . $row["type"] . ' "  name="tourType2" id="tourType2"  class="form-control">
                                 </div>
                                 <div class="col-6 mt-3">
+                                  <label for="tourTitle2" class="labelStyle">Tour title: </label>
                                   <input type="text" value=" ' . $row["title"] . ' "  name="tourTitle2" id="tourTitle2" class="form-control">
                                 </div>
                                 <div class="col-6 mt-3">
+                                  <label for="tourType2" class="labelStyle">Tour type: </label>
                                   <input type="text" value=" ' . $row["description"] . ' "  name="tourDescription2" id="tourDescription2" class="form-control">
                                 </div>
                                   <div class="col-6 mt-3">
-                                  <input type="text" value=" ' . $row["people"] . ' "  name="people2" id="people2" class="form-control">
+                                    <label for="people2" class="labelStyle">No. people: </label>
+                                    <input type="text" value=" ' . $row["people"] . ' "  name="people2" id="people2" class="form-control">
                                 </div>
                                   <div class="col-6 mt-3">
-                                  <input type="text" value=" ' . $row["available"] . ' "  name="tourAvailable2" id="tourAvailable2" class="form-control">
+                                    <label for="tourAvailable2" class="labelStyle">Tour available: </label>
+                                    <input type="text" value=" ' . $row["available"] . ' "  name="tourAvailable2" id="tourAvailable2" class="form-control">
                                 </div>
                                   <div class="col-6 mt-3">
-                                  <input type="text" value=" ' . $row["price"] . ' "  name="tourPrice2" id="tourPrice2" class="form-control">
+                                    <label for="tourTPrice2" class="labelStyle">Tour price: </label>
+                                    <input type="text" value=" ' . $row["price"] . ' "  name="tourPrice2" id="tourPrice2" class="form-control">
                                 </div>
                                 <div class="col-6 mt-3">
+                                  <label for="tourDays2" class="labelStyle">Tour days: </label>
                                   <input type="text" value=" ' . $row["days"] . ' "  name="tourDays2" id="tourDays2" class="form-control">
                                 </div>
                                   <div class="col-6 mt-3">
+                                    <label for="tourImage2" class="labelStyle">Tour image (link): </label>
                                     <input type="text" value=" ' . $row["img"] . ' "  name="tourImage2" id="tourImage2" class="form-control" >
                                   </div>
                                   <div class="offset-3 mt-3">
@@ -209,12 +224,12 @@
                       </div>
                     </div>
                     ';
-                        $i++;
+        $i++;
 
-                    }
+    }
 
-                }
-                ?>
+}
+?>
 
           </div>
         </div>
